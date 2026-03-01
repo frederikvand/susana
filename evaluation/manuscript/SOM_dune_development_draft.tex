@@ -53,9 +53,9 @@
 
 \author{
 Frederik Van~Daele$^{1,*}$\thanks{Corresponding author: frederik.vandaele@ugent.be} \and
-Jianghua Guo$^{3}$ \and
-Maaike Dhondt$^{2}$ \and
 Charlotte Taelman$^{2}$ \and
+Maaike Dhondt$^{2}$ \and
+Jianghua Guo$^{3}$ \and
 Jiayue Yan$^{2}$ \and
 Katrien Vanderbiest$^{4}$ \and
 Pieter Rauwoens$^{3}$ \and
@@ -177,6 +177,28 @@ A parallel germination experiment tested the capacity of marram grass seeds to e
 Germinated seedlings were counted on 24 May 2024 (1~month after setup), and maximum seedling length per pot was measured biweekly from May through September 2024. Pots were overblown with \SI{1}{\centi\metre} natural beach sand (R) on 5 July and 16 August 2024. Effects on germination percentage and seedling growth were analysed with ANOVA and Tukey's HSD.
 
 
+\subsection{Derivation of SOM Response Curves for Model Parameterisation}
+\label{sec:som_response_derivation}
+
+To translate the experimental growth and mortality observations into continuous functions suitable for the Living Dunes demographic module, we derived dose--response curves relating normalised plant performance to substrate TOC content. For each response variable---maximum leaf height, maximum leaf count (stem density), root biomass, and mortality---individual measurements were normalised to the treatment mean of the reference beach sand (R), yielding substrate-specific multipliers.
+
+The overall effect of substrate treatment on each response variable was first tested using a Kruskal--Wallis rank-sum test on the individual-level data ($n = 120$ for aboveground variables, $n = 228$ for root biomass). Due to the high within-treatment variance characteristic of individual-plant measurements in heterogeneous field conditions, the Gaussian response curves were fitted to treatment-level means (10 substrates) using weighted non-linear least squares with the Levenberg--Marquardt algorithm (\texttt{nlsLM} from the \texttt{minpack.lm} R package). Inverse-variance weights ($1/\text{SE}^2_j$) were assigned to each treatment mean, giving higher precision to treatments with less dispersion. This approach is standard for dose--response parameterisation when within-treatment variation exceeds the between-treatment signal \citep{ritz2015dose}.
+
+Growth responses were modelled as Gaussian functions:
+\begin{equation}
+f_{\text{growth}}(\SOM) = b_0 + a \cdot \exp\left(-\frac{(\SOM - \mu)^2}{2\sigma^2}\right)
+\label{eq:gaussian_som}
+\end{equation}
+where $b_0$ is the baseline multiplier, $a$ is the response amplitude, $\mu$ is the optimal SOM (\% TOC), and $\sigma$ is the standard deviation controlling the peak width. Parameters were bounded to physically interpretable ranges ($b_0 \in [0.5, 1.5]$, $a \in [0, 2]$, $\mu \in [0, 3]$, $\sigma \in [0.1, 3.0]$). Goodness-of-fit was assessed using weighted $R^2$ on the treatment means.
+
+Mortality was modelled using a binomial generalised linear mixed model (GLMM; \texttt{glmmTMB} package) with SOM as a fixed effect and spatial block (column position in the common garden) as a random intercept, reflecting the experimental design:
+\begin{equation}
+\mathrm{logit}(P_{\mathrm{survival}}) = \beta_0 + \beta_1 \cdot \SOM + u_j, \quad u_j \sim \mathcal{N}(0, \sigma^2_u)
+\label{eq:mortality_glmm}
+\end{equation}
+where $u_j$ is the random intercept for column $j$. Model adequacy was evaluated using McFadden pseudo-$R^2$.
+
+
 \subsection{Modelling Biomorphogenic Feedbacks}
 
 We simulated coupled aeolian--vegetation--geomorphological feedbacks using the Living Dunes model framework (a complete model description and release is planned for a separate publication). The model operates on a regular grid (here at \SI{0.2}{\metre} and \SI{1.0}{\metre} resolution) using an hourly time step for aeolian and soil moisture processes and a daily time step for vegetation dynamics. The core simulation loop integrates environmental forcing (wind, precipitation, temperature), soil moisture dynamics, aeolian sediment transport, geomorphological change, and vegetation growth and mortality. This section describes the model components relevant to the present study, emphasising the extensions developed for SOM representation.
@@ -213,16 +235,18 @@ The Living Dunes soil moisture module resolves a two-layer soil column comprisin
 
 \subsubsection{Vegetation Module}
 
-Living Dunes resolves vegetation dynamics at the species level using a demographic framework with distinct life phases (seed bank, juvenile, adult). For marram grass, growth is governed by a base rate modulated by environmental response functions for soil moisture, temperature, sand burial, and erosion, combined through a geometric mean interaction model. The environmental response functions are parameterised using cardinal response curves, Gaussian functions, and sigmoid functions derived from field observations and literature values.
+Living Dunes resolves vegetation dynamics at the species level using a demographic framework with distinct life phases (seed bank, juvenile, adult). For marram grass, growth is governed by a base rate modulated by environmental response functions for soil moisture, temperature, sand burial, erosion, and---as parameterised in this study---substrate SOM content, combined through a geometric mean interaction model. The environmental response functions are parameterised using cardinal response curves, Gaussian functions, and sigmoid functions derived from field observations and literature values.
 
 Adult marram grass density growth follows:
 \begin{equation}
 \frac{d\,\rho_v}{d\,t} = r_{base} \times \left(\prod_{i=1}^{n}\, f_i(E_i)\right)^{1/n} \times g(\rho_v)
 \label{eq:veg_growth}
 \end{equation}
-where $r_{base}$ is the base growth rate (\num{0.01} per day), $f_i(E_i)$ are the $n$ environmental response functions for driver $E_i$ (moisture, temperature, burial, erosion), and $g(\rho_v)$ is a density-dependent regulation term modelled as an inverse logistic function with midpoint at \SI{90}{\percent} cover. Height growth is similarly regulated and additionally responds to burial depth through a cardinal response function peaking at \SIrange{60}{200}{\milli\metre\per\day} burial rate, reflecting the species' characteristic stimulation by moderate sand accretion \citep{disraeli1984effect, huiskes1979ammophila}.
+where $r_{base}$ is the base growth rate (\num{0.01} per day), $f_i(E_i)$ are the $n$ environmental response functions for driver $E_i$ (moisture, temperature, burial, erosion, SOM), and $g(\rho_v)$ is a density-dependent regulation term modelled as an inverse logistic function with midpoint at \SI{90}{\percent} cover. Height growth is similarly regulated and additionally responds to burial depth through a cardinal response function peaking at \SIrange{60}{200}{\milli\metre\per\day} burial rate, reflecting the species' characteristic stimulation by moderate sand accretion \citep{disraeli1984effect, huiskes1979ammophila}.
 
-Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model---the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion.
+The SOM response functions enter the geometric mean as additional environmental factors $f_{\SOM}(\cdot)$ for density growth and height growth (\cref{eq:gaussian_som}), parameterised from the treatment-mean fits described in \cref{sec:som_response_derivation}. The derived parameters for the Living Dunes vegetation model are listed in \cref{tab:som_derived_parameters}, and the response curves are shown in \cref{fig:som_response_curves}.
+
+Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model---the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion. As the mortality response to SOM was not significant in the experimental data (\cref{sec:results_som_curves}), no SOM-specific mortality modifier was implemented in the present simulations.
 
 Lateral spread is modelled through a two-component kernel: a diffusive spread to immediately neighbouring cells and longer-range rhizome colonisation (L\'{e}vy walk), both modulated by the same environmental response functions but with distinct base rates and density-dependent regulation \citep{bonte2021biomorphogenic}.
 
@@ -352,6 +376,27 @@ The microclimate loggers revealed systematic differences in soil moisture among 
     \label{fig:germination_establishment}
 \end{figure}
 
+
+\subsection{SOM Response Curves for Model Parameterisation}
+\label{sec:results_som_curves}
+
+Kruskal--Wallis tests on individual-level data did not detect a statistically significant overall effect of substrate treatment on any growth metric (height: $\chi^2 = 9.18$, $p = 0.42$; density: $\chi^2 = 5.03$, $p = 0.83$; root biomass: $\chi^2 = 5.17$, $p = 0.82$), owing to the large within-treatment variance among individual plants. However, the treatment-mean response patterns revealed biologically interpretable optima when fitted with Gaussian dose--response curves (\cref{fig:som_response_curves}).
+
+Height growth showed a broad optimum centred at $\mu = 1.32$~\% TOC ($\sigma = 1.52$, amplitude $a = 0.81$; weighted $R^2 = 0.66$), indicating that substrates in the range 0.5--2.0~\% TOC marginally enhance vertical growth relative to pure beach sand, but without a sharply differentiated peak. Stem density growth exhibited a narrower optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$, $a = 1.40$; weighted $R^2 = 0.64$), with density at the optimal substrate approximately 2.4 times the reference. Root biomass showed an intermediate pattern with an optimum at $\mu = 1.24$~\% TOC ($\sigma = 0.68$, $a = 0.65$; weighted $R^2 = 0.54$). Full coefficient tables are provided in \cref{sec:appendix_tables}.
+
+The mortality GLMM revealed no significant SOM effect on survival probability ($\beta_1 = 0.010$, $p = 0.97$, McFadden pseudo-$R^2 \approx 0$), and negligible random-effect variance ($\sigma_u < 10^{-4}$). Across all substrates, approximately 20\% of transplanted marram grass individuals died, but this mortality was unrelated to organic matter content within the experimental range (0.06--2.16~\% TOC).
+
+The derived response parameters are summarised in \cref{tab:som_derived_parameters}.
+
+\input{tables/som_derived_parameters}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../../output/som_response_R_derivation.png}
+    \caption{SOM response curves for \textit{Ammophila arenaria} demographic parameterisation. Grey points show individual plant-level observations; coloured points with error bars show treatment means $\pm$ SE; solid lines show the fitted Gaussian (a--c) and logistic (d) curves. Mortality plots show the binomial GLMM marginal prediction with 95\% confidence band.}
+    \label{fig:som_response_curves}
+\end{figure}
+
 \subsection{Reference Beach Simulation (Year 1)}
 
 The reference beach simulation (no vegetation) produced results consistent with expected supply-limited beach dynamics. Over the first year (September 2021 -- September 2022), the beach zone experienced a net volume change of $-$\SI{362}{\cubic\metre}, comprising \SI{515}{\cubic\metre} of erosion and \SI{153}{\cubic\metre} of redeposition within the beach zone. The dike zone accumulated \SI{368}{\cubic\metre} of sand, representing aeolian deposition on and beyond the hard infrastructure.
@@ -400,11 +445,19 @@ The combined experimental and modelling results reveal that soil organic matter 
 
 This trade-off implies an optimal SOM range that maximises long-term dune development. Our growth experiments suggest that moderate D/W mixtures (50/50 and 37.5/62.5, corresponding to approximately \SIrange{1}{1.5}{\percent} TOC) produced the tallest marram grass, outperforming both the nutrient-poor reference sand and the excessively organic dark substrate. This bell-shaped response parallels the well-known ``optimal burial'' paradigm in dune ecology, where moderate sand accretion stimulates growth but excessive burial causes mortality \citep{maun1998adaptations}.
 
+\subsection{SOM Influence on Marram Grass Demography}
+
+The derived SOM response curves (\cref{sec:results_som_curves}) provide a nuanced picture of how substrate organic matter content influences individual demographic processes. Although the Kruskal--Wallis tests on individual-level data were non-significant---reflecting the large stochastic variation inherent in plant performance under heterogeneous field conditions---the treatment-mean curves revealed biologically interpretable optima consistent with the patterns observed in the raw growth data.
+
+The height and root growth optima ($\mu = 1.32$ and $1.24$~\% TOC, respectively) were broad ($\sigma > 0.6$), indicating that these traits respond gradually to SOM enrichment within the experimental range. In contrast, stem density growth showed a sharp, narrow optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$), suggesting that tiller production is more sensitively tuned to a low but non-zero SOM level. This differential sensitivity among demographic traits has implications for the Living Dunes model: because growth processes are combined through a geometric mean interaction (\cref{eq:veg_growth}), the narrowest response function effectively constrains the overall growth multiplier at extreme SOM values, even when other traits remain at or above baseline.
+
+The absence of a significant SOM--mortality relationship within the experimental range (0.06--2.16~\% TOC) is a meaningful finding in itself: it indicates that, at least during the establishment phase, the organic matter levels tested do not induce phytotoxicity, anaerobic root conditions, or pathogen pressure sufficient to elevate mortality above the background rate of approximately 20\%. This result justifies omitting SOM from the mortality interaction model in the current simulations, although longer-term monitoring at higher SOM concentrations (where anaerobic conditions may develop) could reveal a mortality signal.
+
 \subsection{Model Performance and SOM Pathway Interactions}
 
-The three SOM integration pathways implemented in the Living Dunes model---the Saxton and Rawls pedotransfer function for dynamic field capacity, the Zobeck-based dynamic organic cohesion, and the Belnap and Gillette disturbance index---interact through positive and negative feedbacks that create emergent behaviour not predictable from any single pathway in isolation.
+The three SOM integration pathways implemented in the Living Dunes model---the Saxton and Rawls pedotransfer function for dynamic field capacity, the Zobeck-based dynamic organic cohesion, and the Belnap and Gillette disturbance index---interact through positive and negative feedbacks that create emergent behaviour not predictable from any single pathway in isolation. The experimentally derived SOM growth curves (\cref{tab:som_derived_parameters}) add a fourth interaction: the direct demographic effect of substrate quality on marram grass vigour, which modulates the vegetation--aeolian feedback independently of the physical SOM pathways.
 
-The positive feedback operates as follows: SOM increases moisture retention (Pathway 1), which enhances vegetation growth (\cref{eq:veg_growth} via the moisture response function), which in turn produces more litter and root exudates that further increase SOM. Simultaneously, the vegetation canopy reduces surface wind shear through aerodynamic roughness, allowing the disturbance index to decay toward zero (Pathway 3), which maximises the organic cohesion contribution (Pathway 2), further reducing erosion. This positive feedback is stabilising: it drives the system toward a vegetated, cohesive, erosion-resistant state.
+The positive feedback operates as follows: SOM increases moisture retention (Pathway 1), which enhances vegetation growth (\cref{eq:veg_growth} via the moisture response function), which in turn produces more litter and root exudates that further increase SOM. Simultaneously, the vegetation canopy reduces surface wind shear through aerodynamic roughness, allowing the disturbance index to decay toward zero (Pathway 3), which maximises the organic cohesion contribution (Pathway 2), further reducing erosion. The demographic SOM response amplifies this cascade: at moderate SOM levels ($\sim$1~\% TOC), the Gaussian growth multiplier exceeds unity, further boosting vegetation cover beyond what moisture alone would predict.
 
 The negative feedback acts in opposition: as SOM increases threshold shear velocity (Pathway 2) and surface moisture (Pathway 1), aeolian sand supply to the dune crest diminishes. Without fresh sand burial, marram grass vigour declines \citep{vanderputten1993plant}, growth rates decrease, and mortality may increase, ultimately reducing vegetation cover and organic matter input. This negative feedback prevents runaway stabilisation and maintains the dynamic equilibrium between vegetation and aeolian processes that characterises natural dune systems.
 

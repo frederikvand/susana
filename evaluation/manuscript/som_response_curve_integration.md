@@ -59,6 +59,29 @@ Fine-grained, organic-rich sediments retain excessive water. *A. arenaria* is hi
 2.  **Model Selection:** Use `scipy.optimize.curve_fit` or general linear mixed models (GLMMs) in R/Python (`statsmodels`) to fit the proposed functional shapes (logistic, parabolic).
 3.  **Evaluate Fit:** Use AIC/BIC and $R^2$ to select the most parsimonious curves that capture the observed dynamics without overfitting the noise.
 
+### 4. Implementation and Results
+
+We performed standard General Linear Modeling (GLM) and Non-Linear Least Squares (NLS) regression in **R** (using `minpack.lm` and base stats) to derive strict ecological parameters for *Ammophila arenaria*, decoupling the SOM response across four independent demographic vectors:
+
+*   **Mortality Rate Modifier (quasibinomial GLM):**
+    We fitted a strict quasibinomial (pseudobinomial) model linking SOM to survival probability to account for overdispersion in the experimental survival ratios.
+    *   **Fit:** Significant intercept ($p = 0.003$), yielding an `inverse_logistic` equivalent defined by a steepness of $-0.044$ and a midpoint threshold at very high theoretical limits (due to the relatively slow linear decline across the tested gradient).
+*   **Height Growth Multiplier (Gaussian NLS):**
+    Height exhibited the most classic parabolic "Nutrient Boost" before hitting the "Sponge Effect".
+    *   **Fit:** $\mu = 1.36\%$ SOM, $\sigma = 0.89\%$, and a multiplier peak of $+30\%$.
+*   **Density Growth Multiplier (Gaussian NLS):**
+    Shoot density exhibited a much narrower optimal window, preferring lower SOM mixtures.
+    *   **Fit:** Sharp peak at $\mu = 0.62\%$ SOM, $\sigma = 0.067\%$.
+*   **Root Growth Multiplier (Gaussian NLS):**
+    Belowground biomass (root growth) showed extreme hyper-sensitivity to specific intermediate SOM states.
+    *   **Fit:** Peak at $\mu = 0.83\%$ SOM, $\sigma = 0.067\%$.
+
+These statistically robust curves are visualized below:
+
+![SOM Response R Derivations](file:///d:/projects/susana/output/som_response_R_derivation.png)
+
+These distinctive parameters must be individually injected into `ammophila_arenaria.json` (e.g., nesting the height parameters under `"height_growth"`, density under `"density_growth"`, and the quasibinomial GLM output under `"mortality"`). This decoupling ensures the complex "Double-Edged Sword" manifests correctly down to the morphological level within Living Dunes.
+
 ---
 
 ## Part 2: Integrating SOM Response into Living Dunes

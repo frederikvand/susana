@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex SOM_dune_development_draft"] 1772393078.36311 "SOM_dune_development_draft.aux" "SOM_dune_development_draft.bbl" "SOM_dune_development_draft" 1772393081.81112 0
-  "./references.bib" 1772377894 9250 7ecdd07a4d4ec2d31fc6163b307b5585 ""
-  "SOM_dune_development_draft.aux" 1772393082 20949 88a08f6c7b5f587d83aab4958956b8e6 "pdflatex"
+["bibtex SOM_dune_development_draft"] 1772402777.23969 "SOM_dune_development_draft.aux" "SOM_dune_development_draft.bbl" "SOM_dune_development_draft" 1772402781.40059 0
+  "./references.bib" 1772401716 9496 31fc10c361b058e3a8ebf63200347343 ""
+  "SOM_dune_development_draft.aux" 1772402782 27135 ee4250da0d1c3a0379360d12cf270af7 "pdflatex"
   "c:/texlive/2024/texmf-dist/bibtex/bst/base/apalike.bst" 1726567970 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   (generated)
   "SOM_dune_development_draft.bbl"
   "SOM_dune_development_draft.blg"
   (rewritten before read)
-["pdflatex"] 1772393078.78793 "d:/projects/susana/evaluation/manuscript/SOM_dune_development_draft.tex" "SOM_dune_development_draft.pdf" "SOM_dune_development_draft" 1772393081.81165 0
+["pdflatex"] 1772402777.73043 "d:/projects/susana/evaluation/manuscript/SOM_dune_development_draft.tex" "SOM_dune_development_draft.pdf" "SOM_dune_development_draft" 1772402781.40107 0
   "../../output/common_garden/aboveground_biomass/leaves_number_loess.png" 1728463468 13253 486d5356e3d0f5051a51b602b18818c5 ""
   "../../output/common_garden/aboveground_biomass/marram_height_all.png" 1727092748 14529 c6009fc5c2c55564e3b75d44bc4209cf ""
   "../../output/common_garden/aboveground_biomass/marram_height_loess.png" 1728463432 17056 29fab856e59ec59f554ee103a2583b87 ""
@@ -23,14 +23,15 @@
   "../../output/germination/soil temperature.png" 1731579938 22577 ec8a944482a0f006d751e2a998bd3e95 ""
   "../../output/germination/surface temperature.png" 1731579962 23176 d3ae44b4982bc9785e092cb5ef58d9b1 ""
   "../../output/germination/temperature 4am vs 4 pm substrate.png" 1731597958 52560 a1da2f888c39a66633a56e414fd366e9 ""
+  "../../output/som_response_R_derivation.png" 1772401476 350608 78d46ca219e923e6b433c8e51b8d020b ""
   "../../output/substrate/TOC.PNG" 1713346354 31874 0b0deb13b76d66af93c27909501e1d76 ""
   "../../output/substrate/boxplots in-out.PNG" 1728398474 25471 18bb1b0e900c4feeba4bf0318ab579c9 ""
   "../../output/substrate/boxplots substrates.PNG" 1728398390 26239 8641f3294f2acb3bb341260000f2bd45 ""
-  "SOM_dune_development_appendix.tex" 1772391948 4649 ec97d3df36d543eb30a4b9d16826066d ""
-  "SOM_dune_development_draft.aux" 1772393082 20949 88a08f6c7b5f587d83aab4958956b8e6 "pdflatex"
-  "SOM_dune_development_draft.bbl" 1772393080 7042 fd332c6103d64f24a7c0c30d93231ccd "bibtex SOM_dune_development_draft"
-  "SOM_dune_development_draft.out" 1772393082 6184 d9fe64d9299c3de161888dc553ca6f24 "pdflatex"
-  "SOM_dune_development_draft.tex" 1772393010 50223 82fe35e1b7732cd71204115c30ed31b1 ""
+  "SOM_dune_development_appendix.tex" 1772401680 4888 9ccaca1eae37bdd3d5193c22cba6a1df ""
+  "SOM_dune_development_draft.aux" 1772402782 27135 ee4250da0d1c3a0379360d12cf270af7 "pdflatex"
+  "SOM_dune_development_draft.bbl" 1772402778 7216 52e356949e6b50db131c2f2fffc6b13f "bibtex SOM_dune_development_draft"
+  "SOM_dune_development_draft.out" 1772402782 7287 8f6fbbc34eddce8c0c5a7308ae305a53 "pdflatex"
+  "SOM_dune_development_draft.tex" 1772401736 58331 b4c2d9190d6e5a2fcff9cfd8accd10c6 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1726572412 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1726572412 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1726583558 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -82,6 +83,8 @@
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1726564810 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1726564810 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1726564810 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1726564810 32734 69e00a6b65cedb993666e42eedb3d48f ""
+  "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1726564810 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1726564810 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1726564810 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1726564810 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
@@ -90,6 +93,7 @@
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb" 1726572413 135942 aecb5af344df420d6ec421db27dedf62 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb" 1726572413 139826 3796482349bae544f13f54da58f9706d ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb" 1726572413 154599 111aa29c1b43dc5b4a8516224bf12bac ""
+  "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb" 1726572413 164227 41439fae96b3b30186924e9dd2fcff30 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1726572413 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb" 1726572413 145929 5c9aebea9ba6e33fc93158c04a3bdcd8 ""
   "c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1726572413 136101 b18d10b3436f8cb0cd04046deb340fe7 ""
@@ -177,7 +181,11 @@
   "c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727170383 5523052 a6c4264ca43d05e5adfe84e964c2ac4c ""
   "c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727170657 3325960 dc1ab062c16f6f8cb2118660921a1b73 ""
   "c:/texlive/2024/texmf.cnf" 1726608069 713 e69b156964470283e0530f5060668171 ""
-  "d:/projects/susana/evaluation/manuscript/SOM_dune_development_draft.tex" 1772393010 50223 82fe35e1b7732cd71204115c30ed31b1 ""
+  "d:/projects/susana/evaluation/manuscript/SOM_dune_development_draft.tex" 1772401736 58331 b4c2d9190d6e5a2fcff9cfd8accd10c6 ""
+  "tables/growth_model_coefficients.tex" 1772401476 1440 003d5a48d818530a272b5fbdd536578e ""
+  "tables/model_fit_statistics.tex" 1772401476 824 c7d2d7d67f0ebca0880ef59ae53a7fe7 ""
+  "tables/mortality_model_coefficients.tex" 1772401476 948 38ef1a2ec18c64de42767ac8be1afe15 ""
+  "tables/som_derived_parameters.tex" 1772402768 1054 8b0dd8606b854e0ab851af777e36e078 ""
   (generated)
   "SOM_dune_development_draft.aux"
   "SOM_dune_development_draft.log"

@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering
+\caption{Derived SOM response parameters for the Living Dunes vegetation model. Growth responses use a Gaussian function as a multiplier on the base demographic rate. Mortality uses a sigmoid (inverse logistic) function.}
+\label{tab:som_derived_parameters}
+\begin{tabular}{l l l r}
+\toprule
+Demographic process & Function & Parameter & Value \\
+\midrule
+Height growth & Gaussian & $\mu$ (\% TOC) & 1.323 \\
+              &          & $\sigma$ (\% TOC) & 1.518 \\
+              &          & Amplitude $a$ & 0.807 \\
+\midrule
+Density growth & Gaussian & $\mu$ (\% TOC) & 0.648 \\
+               &          & $\sigma$ (\% TOC) & 0.100 \\
+               &          & Amplitude $a$ & 1.402 \\
+\midrule
+Root growth & Gaussian & $\mu$ (\% TOC) & 1.242 \\
+            &          & $\sigma$ (\% TOC) & 0.677 \\
+            &          & Amplitude $a$ & 0.652 \\
+\midrule
+Mortality & Sigmoid & Steepness & -0.0105 \\
+          &         & Threshold (\% TOC) & -126.21 \\
+\bottomrule
+\end{tabular}
+\end{table}

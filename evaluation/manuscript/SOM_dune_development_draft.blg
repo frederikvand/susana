@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: SOM_dune_development_draft.aux
 The style file: apalike.bst
 Database file #1: references.bib
-You've used 25 entries,
+You've used 26 entries,
             1935 wiz_defined-function locations,
-            635 strings with 8899 characters,
-and the built_in function-call counts, 11468 in all, are:
-= -- 1091
-> -- 615
+            640 strings with 9012 characters,
+and the built_in function-call counts, 11840 in all, are:
+= -- 1123
+> -- 638
 < -- 11
-+ -- 233
-- -- 217
-* -- 1079
-:= -- 2023
-add.period$ -- 76
-call.type$ -- 25
-change.case$ -- 231
-chr.to.int$ -- 25
-cite$ -- 25
-duplicate$ -- 352
-empty$ -- 721
-format.name$ -- 254
-if$ -- 2158
++ -- 241
+- -- 225
+* -- 1110
+:= -- 2092
+add.period$ -- 79
+call.type$ -- 26
+change.case$ -- 239
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 366
+empty$ -- 744
+format.name$ -- 263
+if$ -- 2228
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 26
-newline$ -- 128
-num.names$ -- 77
-pop$ -- 190
+missing$ -- 28
+newline$ -- 133
+num.names$ -- 80
+pop$ -- 202
 preamble$ -- 1
-purify$ -- 233
+purify$ -- 242
 quote$ -- 0
-skip$ -- 255
+skip$ -- 264
 stack$ -- 0
-substring$ -- 833
-swap$ -- 25
+substring$ -- 845
+swap$ -- 26
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 146
+type$ -- 150
 warning$ -- 0
-while$ -- 91
+while$ -- 93
 width$ -- 0
-write$ -- 325
+write$ -- 337

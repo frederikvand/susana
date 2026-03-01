@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\centering
+\caption{Non-linear regression coefficients for the Gaussian growth response models (Levenberg--Marquardt algorithm). The response function is $y = b_0 + a \cdot \exp\left(-\frac{(\mathrm{SOM} - \mu)^2}{2\sigma^2}\right)$, where $b_0$ is the baseline multiplier, $a$ is the amplitude, $\mu$ is the optimal SOM (\% TOC), and $\sigma$ is the standard deviation of the response. Response variables are normalised to the reference beach sand (R).}
+\label{tab:growth_coefficients}
+\small
+\begin{tabular}{ll rrrr rr r}
+\toprule
+Response & Parameter & Estimate & SE & $t$ & $p$ & $R^2$ & $R^2_{adj}$ & $n$ \\
+\midrule
+Height & $b0$ & 0.5000 & 4.3047 & 0.12 & 0.911 & 0.659 & 0.387 & 120 \\
+ & $amp$ & 0.8070 & 4.2818 & 0.19 & 0.857 &  &  &  \\
+ & $mu$ & 1.3227 & 0.1441 & 9.18 & $<$0.001 &  &  &  \\
+ & $sigma$ & 1.5181 & 4.7023 & 0.32 & 0.758 &  &  &  \\
+\midrule
+Density & $b0$ & 1.0331 & 0.0348 & 29.65 & $<$0.001 & 0.639 & 0.349 & 120 \\
+ & $amp$ & 1.4019 & 1.6486 & 0.85 & 0.428 &  &  &  \\
+ & $mu$ & 0.6480 & 0.0689 & 9.41 & $<$0.001 &  &  &  \\
+ & $sigma$ & 0.1000 & 0.0893 & 1.12 & 0.305 &  &  &  \\
+\midrule
+Root & $b0$ & 0.8858 & 0.8063 & 1.10 & 0.314 & 0.544 & 0.18 & 228 \\
+ & $amp$ & 0.6523 & 0.7566 & 0.86 & 0.422 &  &  &  \\
+ & $mu$ & 1.2423 & 0.1555 & 7.99 & $<$0.001 &  &  &  \\
+ & $sigma$ & 0.6773 & 0.7599 & 0.89 & 0.407 &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{table}

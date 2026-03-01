@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  1 MAR 2026 20:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  1 MAR 2026 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -504,15 +504,15 @@ Package hyperref Info: Link coloring ON on input line 49.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 72.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 74.
  (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 74.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 74.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -528,21 +528,25 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [4]
 
 [5]
-<../../output/substrate/TOC.PNG, id=224, 1131.62775pt x 535.40025pt>
+<../../output/substrate/TOC.PNG, id=240, 1131.62775pt x 535.40025pt>
 File: ../../output/substrate/TOC.PNG Graphic file (type png)
 <use ../../output/substrate/TOC.PNG>
-Package pdftex.def Info: ../../output/substrate/TOC.PNG  used on input line 147.
+Package pdftex.def Info: ../../output/substrate/TOC.PNG  used on input line 149.
 (pdftex.def)             Requested size: 204.85846pt x 96.92342pt.
-<../../output/germination/soil moisture boxplots.png, id=226, 493.0922pt x 397.485pt>
+<../../output/germination/soil moisture boxplots.png, id=242, 493.0922pt x 397.485pt>
 File: ../../output/germination/soil moisture boxplots.png Graphic file (type png)
 <use ../../output/germination/soil moisture boxplots.png>
-Package pdftex.def Info: ../../output/germination/soil moisture boxplots.png  used on input line 154.
+Package pdftex.def Info: ../../output/germination/soil moisture boxplots.png  used on input line 156.
 (pdftex.def)             Requested size: 204.85846pt x 165.14122pt.
 
 
 [6 <../../output/substrate/TOC.PNG> <../../output/germination/soil moisture boxplots.png>]
 
 [7]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 185.
+ (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
 
 [8]
 
@@ -553,146 +557,165 @@ Package pdftex.def Info: ../../output/germination/soil moisture boxplots.png  us
 [11]
 
 [12]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 282.
- (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
 
 [13]
 
 [14]
 
 [15]
-<../../output/common_garden/aboveground_biomass/marram_height_loess.png, id=338, 573.64313pt x 404.26031pt>
+
+[16]
+<../../output/common_garden/aboveground_biomass/marram_height_loess.png, id=371, 573.64313pt x 404.26031pt>
 File: ../../output/common_garden/aboveground_biomass/marram_height_loess.png Graphic file (type png)
 <use ../../output/common_garden/aboveground_biomass/marram_height_loess.png>
-Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/marram_height_loess.png  used on input line 313.
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/marram_height_loess.png  used on input line 339.
 (pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
-<../../output/common_garden/aboveground_biomass/leaves_number_loess.png, id=339, 573.64313pt x 404.26031pt>
+<../../output/common_garden/aboveground_biomass/leaves_number_loess.png, id=372, 573.64313pt x 404.26031pt>
 File: ../../output/common_garden/aboveground_biomass/leaves_number_loess.png Graphic file (type png)
 <use ../../output/common_garden/aboveground_biomass/leaves_number_loess.png>
-Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/leaves_number_loess.png  used on input line 320.
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/leaves_number_loess.png  used on input line 346.
 (pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
-<../../output/germination/percentage of germinated seeds.png, id=342, 573.64313pt x 404.26031pt>
+
+
+[17]
+<../../output/germination/percentage of germinated seeds.png, id=379, 573.64313pt x 404.26031pt>
 File: ../../output/germination/percentage of germinated seeds.png Graphic file (type png)
 <use ../../output/germination/percentage of germinated seeds.png>
-Package pdftex.def Info: ../../output/germination/percentage of germinated seeds.png  used on input line 338.
+Package pdftex.def Info: ../../output/germination/percentage of germinated seeds.png  used on input line 364.
 (pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
-<../../output/germination/length of seedlings.png, id=343, 513.117pt x 346.896pt>
+<../../output/germination/length of seedlings.png, id=380, 513.117pt x 346.896pt>
 File: ../../output/germination/length of seedlings.png Graphic file (type png)
 <use ../../output/germination/length of seedlings.png>
-Package pdftex.def Info: ../../output/germination/length of seedlings.png  used on input line 345.
+Package pdftex.def Info: ../../output/germination/length of seedlings.png  used on input line 371.
 (pdftex.def)             Requested size: 204.85846pt x 138.49657pt.
 
 
-[16 <../../output/common_garden/aboveground_biomass/marram_height_loess.png> <../../output/common_garden/aboveground_biomass/leaves_number_loess.png>]
+[18 <../../output/common_garden/aboveground_biomass/marram_height_loess.png> <../../output/common_garden/aboveground_biomass/leaves_number_loess.png> <../../output/germination/percentage of germinated seeds.png> <../../output/germination/length of seedlings.png>] (./tables/som_derived_parameters.tex)
+<../../output/som_response_R_derivation.png, id=394, 722.7pt x 578.16pt>
+File: ../../output/som_response_R_derivation.png Graphic file (type png)
+<use ../../output/som_response_R_derivation.png>
+Package pdftex.def Info: ../../output/som_response_R_derivation.png  used on input line 395.
+(pdftex.def)             Requested size: 455.24411pt x 364.19861pt.
 
-[17 <../../output/germination/percentage of germinated seeds.png> <../../output/germination/length of seedlings.png>]
-
-[18]
 
 [19]
 
-[20]
+[20 <../../output/som_response_R_derivation.png>]
 
-[21] (./SOM_dune_development_draft.bbl
+[21]
 
 [22]
 
 [23]
 
-[24]) (./SOM_dune_development_appendix.tex
+[24]
 
 [25]
-<../../output/substrate/boxplots substrates.PNG, id=416, 544.434pt x 322.20375pt>
+
+[26] (./SOM_dune_development_draft.bbl
+
+[27]
+
+[28]
+
+[29]) (./SOM_dune_development_appendix.tex
+
+[30]
+<../../output/substrate/boxplots substrates.PNG, id=472, 544.434pt x 322.20375pt>
 File: ../../output/substrate/boxplots substrates.PNG Graphic file (type png)
 <use ../../output/substrate/boxplots substrates.PNG>
 Package pdftex.def Info: ../../output/substrate/boxplots substrates.PNG  used on input line 16.
 (pdftex.def)             Requested size: 204.85846pt x 121.23907pt.
-<../../output/substrate/boxplots in-out.PNG, id=417, 540.21825pt x 316.18124pt>
+<../../output/substrate/boxplots in-out.PNG, id=473, 540.21825pt x 316.18124pt>
 File: ../../output/substrate/boxplots in-out.PNG Graphic file (type png)
 <use ../../output/substrate/boxplots in-out.PNG>
 Package pdftex.def Info: ../../output/substrate/boxplots in-out.PNG  used on input line 23.
 (pdftex.def)             Requested size: 204.85846pt x 119.89923pt.
-<../../output/common_garden/aboveground_biomass/marram_height_all.png, id=418, 478.03593pt x 346.29375pt>
+<../../output/common_garden/aboveground_biomass/marram_height_all.png, id=474, 478.03593pt x 346.29375pt>
 File: ../../output/common_garden/aboveground_biomass/marram_height_all.png Graphic file (type png)
 <use ../../output/common_garden/aboveground_biomass/marram_height_all.png>
 Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/marram_height_all.png  used on input line 36.
 (pdftex.def)             Requested size: 204.85846pt x 148.40141pt.
-<../../output/common_garden/aboveground_biomass/number_of_leaves.png, id=419, 573.64313pt x 404.26031pt>
+<../../output/common_garden/aboveground_biomass/number_of_leaves.png, id=475, 573.64313pt x 404.26031pt>
 File: ../../output/common_garden/aboveground_biomass/number_of_leaves.png Graphic file (type png)
 <use ../../output/common_garden/aboveground_biomass/number_of_leaves.png>
 Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/number_of_leaves.png  used on input line 43.
 (pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
-<../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG, id=420, 585.387pt x 423.984pt>
+<../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG, id=476, 585.387pt x 423.984pt>
 File: ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG Graphic file (type png)
 <use ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG>
 Package pdftex.def Info: ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG  used on input line 56.
 (pdftex.def)             Requested size: 204.85846pt x 148.3772pt.
-<../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG, id=421, 493.24275pt x 333.04425pt>
+<../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG, id=477, 493.24275pt x 333.04425pt>
 File: ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG Graphic file (type png)
 <use ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG>
 Package pdftex.def Info: ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG  used on input line 63.
 (pdftex.def)             Requested size: 204.85846pt x 138.32259pt.
-<../../output/germination/climate variables.png, id=422, 877.02657pt x 397.485pt>
+<../../output/germination/climate variables.png, id=478, 877.02657pt x 397.485pt>
 File: ../../output/germination/climate variables.png Graphic file (type png)
 <use ../../output/germination/climate variables.png>
 Package pdftex.def Info: ../../output/germination/climate variables.png  used on input line 74.
 (pdftex.def)             Requested size: 364.19667pt x 165.06236pt.
-<../../output/germination/air temperature.png, id=423, 877.02657pt x 397.485pt>
+<../../output/germination/air temperature.png, id=479, 877.02657pt x 397.485pt>
 File: ../../output/germination/air temperature.png Graphic file (type png)
 <use ../../output/germination/air temperature.png>
 Package pdftex.def Info: ../../output/germination/air temperature.png  used on input line 83.
 (pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
-<../../output/germination/soil temperature.png, id=424, 877.02657pt x 397.485pt>
+<../../output/germination/soil temperature.png, id=480, 877.02657pt x 397.485pt>
 File: ../../output/germination/soil temperature.png Graphic file (type png)
 <use ../../output/germination/soil temperature.png>
 Package pdftex.def Info: ../../output/germination/soil temperature.png  used on input line 90.
 (pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
-<../../output/germination/surface temperature.png, id=425, 877.02657pt x 397.485pt>
+<../../output/germination/surface temperature.png, id=481, 877.02657pt x 397.485pt>
 File: ../../output/germination/surface temperature.png Graphic file (type png)
 <use ../../output/germination/surface temperature.png>
 Package pdftex.def Info: ../../output/germination/surface temperature.png  used on input line 97.
 (pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
-<../../output/germination/temperature 4am vs 4 pm substrate.png, id=426, 618.05907pt x 361.35pt>
+<../../output/germination/temperature 4am vs 4 pm substrate.png, id=482, 618.05907pt x 361.35pt>
 File: ../../output/germination/temperature 4am vs 4 pm substrate.png Graphic file (type png)
 <use ../../output/germination/temperature 4am vs 4 pm substrate.png>
 Package pdftex.def Info: ../../output/germination/temperature 4am vs 4 pm substrate.png  used on input line 104.
 (pdftex.def)             Requested size: 204.85846pt x 119.76967pt.
-<../../output/germination/moisture ifo temperature.png, id=427, 877.77937pt x 423.08063pt>
+<../../output/germination/moisture ifo temperature.png, id=483, 877.77937pt x 423.08063pt>
 File: ../../output/germination/moisture ifo temperature.png Graphic file (type png)
 <use ../../output/germination/moisture ifo temperature.png>
 Package pdftex.def Info: ../../output/germination/moisture ifo temperature.png  used on input line 114.
 (pdftex.def)             Requested size: 273.14923pt x 131.65718pt.
-)
 
-[26
+
+[31
 
  <../../output/substrate/boxplots substrates.PNG> <../../output/substrate/boxplots in-out.PNG> <../../output/common_garden/aboveground_biomass/marram_height_all.png> <../../output/common_garden/aboveground_biomass/number_of_leaves.png>]
 
-[27 <../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG> <../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG> <../../output/germination/climate variables.png>]
+[32 <../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG> <../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG> <../../output/germination/climate variables.png>]
 
-[28 <../../output/germination/air temperature.png> <../../output/germination/soil temperature.png> <../../output/germination/surface temperature.png> <../../output/germination/temperature 4am vs 4 pm substrate.png (PNG copy)> <../../output/germination/moisture ifo temperature.png (PNG copy)>] (./SOM_dune_development_draft.aux)
+[33 <../../output/germination/air temperature.png> <../../output/germination/soil temperature.png> <../../output/germination/surface temperature.png> <../../output/germination/temperature 4am vs 4 pm substrate.png (PNG copy)> <../../output/germination/moisture ifo temperature.png (PNG copy)>] (./tables/growth_model_coefficients.tex) (./tables/mortality_model_coefficients.tex) (./tables/model_fit_statistics.tex))
+
+[34
+
+]
+
+[35] (./SOM_dune_development_draft.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
 Package rerunfilecheck Info: File `SOM_dune_development_draft.out' has not changed.
-(rerunfilecheck)             Checksum: D9FE64D9299C3DE161888DC553CA6F24;6184.
+(rerunfilecheck)             Checksum: 8F6FBBC34EDDCE8C0C5A7308AE305A53;7287.
  ) 
 Here is how much of TeX's memory you used:
- 19156 strings out of 473579
- 377233 string characters out of 5732263
- 736941 words of memory out of 5000000
- 41732 multiletter control sequences out of 15000+600000
+ 19242 strings out of 473579
+ 379704 string characters out of 5732263
+ 745424 words of memory out of 5000000
+ 41786 multiletter control sequences out of 15000+600000
  581652 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,13n,88p,2356b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on SOM_dune_development_draft.pdf (28 pages, 984104 bytes).
+<c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on SOM_dune_development_draft.pdf (35 pages, 1396673 bytes).
 PDF statistics:
- 584 PDF objects out of 1000 (max. 8388607)
- 466 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
- 347 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 670 PDF objects out of 1000 (max. 8388607)
+ 537 compressed objects within 6 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 384 words of extra memory for PDF output out of 10000 (max. 10000000)
 
