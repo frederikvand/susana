@@ -1,0 +1,120 @@
+---
+title: "data_Roots"
+author: "Jiayue"
+date: "`r Sys.Date()`"
+output:
+  word_document:
+    toc: true
+  html_document:
+    toc: true
+  pdf_document:
+    toc: true
+---
+```{r}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+data <- read_xlsx("D:/0_personal_laptop_Jiayue/0_PhD_study/SUSANA_biomass/data_analysis/Roots.xlsx")
+
+str(data)
+summary(data)
+
+```
+
+```{r}
+# Convert 'layer' to an ordered factor
+data$layer <- factor(data$layer, 
+                     levels = c("shoots", "top", "1", "2",  "3", "4"))
+# Convert 'substrate' to an ordered factor following specific numeric and categorical levels
+data$substrate <- factor(data$substrate,
+                         levels = c("D", "87.5", "75", "62.5", "50",
+                                    "37.5", "25", "12.5", "W", "R"))
+```
+
+```{r warning=FALSE}
+# Create a boxplot of total biomass across layers
+ggplot(data, aes(x = layer, y = total_biomass,fill = layer)) +
+  geom_boxplot() +
+  ggtitle("Total biomass allocation on layer") +
+  labs(y="Total biomass (g)", x="Layer")
+
+# Total biomass distribution varied strongly across layers. Most biomass was concentrated in the aboveground parts and the upper root layers (shoots, top, and layer 1), while deeper layers (2–4) contained very little biomass. This indicates a clear top-heavy allocation pattern, with roots primarily confined to the the aboveground and upper root layers.
+```
+
+```{r}
+# Scatter plot: total biomass by layer, colored by substrate
+# Facet by substrate type to compare within each substrate
+ggplot(data, aes(x = layer, y = total_biomass)) +
+  geom_point(aes(color=substrate)) +
+  ggtitle("Total biomass allocation on substrates") +
+  labs(y="Total biomass (g)", x="Layer") +
+  facet_wrap(~substrate)
+
+# Across all substrate types, the same vertical pattern was maintained, but the overall amount of biomass differed among substrates. Plants growing in substrates D, 50, and 37.5 produced the highest biomass, whereas growth was clearly reduced in W and R. Intermediate sand mixtures such as 75 and 62.5 supported moderate growth. These differences suggest that substrate composition strongly influenced plant performance, particularly in the aboveground and upper root layers.
+```
+
+```{r}
+# Scatter plot: total biomass by substrate, colored by substrate
+# Facet by layer to see how biomass differs across layers for each substrate
+ggplot(data, aes(x = substrate, y= total_biomass))+
+  geom_point(aes(color=substrate)) +
+  ggtitle("Total biomass allocation on substrates") +
+  labs(y="Total biomass (g)",x="Substrate")+
+  facet_wrap(~layer)
+
+
+# Substrate type had a strong influence on plant performance: the highest biomass values were found in D, 50, and 37.5 substrates, whereas plants in W and R substrates showed poor growth.
+# Differences among substrates were most evident in the aboveground and upper layers, indicating that substrate composition primarily affects shoot productivity and shallow root development.
+```
+
+
+```{r}
+# Define possible column name variations (to handle .x, .y, or .sum from merges)
+shoot_name_candidates <- c("shoot_biomass", "shoot_biomass.x", "shoot_biomass.y", "shoot_biomass.sum")
+root_name_candidates  <- c("root_biomass",  "root_biomass.x",  "root_biomass.y",  "root_biomass.sum")
+
+# Identify which name actually exists in the dataset
+shoot_col <- intersect(names(data), shoot_name_candidates)[1]
+root_col  <- intersect(names(data),  root_name_candidates)[1]
+
+# Stop with an error message if neither shoot nor root biomass columns are found
+if (is.na(shoot_col) || is.na(root_col)) {
+  stop("Cannot find shoot_biomass or root_biomass columns (including .x/.y/.sum variants). Please check column names.")
+}
+
+# Summarize data per box_ID
+tmp <- data %>%
+  group_by(box_ID) %>%
+  summarise(
+    n_total    = n(),
+    n_complete = sum(!is.na(.data[[shoot_col]]) & !is.na(.data[[root_col]])),
+    # Sum shoot and root biomass values (replace NA with 0 before summing)
+    shoot_biomass = sum(coalesce(.data[[shoot_col]], 0)),
+    root_biomass  = sum(coalesce(.data[[root_col]], 0)),
+    # Keep the first non-missing substrate value for each box
+    substrate     = dplyr::first(substrate[!is.na(substrate)], default = NA),
+    .groups = "drop"    # remove grouping after summarizing
+  )
+
+# Filter out incomplete or invalid boxes
+plot_df <- tmp %>%
+  filter(n_complete >= 1) %>%      # keep only boxes with ≥1 valid shoot–root pair
+  filter(shoot_biomass > 0, root_biomass > 0) %>%     # remove boxes with zero biomass
+  mutate(root_shoot_ratio = root_biomass / shoot_biomass)    # calculate root/shoot ratio per box
+
+# Print the number of boxes retained for analysis
+cat("boxes kept:", nrow(plot_df), "\n")      
+
+# Plot relationship between shoot and root biomass
+ggplot(plot_df, aes(x = shoot_biomass, y = root_biomass)) +
+  geom_smooth(method = "lm", colour = "darkred", se = TRUE) +  # add linear regression trend with confidence band
+  geom_point(aes(color = substrate, size = root_shoot_ratio)) +  # each point = one box, size encodes root/shoot ratio
+  labs(title = "root/shoot ratio",
+       x = "shoot biomass (g)",
+       y = "root biomass (g)")
+
+# The relationship between shoot and root biomass was positive across all treatments. Boxes with greater shoot biomass also tended to have higher root biomass, indicating coordinated allocation between above- and belowground parts. The slope of the fitted regression was positive, and points from different substrates followed the same general trend. However, a few individuals, mainly from the 50, 37.5, and W substrates, had larger root/shoot ratios, suggesting a relatively stronger investment in root growth under certain substrate conditions.
+```
+```
+

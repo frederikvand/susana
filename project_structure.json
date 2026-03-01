@@ -1,0 +1,53 @@
+{
+  "project": "SUSANA",
+  "description": "This repository is a subset of a larger project and focuses specifically on the development of the manuscript: evaluation/manuscript/SOM_dune_development_draft.tex. It combines empirical dune development, KU Leuven erosion modelling, and Living Dunes modelling simulating dune restoration with 10 alternative/normal sediment types.",
+  "structure": {
+    "data": {
+      "description": "Project data inputs.",
+      "children": {
+        "geomorphology": "point cloud scans data.",
+        "photos": "Photographic records and imagery.",
+        "substrate": "Substrate and soil analysis data.",
+        "vegetation_development": "Data regarding plant growth and coverage.",
+        "raw": "Unorganized, raw data dumps."
+      }
+    },
+    "docs": {
+      "description": "Project documentation and literature.",
+      "children": {
+        "dune_modelling": "Documentation related to dune modeling approaches.",
+        "literature": "Reference papers and background literature.",
+        "proposal": "Grant and project proposals.",
+        "protocol": "Experimental protocols and methodologies."
+      }
+    },
+    "evaluation": {
+      "description": "Analysis, results, and outputs meant for dissemination.",
+      "children": {
+        "analysis": "R/Python/QGIS analysis projects and results.",
+        "deliverables": "Formal deliverables and reports (e.g., WP reports).",
+        "manuscript": "Drafts and final versions of the core scientific manuscript (SOM_dune_development_draft.tex).",
+        "presentation": "Slides, posters, and conference materials."
+      }
+    },
+    "scripts": {
+      "description": "Source code for data processing and analysis.",
+      "children": {
+        "common_garden": "Scripts for the common garden experiment data.",
+        "germination": "Scripts for analyzing germination experiment results.",
+        "substrate": "Scripts for substrate data analysis."
+      }
+    },
+    "output": {
+      "description": "Generated figures, tables, and processed datasets from the scripts/.",
+      "children": {
+        "common_garden": "Outputs from the common garden analysis.",
+        "germination": "Outputs from the germination analysis.",
+        "substrate": "Outputs from the substrate analysis."
+      }
+    },
+    "z_old": {
+      "description": "Archived or deprecated files."
+    }
+  }
+}

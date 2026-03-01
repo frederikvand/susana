@@ -1,0 +1,188 @@
+
+# load packages
+library("readxl")
+library("ggplot2")
+library("car") 
+library("magrittr")
+library("dplyr")
+library("lattice")
+
+
+
+# read and clean data
+#bakken_all <- read_excel("N:/shares/endure/SUSANA/plantenbakken Zeebrugge/opvolging plantenbakken Zeebrugge.xlsx")
+bakken_all <- read_excel("//files.ugent.be/modhondt/shares/endure/SUSANA/plantenbakken Zeebrugge/opvolging plantenbakken Zeebrugge.xlsx")
+str(bakken_all)
+bakken_all$row <- as.character(bakken_all$row)
+bakken_all$substrate <- as.factor(bakken_all$substrate)
+bakken_all$substrate <- ordered(bakken_all$substrate, levels = c("D", "87.5", "75", "62.5", "50", "37.5", "25", "12.5", "W", "R"))
+bakken_all$plant <- as.factor(bakken_all$plant)
+bakken_all$length <- as.numeric(bakken_all$length)
+bakken_all$nr <- as.numeric(bakken_all$nr)
+
+bakken_all$t <- as.factor(bakken_all$t)
+bakken_all$t <- ordered(bakken_all$t, levels = c("t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13"))
+
+control       <- bakken_all[which(bakken_all$plant=='controle'),]
+bakken        <- bakken_all[which(bakken_all$plant=='plant' | bakken_all$plant=='replant'),]
+#bakken        <- bakken[which(bakken$ID != '6b_5'),] # ev extreme waarden verwijderen voor duidelijkere visualisatie
+
+table(bakken['plant'])
+
+
+# bakken tem t13
+bakken        <- bakken[which(bakken$t %in% c('t1', 
+                                               't2', # no data for length
+                                               't3', 
+                                               't4', 
+                                               't5', 
+                                               't6',
+                                               't7', 
+                                               't8',
+                                               't9',
+                                               't10', 
+                                               't11',
+                                               't12',
+                                               't13')),]
+
+
+#bakken per substraat
+bakken_D      <- bakken[which(bakken$substrate == 'D'),]
+bakken_87     <- bakken[which(bakken$substrate == '87'),]
+bakken_75     <- bakken[which(bakken$substrate == '75'),]
+bakken_62     <- bakken[which(bakken$substrate == '62'),]
+bakken_50     <- bakken[which(bakken$substrate == '50'),]
+bakken_37     <- bakken[which(bakken$substrate == '37'),]
+bakken_25     <- bakken[which(bakken$substrate == '25'),]
+bakken_12     <- bakken[which(bakken$substrate == '12'),]
+bakken_W      <- bakken[which(bakken$substrate == 'W'),]
+bakken_R      <- bakken[which(bakken$substrate == 'R'),]
+
+
+# Leave length per time
+ggplot(bakken, aes(x=substrate, y=length, group=substrate)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("Marram height") + labs(y="leave length (cm)", x="substrate") +
+  facet_grid(. ~ t)
+
+
+# Leave length per substrate type --> t1 has 0 value, from t3 onward ok after replanted
+ggplot(bakken, aes(x=t, y=length, group=t)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("Marram height") + labs(y="leave length (cm)", x="time") +
+  facet_grid(. ~ substrate)
+
+
+# Number of leaves per time 
+ggplot(bakken, aes(x=substrate, y=nr, group=substrate)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("Number of leaves") + labs(y="number of leaves", x="substrate") +
+  facet_grid(. ~ t)
+
+
+# Number of leaves per substrate type
+ggplot(bakken, aes(x=t, y=nr, group=t)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("Number of leaves") + labs(y="number of leaves", x="time") +
+  facet_grid(. ~ substrate)
+
+
+# growth rate curves per substrate
+ggplot(bakken, aes(y = nr, x = time, colour = substrate)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Number of leaves") + labs(y="number of leaves", x="time") +
+  scale_x_continuous(breaks=c(1:13))
+
+ggplot(bakken, aes(y = length, x = time, colour = substrate)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Marram height") + labs(y="marram height (cm)", x="time") +
+  scale_x_continuous(breaks=c(1:13))
+
+
+# Growth rate curves planted in october vs april
+bakkenmint1 <- bakken[which(bakken$t != 't1'),]   # leave out t1 because all replant were 0 then
+bakkenmint2 <- bakken[which(bakken$t != 't1' & bakken$t != 't2'),]
+bakkenmint1 <- bakken[which(bakken$length != 0),] # discard dead marram
+ggplot(bakkenmint1, aes(y = nr, x = time, colour = plant)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Number of leaves") + labs(y="number of leaves", x="time") + # curves snijden!
+  scale_x_continuous(breaks=c(1:11))
+
+ggplot(bakkenmint1, aes(y = length, x = time, colour = plant)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Marram height") + labs(y="marram height (cm)", x="time") + # de replanted worden iets minder groot...
+  scale_x_continuous(breaks=c(1:11))
+
+# Length ifo nr
+ggplot(bakkenmint1, aes(y = nr, x = length, colour = substrate)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Marram height ifo nr of leaves") + labs(y="number of leaves", x="marram height") 
+
+ggplot(bakkenmint1, aes(y = nr, x = length, colour = plant)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.05, jitter.height = 0.5, dodge.width = 0.4)) +
+  geom_smooth(method = "loess", se = FALSE, inherit.aes = TRUE) +
+  ggtitle("Marram height ifo nr of leaves") + labs(y="number of leaves", x="marram height") 
+
+# DRIES VRAGEN: WAT DOEN MET BIOMASSA? PIETER SCHUIFPROEVEN? --> nog even laten staan
+# NUMBER OF LEAVES RELATIVE TO THE NUMBER OF THE PLANTED LEAVES different for the replanted ones?
+
+
+
+
+
+# ANOVA: difference in means? modelling growth as a function of substrate type
+m_length = tapply(bakken$length, bakken$t:bakken$substrate, mean) # mean length per t per substrate
+v_length = tapply(bakken$length, bakken$t:bakken$substrate, var)  # var "
+m_length
+v_length
+plot(v_length ~ m_length) # var decreases with mean
+cor.test(m_length, v_length) # correlation of -0.65 p=0.001
+
+m_nr = tapply(bakken$nr, bakken$t:bakken$substrate, mean) # mean nr per t per substrate
+v_nr = tapply(bakken$nr, bakken$t:bakken$substrate, var)  # var "
+m_nr
+v_nr
+plot(v_nr ~ m_nr) # var increases with mean...
+cor.test(m_nr, v_nr) # correlation of -0.35 p=0.05
+
+# Normality
+qqnorm(bakken$length)
+qqline(bakken$length)
+qqnorm(bakken$nr)
+qqline(bakken$nr)
+tapply(bakken$length, bakken$t, shapiro.test)
+tapply(bakken$length, bakken$substrate, shapiro.test)
+tapply(bakken$length, bakken$t:bakken$substrate, shapiro.test)
+
+# Homogeneity --> p > 0.05 is ok
+leveneTest(bakken$length, bakken$substrate:bakken$t)
+leveneTest(bakken$nr, bakken$substrate:bakken$t)
+
+# anova
+l = aov(length ~ substrate + t * plant, data = bakken)
+Anova(l, type="III") # tot nu toe effect van substraat en t, geen interactie
+
+n = aov(nr ~ substrate + t * plant, data = bakken)
+Anova(n, type="III") # tot nu toe effect van substraat en t, 
+                     # zonder interactie dus nr ~ substrate + t maak wel beide variabelen significant
+
+# post-hoc test
+TukeyHSD(l)
+# sign substr: R-D R-87.5 R-75 R-62.5 R-37.5 R-25 R-12.5 R-50 R-37.5 R-25 R-12.5 R-W
+#               50-75 50-62.5 25-50 12.5-50 W-50  
+#               37.5-75 37.5-62.5 25-37.5 W-37.5
+TukeyHSD(n)
+# D-all
+# 25-87.5 25-75
+
+# Growth
+(bakken[which(bakken$t == 't11'),]$length - bakken[which(bakken$t == 't1'),]$length)/bakken[which(bakken$t == 't11'),]$length
+
+
+
+# SEM???

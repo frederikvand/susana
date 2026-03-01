@@ -1,0 +1,168 @@
+---
+title: "Stalen alternatieve substraten"
+author: "Maaike Dhondt"
+date: "2024-04-03"
+output: html_document
+---
+
+```{r, warning = FALSE, message=FALSE}
+library("readxl")
+library("ggplot2")
+library("magrittr")
+library("dplyr")
+library("lattice")
+library("car") 
+```
+
+
+
+```{r}
+df_all <- read_excel("N:/shares/endure/SUSANA/stalen alternatieve substraten/stalen alternatieve substraten.xlsx")
+
+df_zb  <- df_all[c(83:92),]
+df     <- df_all[c(1:82),]
+
+str(df)
+df$substrate <- as.factor(df$substrate)
+df$ab        <- as.factor(df$ab)
+df$location  <- as.factor(df$location)
+df$in_out    <- as.factor(df$in_out)
+
+```
+
+
+```{r}
+# plots
+hist(df$d0.5)
+hist(df$TN)
+hist(df$TOC)
+
+par(mfrow=c(1,3)) # --> mean diff
+plot(df$substrate, df$TOC, main="TOC", ylab="TOC", xlab="substrate")
+plot(df$substrate, df$TN, main="TN", ylab="TN", xlab="substrate")
+plot(df$substrate, df$d0.5, main="d0.5", ylab="d0.5", xlab="substrate")
+
+
+par(mfrow=c(1,3)) # --> no mean diff between in/out, compare individuals?
+plot(df$in_out, df$TOC, main="TOC", ylab="TOC", xlab="in/out")
+plot(df$in_out, df$TN, main="TN", ylab="TN", xlab="in/out")
+plot(df$in_out, df$d0.5, main="d0.5", ylab="d0.5", xlab="in/out")
+
+# --> no overall diff between in/out, diff between alternative vs controle 
+bwplot(df$TOC~df$substrate | df$in_out, main="TOC", ylab="TOC") 
+bwplot(df$TN~df$substrate | df$in_out, main="TN", ylab="TN")
+bwplot(df$d0.5~df$substrate | df$in_out, main="d0.5", ylab="d0.5")
+
+ggplot(df, aes(x=in_out, y=TOC)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("TOC") + labs(y="%TOC", x="substrate") +
+    theme(legend.position="none") +
+   scale_fill_manual(values=c("aquamarine4", "gold")) +
+    facet_grid(. ~ substrate)
+
+ggplot(df, aes(x=in_out, y=TN)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("TN") + labs(y="%TN", x="substrate") +
+    theme(legend.position="none") +
+   scale_fill_manual(values=c("aquamarine4", "gold")) +
+  facet_grid(. ~ substrate)
+
+ggplot(df, aes(x=in_out, y=d0.5)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("D50") + labs(y="D50 (µm)", x="substrate") +
+    theme(legend.position="none") +
+  scale_fill_manual(values=c("aquamarine4", "gold")) +
+  facet_grid(. ~ substrate)
+
+
+# no difference between in and out
+ggplot(df, aes(x=substrate, y=TOC)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("TOC") + labs(y="%TOC", x="substrate") +
+    theme(legend.position="none") +
+   scale_fill_manual(values=c("aquamarine4", "gold")) 
+  
+ggplot(df, aes(x=substrate, y=TN)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("TN") + labs(y="%TN", x="substrate") +
+    theme(legend.position="none") +
+   scale_fill_manual(values=c("aquamarine4", "gold"))
+
+ggplot(df, aes(x=substrate, y=d0.5)) + 
+  geom_boxplot(aes(fill=substrate)) +
+  ggtitle("D50") + labs(y="D50 (µm)", x="substrate") +
+    theme(legend.position="none") +
+  scale_fill_manual(values=c("aquamarine4", "gold"))
+
+```
+
+```{r}
+# plots
+par(mfrow=c(1,3)) # --> mean diff
+plot(df$substrate, df$TOC, main="TOC", ylab="%TOC", xlab="substrate", col = c("aquamarine4", "gold"))
+plot(df$substrate, df$TN, main="TN", ylab="%TN", xlab="substrate", col = c("aquamarine4", "gold"))
+plot(df$substrate, df$d0.5, main="D50", ylab="D50 (µm)", xlab="substrate", col = c("aquamarine4", "gold"))
+
+
+par(mfrow=c(1,3)) # --> no mean diff between in/out, compare individuals?
+plot(df$in_out, df$TOC, main="TOC", ylab="%TOC", xlab="in/out", col = c("aquamarine4", "gold"))
+plot(df$in_out, df$TN, main="TN", ylab="%TN", xlab="in/out", col = c("aquamarine4", "gold"))
+plot(df$in_out, df$d0.5, main="D50", ylab="D50 (µm)", xlab="in/out", col = c("aquamarine4", "gold"))
+
+# --> no overall diff between in/out, diff between alternative vs controle 
+bwplot(df$TOC~df$substrate | df$in_out, main="TOC", ylab="TOC") 
+bwplot(df$TN~df$substrate | df$in_out, main="TN", ylab="TN")
+bwplot(df$d0.5~df$substrate | df$in_out, main="d0.5", ylab="d0.5")
+
+
+```
+
+
+```{r}
+# mean vs var
+m_TOC = tapply(df$TOC, df$substrate:df$in_out, mean)
+v_TOC = tapply(df$TOC,df$substrate:df$in_out, var) 
+plot(v_TOC ~ m_TOC)
+
+m_TN = tapply(df$TN, df$substrate:df$in_out, mean)
+v_TN = tapply(df$TN,df$substrate:df$in_out, var) 
+plot(v_TN ~ m_TN)
+
+m_d0.5 = tapply(df$d0.5, df$substrate:df$in_out, mean)
+v_d0.5 = tapply(df$d0.5,df$substrate:df$in_out, var) 
+plot(v_d0.5 ~ m_d0.5)
+
+# check normality
+tapply(df$TOC,  df$substrate:df$in_out, shapiro.test) # enkel "in" normaal verdeeld
+tapply(df$TN,   df$substrate:df$in_out, shapiro.test) # enkel "in" normaal verdeeld
+tapply(df$d0.5, df$substrate:df$in_out, shapiro.test) # normaal verdeeld
+
+# check homoscedasticity
+leveneTest(df$TOC, df$substrate:df$in_out) 
+leveneTest(df$TN,  df$substrate:df$in_out) 
+leveneTest(df$d0.5, df$substrate:df$in_out) 
+
+# t-test 
+wilcox.test(TOC ~  substrate, data = df) # significant
+wilcox.test(TN ~   substrate, data = df) # significant
+wilcox.test(d0.5 ~ substrate, data = df) # net significant
+
+wilcox.test(TOC ~  in_out, data = df) # niet significant
+wilcox.test(TN ~   in_out, data = df) # niet significant
+wilcox.test(d0.5 ~ in_out, data = df) # niet significant
+
+```
+```{r}
+# Aangevoerde substraten Zeebrugge
+df_zb <- df_zb %>%
+  mutate(kleur = case_when(
+    endsWith(location, "bleek") ~ "W", endsWith(location, "bleek_los") ~ "W", endsWith(location, "bleek_brokjes") ~ "W",
+    endsWith(location, "donker") ~ "D", endsWith(location, "donker_brokjes") ~ "D", endsWith(location, "donker_los") ~ "D",
+    ))
+
+m_d0.5_zb = tapply(df_zb$d0.5, df_zb$kleur, mean)
+v_d0.5_zb = tapply(df_zb$d0.5,df_zb$kleur, var) 
+
+```
+
+
