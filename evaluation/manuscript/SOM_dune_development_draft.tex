@@ -57,6 +57,7 @@ Jianghua Guo$^{3}$ \and
 Maaike Dhondt$^{2}$ \and
 Charlotte Taelman$^{2}$ \and
 Jiayue Yan$^{2}$ \and
+Katrien Vanderbiest$^{4}$ \and
 Pieter Rauwoens$^{3}$ \and
 Dries Bonte$^{2}$
 }
@@ -64,7 +65,8 @@ Dries Bonte$^{2}$
 \date{
 $^{1}$Department of Civil Engineering, Ghent University, Belgium \\
 $^{2}$Department of Biology, Ghent University, Belgium \\
-$^{3}$Department of Civil Engineering, KU Leuven, Technology Campus Bruges, Belgium \\[0.5em]
+$^{3}$Department of Civil Engineering, KU Leuven, Technology Campus Bruges, Belgium \\
+$^{4}$University of Antwerp, Belgium \\[0.5em]
 \today~--- \textbf{Draft manuscript for internal review}
 }
 
@@ -190,7 +192,7 @@ The base threshold shear velocity $\ust$ is computed using the Shao and Lu formu
 \end{equation}
 where $A_N = 0.0123$ is a dimensionless coefficient, $\rho_s$ is the particle density (\SI{2650}{\kilo\gram\per\cubic\metre} for quartz), $\rho_a$ is the air density (\SI{1.225}{\kilo\gram\per\cubic\metre}), $g$ is gravitational acceleration (\SI{9.81}{\metre\per\second\squared}), $d$ is the nominal grain diameter (in metres), and $\gamma$ is the interparticle cohesion parameter (\si{\kilo\gram\per\second\squared}). For clean mineral sand, $\gamma$ defaults to $3 \times 10^{-4}$ \si{\kilo\gram\per\second\squared} following \citet{greeley1985wind}.
 
-The saturated sand transport rate is computed following \citet{bagnold1941physics}:
+The saturated sand transport rate was computed following \citet{bagnold1941physics}:
 \begin{equation}
 Q_s = C \frac{\rho_a}{g}\, \usw^3
 \label{eq:bagnold_transport}
@@ -204,6 +206,10 @@ Soil moisture correction of the threshold follows the Van Rijn and Strypsteen fo
 \end{equation}
 where $\ust^{(d)}$ is the dry threshold, and $w_p$ is the gravimetric moisture content in percent.
 
+
+\subsubsection{Soil Moisture Model}
+
+The Living Dunes soil moisture module resolves a two-layer soil column comprising a surface layer (top \SI{30}{\milli\metre}) and a deep layer, with an additional aerodynamic skin layer (\SI{2}{\milli\metre}) at the surface. The model is driven by hourly precipitation, temperature, and wind speed inputs, and computes potential evapotranspiration using the FAO-56 Penman--Monteith equation \citep{allen1998crop}. Canopy interception, throughfall, infiltration, drainage, capillary rise, and plant water uptake are resolved sequentially at each time step. Infiltration is limited by the saturated hydraulic conductivity (\SI{200}{\milli\metre\per\hour} for beach sand). Drainage from the surface layer follows an exponential decay toward field capacity, while capillary rise from the deep layer to the surface layer is modelled as a function of the moisture gradient between layers. Finally, plant water uptake is determined by a stress--response function based on root-zone moisture relative to field capacity and the wilting point.
 
 \subsubsection{Vegetation Module}
 
@@ -219,19 +225,6 @@ where $r_{base}$ is the base growth rate (\num{0.01} per day), $f_i(E_i)$ are th
 Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model---the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion.
 
 Lateral spread is modelled through a two-component kernel: a diffusive spread to immediately neighbouring cells and longer-range rhizome colonisation (L\'{e}vy walk), both modulated by the same environmental response functions but with distinct base rates and density-dependent regulation \citep{bonte2021biomorphogenic}.
-
-
-\subsubsection{Soil Moisture Model}
-
-The Living Dunes soil moisture module resolves a two-layer soil column comprising a surface layer (top \SI{30}{\milli\metre}) and a deep layer, with an additional aerodynamic skin layer (\SI{2}{\milli\metre}) at the surface. The model is driven by hourly precipitation, temperature, and wind speed inputs, and computes potential evapotranspiration using the FAO-56 Penman--Monteith equation \citep{allen1998crop}. Canopy interception, throughfall, infiltration, drainage, capillary rise, and plant water uptake are resolved sequentially at each time step.
-
-Key processes include:
-\begin{itemize}
-    \item Infiltration is limited by the saturated hydraulic conductivity (\SI{200}{\milli\metre\per\hour} for beach sand);
-    \item Drainage from the surface layer follows an exponential decay toward field capacity;
-    \item Capillary rise from the deep layer to the surface layer is modelled as a function of the moisture gradient between layers;
-    \item Plant water uptake follows a stress--response function based on root-zone moisture relative to field capacity and wilting point.
-\end{itemize}
 
 
 \subsubsection{SOM Extensions to the Living Dunes Model}
@@ -288,15 +281,7 @@ For each substrate scenario, the sediment properties ($D_{50}$, $D_{90}$, bulk d
 
 After the 3-year dune growth simulation, the resulting dune profiles were used as input for storm erosion assessment using XBeach \citep{roelvink2009modelling}. For each of the 10 scenarios, the 3D dune profile computed by Living Dunes was extracted as the initial bathymetry for XBeach.
 
-The storm boundary conditions (water level, wave height, wave period) were based on a design storm calibrated to the hindcast of Storm Corrie (January 2022), which produced significant wave heights exceeding \SI{4}{\metre} and elevated water levels at the study site. Key XBeach parameters were set as follows:
-\begin{itemize}
-    \item Sediment: $D_{50}$ and $D_{90}$ set per substrate scenario from the measured grain size distributions;
-    \item Vegetation: aboveground biomass properties (height, stem diameter, stem density, drag coefficient $C_d$) were derived from the marram grass cover density predicted by Living Dunes at year 3. The drag coefficient was set to a recommended value of $C_d = 1.0$ following \citet{mendez2004estimation};
-    \item Root cohesion: implemented as additional soil strength in the root zone, with root depth derived from the Living Dunes allometric relationship (root depth = $\sqrt{\rho_v} \times d_{max}$ where $d_{max} = \SI{1.5}{\metre}$);
-    \item Hydrodynamic parameters: \texttt{facua} (wave-skewness transport), \texttt{gamma} (breaker parameter), \texttt{gammax} (maximum wave height-to-depth ratio), \texttt{eps} (minimum wet depth), \texttt{wetslp}/\texttt{dryslp} (critical avalanche slopes), \texttt{facSk}/\texttt{facAs} (skewness/asymmetry calibration factors), and \texttt{bedfriccoef} were all set to calibrated values from the Storm Corrie hindcast;
-    \item Sediment transport: Soulsby--Van Rijn formulation with default parameters;
-    \item Seaward bathymetry: extended using measured profiles from the BPNS.
-\end{itemize}
+The storm boundary conditions (water level, wave height, wave period) were based on a design storm calibrated to the hindcast of Storm Corrie (January 2022), which produced significant wave heights exceeding \SI{4}{\metre} and elevated water levels at the study site. XBeach was configured to use the measured grain size distributions to set the $D_{50}$ and $D_{90}$ for each substrate scenario. Aboveground biomass properties, including height, stem diameter, stem density, and a drag coefficient ($C_d$) set to 1.0 following \citet{mendez2004estimation}, were derived directly from the marram grass cover density predicted by Living Dunes at year 3. Root cohesion was implemented as additional soil strength in the root zone, with the root depth calculated from the Living Dunes allometric relationship ($\sqrt{\rho_v} \times \SI{1.5}{\metre}$). The model's hydrodynamic and sediment transport formulations were calibrated to the Storm Corrie hindcast, setting parameters such as wave-skewness transport (\texttt{facua}), breaker parameter (\texttt{gamma}), maximum wave height-to-depth ratio (\texttt{gammax}), minimum wet depth (\texttt{eps}), critical avalanche slopes (\texttt{wetslp}/\texttt{dryslp}), and skewness/asymmetry factors (\texttt{facSk}/\texttt{facAs}). Sediment transport was computed using the default Soulsby--Van Rijn formulation, and the seaward bathymetry was extended using measured profiles from the BPNS.
 
 \subsubsection{Post-Storm Recovery Simulation}
 
@@ -305,16 +290,7 @@ Following the XBeach storm simulation, the eroded dune profiles were used as the
 
 \subsection{Analysis Metrics}
 
-Simulation outputs were evaluated using the following metrics:
-\begin{itemize}
-    \item \textbf{Dune volume}: total sand volume above the non-erodible layer, integrated over the restoration footprint;
-    \item \textbf{Crest height}: maximum elevation along the cross-shore profile;
-    \item \textbf{Vegetation cover}: spatially averaged marram grass cover density at the end of the growing season;
-    \item \textbf{Storm erosion volume}: total volume loss during the XBeach storm simulation;
-    \item \textbf{Recovery rate}: dune volume gain per year during the post-storm Living Dunes simulation;
-    \item \textbf{Aeolian transport activity}: percentage of time steps with non-zero transport, mean transport rate, and dominant transport direction;
-    \item \textbf{Moisture retention index}: time-averaged surface soil moisture content as a proxy for SOM-driven ecohydrological enhancement.
-\end{itemize}
+To comprehensively evaluate the performance of alternative sediments, the simulations output several key metrics documenting dune growth and resilience. Geomorphological development was quantified by extracting the total sand volume above the non-erodible layer integrated over the restoration footprint, as well as the maximum crest height along the cross-shore profile. Ecological establishment was assessed through the spatially averaged marram grass cover density at the end of each growing season. To evaluate nature-based resilience, we quantified the storm erosion volume during the XBeach storm simulation and the subsequent recovery rate, defined as the dune volume gain per year during the post-storm Living Dunes simulation. Furthermore, the underlying biomorphogenic processes were analysed using the aeolian transport activity (percentage of active time steps, mean rate, and direction) and a moisture retention index representing the time-averaged surface soil moisture, serving as a proxy for SOM-driven ecohydrological enhancement.
 
 
 % =============================================================================
