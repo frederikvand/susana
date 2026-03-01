@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  1 MAR 2026 19:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.24)  1 MAR 2026 20:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -385,46 +385,73 @@ Package: longtable 2024-04-26 v4.20 Multi-page Table package (DPC)
 \c@LT@tables=\count326
 \c@LT@chunks=\count327
 \LT@p@ftn=\toks28
+) (c:/texlive/2024/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+ (c:/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (c:/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen192
+\captionmargin=\dimen193
+\caption@leftmargin=\dimen194
+\caption@rightmargin=\dimen195
+\caption@width=\dimen196
+\caption@indent=\dimen197
+\caption@parindent=\dimen198
+\caption@hangindent=\dimen199
+Package caption Info: Standard document class detected.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 30.
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 48.
+\c@caption@flags=\count328
+\c@continuedfloat=\count329
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+ (c:/texlive/2024/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count330
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count331
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 31.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 49.
  (c:/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count328
+\l__color_backend_stack_int=\count332
 \l__pdf_internal_box=\box70
 ) (./SOM_dune_development_draft.aux)
 \openout1 = `SOM_dune_development_draft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
  (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count329
-\scratchdimen=\dimen192
+\scratchcounter=\count333
+\scratchdimen=\dimen256
 \scratchbox=\box71
-\nofMPsegments=\count330
-\nofMParguments=\count331
+\nofMPsegments=\count334
+\nofMParguments=\count335
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count332
-\MPscratchDim=\dimen193
-\MPnumerator=\count333
-\makeMPintoPDFobject=\count334
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen257
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
 \everyMPtoPDFconversion=\toks30
 ) (c:/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -469,21 +496,23 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 (c:/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 48.
-Package hyperref Info: Link coloring ON on input line 48.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 49.
+Package hyperref Info: Link coloring ON on input line 49.
  (./SOM_dune_development_draft.out) (./SOM_dune_development_draft.out)
 \@outlinefile=\write3
 \openout3 = `SOM_dune_development_draft.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 71.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 72.
  (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
  (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -499,8 +528,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [4]
 
 [5]
+<../../output/substrate/TOC.PNG, id=224, 1131.62775pt x 535.40025pt>
+File: ../../output/substrate/TOC.PNG Graphic file (type png)
+<use ../../output/substrate/TOC.PNG>
+Package pdftex.def Info: ../../output/substrate/TOC.PNG  used on input line 147.
+(pdftex.def)             Requested size: 204.85846pt x 96.92342pt.
+<../../output/germination/soil moisture boxplots.png, id=226, 493.0922pt x 397.485pt>
+File: ../../output/germination/soil moisture boxplots.png Graphic file (type png)
+<use ../../output/germination/soil moisture boxplots.png>
+Package pdftex.def Info: ../../output/germination/soil moisture boxplots.png  used on input line 154.
+(pdftex.def)             Requested size: 204.85846pt x 165.14122pt.
 
-[6]
+
+[6 <../../output/substrate/TOC.PNG> <../../output/germination/soil moisture boxplots.png>]
 
 [7]
 
@@ -515,11 +555,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [12]
 
 [13]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 276.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 296.
  (c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-Overfull \hbox (1.22777pt too wide) in paragraph at lines 276--277
+Overfull \hbox (1.22777pt too wide) in paragraph at lines 296--297
 \T1/cmr/m/n/12 ram-e-ter), \T1/cmtt/m/n/12 gammax \T1/cmr/m/n/12 (max-i-mum wave height-to-depth ra-tio), \T1/cmtt/m/n/12 eps \T1/cmr/m/n/12 (min-i-mum wet depth),
  []
 
@@ -528,10 +568,32 @@ Overfull \hbox (1.22777pt too wide) in paragraph at lines 276--277
 [14]
 
 [15]
+<../../output/common_garden/aboveground_biomass/marram_height_loess.png, id=336, 573.64313pt x 404.26031pt>
+File: ../../output/common_garden/aboveground_biomass/marram_height_loess.png Graphic file (type png)
+<use ../../output/common_garden/aboveground_biomass/marram_height_loess.png>
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/marram_height_loess.png  used on input line 339.
+(pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
+<../../output/common_garden/aboveground_biomass/leaves_number_loess.png, id=337, 573.64313pt x 404.26031pt>
+File: ../../output/common_garden/aboveground_biomass/leaves_number_loess.png Graphic file (type png)
+<use ../../output/common_garden/aboveground_biomass/leaves_number_loess.png>
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/leaves_number_loess.png  used on input line 346.
+(pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
+
 
 [16]
+<../../output/germination/percentage of germinated seeds.png, id=344, 573.64313pt x 404.26031pt>
+File: ../../output/germination/percentage of germinated seeds.png Graphic file (type png)
+<use ../../output/germination/percentage of germinated seeds.png>
+Package pdftex.def Info: ../../output/germination/percentage of germinated seeds.png  used on input line 364.
+(pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
+<../../output/germination/length of seedlings.png, id=345, 513.117pt x 346.896pt>
+File: ../../output/germination/length of seedlings.png Graphic file (type png)
+<use ../../output/germination/length of seedlings.png>
+Package pdftex.def Info: ../../output/germination/length of seedlings.png  used on input line 371.
+(pdftex.def)             Requested size: 204.85846pt x 138.49657pt.
 
-[17]
+
+[17 <../../output/common_garden/aboveground_biomass/marram_height_loess.png> <../../output/common_garden/aboveground_biomass/leaves_number_loess.png> <../../output/germination/percentage of germinated seeds.png> <../../output/germination/length of seedlings.png>]
 
 [18]
 
@@ -539,33 +601,106 @@ Overfull \hbox (1.22777pt too wide) in paragraph at lines 276--277
 
 [20]
 
-[21] (./SOM_dune_development_draft.bbl
+[21]
 
-[22]
+[22] (./SOM_dune_development_draft.bbl
 
-[23])
+[23]
 
-[24] (./SOM_dune_development_draft.aux)
+[24]
+
+[25]) (./SOM_dune_development_appendix.tex
+
+[26]
+<../../output/substrate/boxplots substrates.PNG, id=418, 544.434pt x 322.20375pt>
+File: ../../output/substrate/boxplots substrates.PNG Graphic file (type png)
+<use ../../output/substrate/boxplots substrates.PNG>
+Package pdftex.def Info: ../../output/substrate/boxplots substrates.PNG  used on input line 16.
+(pdftex.def)             Requested size: 204.85846pt x 121.23907pt.
+<../../output/substrate/boxplots in-out.PNG, id=419, 540.21825pt x 316.18124pt>
+File: ../../output/substrate/boxplots in-out.PNG Graphic file (type png)
+<use ../../output/substrate/boxplots in-out.PNG>
+Package pdftex.def Info: ../../output/substrate/boxplots in-out.PNG  used on input line 23.
+(pdftex.def)             Requested size: 204.85846pt x 119.89923pt.
+<../../output/common_garden/aboveground_biomass/marram_height_all.png, id=420, 478.03593pt x 346.29375pt>
+File: ../../output/common_garden/aboveground_biomass/marram_height_all.png Graphic file (type png)
+<use ../../output/common_garden/aboveground_biomass/marram_height_all.png>
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/marram_height_all.png  used on input line 36.
+(pdftex.def)             Requested size: 204.85846pt x 148.40141pt.
+<../../output/common_garden/aboveground_biomass/number_of_leaves.png, id=421, 573.64313pt x 404.26031pt>
+File: ../../output/common_garden/aboveground_biomass/number_of_leaves.png Graphic file (type png)
+<use ../../output/common_garden/aboveground_biomass/number_of_leaves.png>
+Package pdftex.def Info: ../../output/common_garden/aboveground_biomass/number_of_leaves.png  used on input line 43.
+(pdftex.def)             Requested size: 204.85846pt x 144.36775pt.
+<../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG, id=422, 585.387pt x 423.984pt>
+File: ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG Graphic file (type png)
+<use ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG>
+Package pdftex.def Info: ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG  used on input line 56.
+(pdftex.def)             Requested size: 204.85846pt x 148.3772pt.
+<../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG, id=423, 493.24275pt x 333.04425pt>
+File: ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG Graphic file (type png)
+<use ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG>
+Package pdftex.def Info: ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG  used on input line 63.
+(pdftex.def)             Requested size: 204.85846pt x 138.32259pt.
+<../../output/germination/climate variables.png, id=424, 877.02657pt x 397.485pt>
+File: ../../output/germination/climate variables.png Graphic file (type png)
+<use ../../output/germination/climate variables.png>
+Package pdftex.def Info: ../../output/germination/climate variables.png  used on input line 74.
+(pdftex.def)             Requested size: 364.19667pt x 165.06236pt.
+<../../output/germination/air temperature.png, id=425, 877.02657pt x 397.485pt>
+File: ../../output/germination/air temperature.png Graphic file (type png)
+<use ../../output/germination/air temperature.png>
+Package pdftex.def Info: ../../output/germination/air temperature.png  used on input line 83.
+(pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
+<../../output/germination/soil temperature.png, id=426, 877.02657pt x 397.485pt>
+File: ../../output/germination/soil temperature.png Graphic file (type png)
+<use ../../output/germination/soil temperature.png>
+Package pdftex.def Info: ../../output/germination/soil temperature.png  used on input line 90.
+(pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
+<../../output/germination/surface temperature.png, id=427, 877.02657pt x 397.485pt>
+File: ../../output/germination/surface temperature.png Graphic file (type png)
+<use ../../output/germination/surface temperature.png>
+Package pdftex.def Info: ../../output/germination/surface temperature.png  used on input line 97.
+(pdftex.def)             Requested size: 204.85846pt x 92.84492pt.
+<../../output/germination/temperature 4am vs 4 pm substrate.png, id=428, 618.05907pt x 361.35pt>
+File: ../../output/germination/temperature 4am vs 4 pm substrate.png Graphic file (type png)
+<use ../../output/germination/temperature 4am vs 4 pm substrate.png>
+Package pdftex.def Info: ../../output/germination/temperature 4am vs 4 pm substrate.png  used on input line 104.
+(pdftex.def)             Requested size: 204.85846pt x 119.76967pt.
+<../../output/germination/moisture ifo temperature.png, id=429, 877.77937pt x 423.08063pt>
+File: ../../output/germination/moisture ifo temperature.png Graphic file (type png)
+<use ../../output/germination/moisture ifo temperature.png>
+Package pdftex.def Info: ../../output/germination/moisture ifo temperature.png  used on input line 114.
+(pdftex.def)             Requested size: 273.14923pt x 131.65718pt.
+)
+
+[27
+
+ <../../output/substrate/boxplots substrates.PNG> <../../output/substrate/boxplots in-out.PNG> <../../output/common_garden/aboveground_biomass/marram_height_all.png> <../../output/common_garden/aboveground_biomass/number_of_leaves.png>]
+
+[28 <../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG> <../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG> <../../output/germination/climate variables.png>]
+
+[29 <../../output/germination/air temperature.png> <../../output/germination/soil temperature.png> <../../output/germination/surface temperature.png> <../../output/germination/temperature 4am vs 4 pm substrate.png (PNG copy)> <../../output/germination/moisture ifo temperature.png (PNG copy)>] (./SOM_dune_development_draft.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
  ***********
 Package rerunfilecheck Info: File `SOM_dune_development_draft.out' has not changed.
-(rerunfilecheck)             Checksum: 81EEA99E24A52F927C1E0D4E1EF20BAC;6031.
+(rerunfilecheck)             Checksum: C33422CC4DDC13E6CC64F11DE66B87CD;6184.
  ) 
 Here is how much of TeX's memory you used:
- 17454 strings out of 473579
- 338123 string characters out of 5732263
- 725001 words of memory out of 5000000
- 40059 multiletter control sequences out of 15000+600000
+ 19157 strings out of 473579
+ 377240 string characters out of 5732263
+ 736938 words of memory out of 5000000
+ 41732 multiletter control sequences out of 15000+600000
  581652 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,13n,88p,2356b,1065s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,13n,88p,2356b,1073s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on SOM_dune_development_draft.pdf (24 pages, 442328 bytes).
+Output written on SOM_dune_development_draft.pdf (29 pages, 985157 bytes).
 PDF statistics:
- 511 PDF objects out of 1000 (max. 8388607)
- 432 compressed objects within 5 object streams
- 95 named destinations out of 1000 (max. 500000)
- 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 586 PDF objects out of 1000 (max. 8388607)
+ 467 compressed objects within 5 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 347 words of extra memory for PDF output out of 10000 (max. 10000000)
 

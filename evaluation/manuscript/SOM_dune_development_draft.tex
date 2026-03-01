@@ -21,6 +21,7 @@
 \usepackage{cleveref}
 \usepackage{multirow}
 \usepackage{longtable}
+\usepackage{subcaption}
 
 \hypersetup{
     colorlinks=true,
@@ -138,6 +139,25 @@ D (dark dredge) & 2.16 & 0.19 & 182.9 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/substrate/TOC.PNG}
+        \caption{Substrate TOC gradient}
+        \label{fig:toc_gradient}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/germination/soil moisture boxplots.png}
+        \caption{Soil moisture variations}
+        \label{fig:soil_moisture_sponge}
+    \end{subfigure}
+    \caption{Visualisation of the experimental substrate properties: (a) Total Organic Carbon (TOC) gradient across the 10 substrate mixtures, establishing the experimental conditions, and (b) observed soil moisture variations corroborating the ``sponge effect'' of increased organic matter.}
+    \label{fig:substrate_characterization}
+\end{figure}
 
 
 \subsection{Vegetation Experiments}
@@ -312,12 +332,49 @@ Plants growing on the reference beach sand (R) produced significantly shorter le
 
 The number of living leaves followed a distinct pattern: pure D produced significantly more leaves than all other substrates from the beginning of the growing season ($p < 0.05$), while no significant differences were observed among the remaining substrates. This immediate differentiation after planting suggests that the nutrient-rich dark substrate promoted rapid recovery from transplant stress.
 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/marram_height_loess.png}
+        \caption{Marram height (LOESS)}
+        \label{fig:height_loess}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/leaves_number_loess.png}
+        \caption{Number of leaves (LOESS)}
+        \label{fig:leaves_loess}
+    \end{subfigure}
+    \caption{Aboveground growth trajectories during the common-garden experiment. The smoothed curves highlight the divergence over time, with intermediate mixtures producing optimal height while pure dark sediment (D) supports the most leaves. For full distributions and detailed boxplots, see \cref{sec:appendix_figures}.}
+    \label{fig:aboveground_growth}
+\end{figure}
+
 \subsubsection{Germination Experiment}
 
 Germination success was significantly lower on the reference beach sand (R) compared to all alternative substrates (ANOVA: $p < 0.05$), consistent with observed seed loss through wind erosion on the bare, cohesionless sand surface. Seedling growth showed a significant substrate $\times$ time interaction ($p < 0.05$), indicating differential growth trajectories among substrates. Seedlings on R performed substantially worse than those on any alternative substrate throughout the monitoring period.
 
 The microclimate loggers revealed systematic differences in soil moisture among substrates: moisture content was highest in pure D, followed by D75, D50, D25, R, and W, consistent with the expected positive correlation between organic matter content and water retention. Soil temperature in D was slightly elevated compared to other substrates, attributable to its darker colour and higher heat absorption.
 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/germination/percentage of germinated seeds.png}
+        \caption{Germinated seeds percentage}
+        \label{fig:germ_pct}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../output/germination/length of seedlings.png}
+        \caption{Seedling length}
+        \label{fig:seedling_length}
+    \end{subfigure}
+    \caption{Germination success and initial establishment across the tested substrates. Germination and seedling extension were significantly inhibited on the reference beach sand (R) compared to the alternative substrates.}
+    \label{fig:germination_establishment}
+\end{figure}
 
 \subsection{Reference Beach Simulation (Year 1)}
 
@@ -425,5 +482,8 @@ This work was supported by the SUSANA project (Sustainable Use of Sand in Nature
 
 \bibliographystyle{apalike}
 \bibliography{references}
+
+% Include the appendix
+\input{SOM_dune_development_appendix}
 
 \end{document}
