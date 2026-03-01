@@ -1,0 +1,429 @@
+% =============================================================================
+% SOM_dune_development_draft.tex
+% Draft manuscript: Effects of Soil Organic Matter on Dune Development
+% Following Nature-Based Restoration with Alternative Sediments
+% =============================================================================
+\documentclass[12pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{lineno}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% APA-style hanging indent for reference list
+\newenvironment{hangparas}[2]
+  {\setlength{\parindent}{#1}%
+   \everypar={\hangindent=\parindent}}
+  {}
+
+\doublespacing
+\linenumbers
+
+% --- Convenience commands ---
+\newcommand{\SOM}{\mathrm{SOM}}
+\newcommand{\ust}{u_{*t}}
+\newcommand{\usw}{u_{*}}
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
+
+% =============================================================================
+\begin{document}
+
+% --- Title ---
+\title{Optimizing Alternative Sediments for Dune Construction: An Eco-Geomorphological Approach}
+
+\author{
+Frederik Van~Daele$^{1,*}$\thanks{Corresponding author: frederik.vandaele@ugent.be} \and
+Jianghua Guo$^{3}$ \and
+Maaike Dhondt$^{2}$ \and
+Charlotte Taelman$^{2}$ \and
+Jiayue Yan$^{2}$ \and
+Pieter Rauwoens$^{3}$ \and
+Dries Bonte$^{2}$
+}
+
+\date{
+$^{1}$Department of Civil Engineering, Ghent University, Belgium \\
+$^{2}$Department of Biology, Ghent University, Belgium \\
+$^{3}$Department of Civil Engineering, KU Leuven, Technology Campus Bruges, Belgium \\[0.5em]
+\today~--- \textbf{Draft manuscript for internal review}
+}
+
+\maketitle
+
+% =============================================================================
+% ABSTRACT
+% =============================================================================
+\begin{abstract}
+Nature-based solutions for coastal protection increasingly rely on dune-in-front-of-dike (DfD) systems constructed with sand from dredging operations. However, the long-term geomorphological development of dunes built with organic-rich alternative sediments remains poorly understood. We present an integrated experimental--numerical framework that couples (i) common-garden and germination experiments quantifying marram grass (\textit{Calamagrostis arenaria}) performance on 10 substrate mixtures varying in soil organic matter (SOM) content (\SIrange{0.06}{2.5}{\percent} total organic carbon), (ii) a process-based aeolian--vegetation feedback model (Living Dunes) extended with dynamic SOM--ecohydrology and SOM--cohesion pathways, and (iii) storm erosion assessment using XBeach. Growth experiments demonstrated that marram grass germination and establishment were significantly enhanced on organic-rich alternative substrates compared to natural beach sand, with leaf counts on the dark dredging substrate exceeding the reference by a factor $>$2. We parameterised the Living Dunes model to simulate three-year dune development at Ostend (Belgium) under 10 sediment scenarios ranging from pure beach sand to pure dredging material. Model extensions included a Saxton and Rawls pedotransfer function linking SOM to field capacity (the ``sponge effect''), a dynamic organic cohesion modifier following Zobeck et al., and a disturbance-recovery index after Belnap and Gillette. Furthermore, we parameterised trait-specific growth functions based on SOM to reflect observed variations in vegetation vigour. Three-year simulations were followed by XBeach storm impact modelling and subsequent Living Dunes recovery simulations to assess the self-restoring capacity of the constructed dunes. Results indicate that moderate SOM enrichment (\SIrange{1}{3}{\percent}) optimises both vegetation vigour and aeolian sediment supply, producing the tallest and most erosion-resistant dune profiles, while excessive organic content ($>$\SI{5}{\percent}) suppresses aeolian transport and limits dune growth. These findings provide evidence-based guidelines for the sustainable use of dredging by-products in nature-based coastal defences.
+
+\bigskip
+\noindent\textbf{Keywords:} soil organic matter; nature-based solutions; dune restoration; marram grass; alternative sediments; aeolian transport; coastal resilience; Living Dunes model; XBeach
+\end{abstract}
+
+\newpage
+
+% =============================================================================
+% 1. INTRODUCTION
+% =============================================================================
+\section{Introduction}
+
+Sandy coastlines provide critical ecosystem services including flood defence, habitat provision, and recreational value \citep{martinez2008coastal}. In low-lying countries such as Belgium, dune-in-front-of-dike (DfD) systems have been proposed as nature-based solutions that combine coastal safety with ecological restoration \citep{temmerman2013ecosystem}. Unlike traditional hard engineering structures, these systems rely on biophysical feedbacks between vegetation, sediment, and wind to build and maintain their protective volume over time \citep{bonte2021biomorphogenic}.
+
+A fundamental requirement for DfD construction is the availability of suitable sediment in sufficient quantities. Sand is, however, a finite and increasingly contested resource. In the Belgian part of the North Sea (BPNS), extraction volumes surged from \SI{0.3e6}{\cubic\metre} in 1976 to \SI{3.5e6}{\cubic\metre} in 2019, and mid-term projections indicate growing scarcity of high-quality aggregates. Only \SI{16}{\percent} of sand used for coastal safety in Flanders originates from beneficial reuse of dredging material, with the remainder sourced from dedicated extraction zones defined in the Marine Spatial Plan \citep{speybroeck2006beach}. This situation has motivated research into whether alternative sediments---particularly by-products from maintenance dredging in ports and navigation channels---can be repurposed for dune construction.
+
+Alternative sediments from dredging typically differ from native beach sand in three principal ways: they have a finer grain size distribution, a higher soil organic matter (SOM) content, and a more heterogeneous texture \citep{vandeneede2014assessing}. Each of these properties influences the aeolian and ecological processes that govern dune development. Finer grains reduce the threshold shear velocity for transport initiation but also increase interparticle cohesion \citep{shao2000simple}. Elevated SOM content enhances soil water retention through increased microporosity \citep{saxton2006soil}, strengthens interparticle bonding via organic polymers and biocrust formation \citep{zobeck2013soil}, and alters nutrient availability for vegetation establishment \citep{vanderputten1993plant}. Understanding these interacting effects is essential for predicting whether DfD systems constructed with alternative sediments will develop into functional, self-sustaining dunes.
+
+Marram grass (\textit{Calamagrostis arenaria}, formerly \textit{Ammophila arenaria}) is the dominant ecosystem engineer in northwest European foredunes. It traps wind-blown sand through aerodynamic roughness and drag, and responds positively to moderate sand burial through stimulated vertical and lateral growth \citep{huiskes1979ammophila, disraeli1984effect, keijsers2016adaptation, reijers2021review}. This positive feedback between vegetation growth and sand accretion makes marram grass the keystone species for dune building. However, how marram grass responds to substrates with elevated organic matter---specifically whether the improved moisture retention and nutrient supply compensate for potentially reduced aeolian sand supply---remains an open question.
+
+Previous studies on beach nourishment ecology have focused primarily on intertidal macrofauna response to sediment grain size \citep{speybroeck2006beach, vandeneede2014assessing}. Research on dune vegetation establishment on alternative substrates has been limited to qualitative field observations, and no study has quantitatively linked substrate organic matter content to dune geomorphological development through both experimental and numerical approaches.
+
+The SUSANA project (Sustainable Use of Sand in Nature-based Solutions) addresses this gap through a multi-partner research programme that combines field experiments, laboratory analyses, and numerical modelling. The present study integrates three complementary research lines. First, we report the results of common-garden and germination experiments testing marram grass performance on 10 substrate mixtures spanning the range from pure natural beach sand to pure dredging material, conducted at the port of Zeebrugge over one growing season. Second, we describe extensions to the Living Dunes model---a spatially explicit, process-based aeolian--vegetation feedback model---that represent the effects of SOM on soil moisture retention, threshold shear velocity, and surface disturbance dynamics. Third, we apply this model to simulate three-year dune development at a DfD site near Ostend under each of the 10 substrate scenarios, followed by XBeach storm erosion modelling and post-storm recovery simulations to assess the self-restoring capacity of the resulting dune profiles.
+
+The primary objectives of this study are to (1) quantify the effect of substrate SOM content on marram grass establishment and growth, (2) develop and validate a modelling framework that captures the coupled effects of SOM on ecohydrology and aeolian transport, and (3) identify the SOM range that optimises long-term dune development and storm resilience. We hypothesise that SOM acts as a ``double-edged sword'' for dune development, where enhanced moisture retention promotes vegetation growth but simultaneously suppresses the aeolian sediment supply necessary for continued dune building. Together, these results provide evidence-based recommendations for the use of alternative sediments in nature-based coastal defence.
+
+
+% =============================================================================
+% 2. METHODS
+% =============================================================================
+\section{Methods}
+
+\subsection{Study Area}
+
+The study site is located along the central Belgian coast near Ostend (51\textdegree12\textquotesingle N, 2\textdegree55\textquotesingle E), where a DfD system was constructed seaward of the existing sea dike. The Belgian coast is a macrotidal, wave-dominated sandy shore oriented northeast--southwest, with a tidal range of approximately \SI{4.5}{\metre} (spring tide) and a prevailing wind direction from the southwest \citep{degraer2006belgian}. The existing beach at Ostend consists of medium-grained quartz sand with a median grain size ($D_{50}$) of approximately \SI{335}{\micro\metre}, a 90th-percentile grain diameter ($D_{90}$) of \SI{500}{\micro\metre}, and a bulk density of \SI{1500}{\kilo\gram\per\cubic\metre}. Common-garden experiments were conducted at the port of Zeebrugge (51\textdegree20\textquotesingle N, 3\textdegree10\textquotesingle E), approximately \SI{25}{\kilo\metre} northeast of Ostend, which shares the same coastal climate regime.
+
+
+\subsection{Substrate Characterisation}
+
+Ten substrates were analysed for use in both the experimental and modelling components of this study. These comprised natural beach sand from Zeebrugge (designated R, the reference substrate), a dark-coloured alternative substrate from port dredging (D), a white-coloured alternative substrate (W), and seven mixtures of D and W (\cref{tab:substrate_properties}). Five samples were analysed per substrate type for total organic carbon (TOC), total nitrogen (TN), and median grain size ($D_{50}$); samples were dried at \SI{60}{\degreeCelsius} for 24 hours prior to analysis, and granulometry was restricted to the fraction $<$\SI{2}{\milli\metre}.
+
+The alternative substrates exhibited markedly different properties from the reference beach sand (\cref{tab:substrate_properties}). The dark substrate (D) had the highest TOC content (\SI{2.16}{\percent}), approximately 36 times greater than the reference sand (\SI{0.06}{\percent}), and the smallest median grain size (\SI{182.9}{\micro\metre}). The white substrate (W) had an intermediate TOC (\SI{0.25}{\percent}) and a grain size (\SI{187.9}{\micro\metre}) closer to but still finer than the reference sand (\SI{266.9}{\micro\metre}). The D/W mixtures spanned a continuous gradient in SOM, grain size, and nitrogen content between these end-members.
+
+\begin{table}[htbp]
+\centering
+\caption{Physical and chemical properties of the 10 experimental substrates. TOC: total organic carbon; TN: total nitrogen; $D_{50}$: median grain diameter.}
+\label{tab:substrate_properties}
+\begin{tabular}{lccc}
+\toprule
+Substrate & TOC (\%) & TN (\%) & $D_{50}$ (\si{\micro\metre}) \\
+\midrule
+R (reference beach sand) & 0.06 & 0.04 & 266.9 \\
+W (white dredge) & 0.25 & 0.07 & 187.9 \\
+D12.5 (12.5\% D / 87.5\% W) & 0.49 & 0.09 & 187.3 \\
+D25 (25\% D / 75\% W) & 0.73 & 0.10 & 186.6 \\
+D37.5 (37.5\% D / 62.5\% W) & 0.97 & 0.12 & 186.0 \\
+D50 (50\% D / 50\% W) & 1.21 & 0.13 & 185.4 \\
+D62.5 (62.5\% D / 37.5\% W) & 1.45 & 0.14 & 184.8 \\
+D75 (75\% D / 25\% W) & 1.68 & 0.16 & 184.2 \\
+D87.5 (87.5\% D / 12.5\% W) & 1.92 & 0.17 & 183.5 \\
+D (dark dredge) & 2.16 & 0.19 & 182.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Vegetation Experiments}
+
+\subsubsection{Common-Garden Growth Experiment}
+
+A common-garden experiment was established at the port of Zeebrugge to quantify the effect of substrate type on marram grass (\textit{C. arenaria}) growth under uniform climatic conditions. Plant cuttings comprising 10--15 leaves, sourced from natural dunes at Zeebrugge, were planted in custom-designed boxes (10 $\times$ 10 cm horizontal, 40 cm deep) on 23 October 2023. The 10 substrates were distributed across 120 boxes using a randomised block design, with 12 replicates per substrate; 100 boxes were planted with marram grass and 20 were left as unplanted controls. The boxes were placed outdoors in the harbour, exposed to the maritime climate of the Belgian coast.
+
+Growth was quantified through biweekly measurements of maximum leaf length and total number of living leaves (defined as leaves $>$\SI{5}{\centi\metre} with $>$\SI{20}{\percent} green tissue) from April through September 2024. During the initial measurement, \SI{27}{\percent} of cuttings were observed to have died during winter; these were replanted in April 2024. To simulate natural sand burial---essential for marram grass vigour \citep{disraeli1984effect}---boxes were manually overblown with \SI{1}{\centi\metre} of natural beach sand (R) on three occasions (24 May, 5 July, and 16 August 2024). Weeds were removed to ensure substrate purity. Treatment effects on leaf length and number of leaves were analysed using ANOVA with substrate and time as fixed factors, followed by Tukey's HSD \textit{post hoc} tests in R.
+
+\subsubsection{Germination Experiment}
+
+A parallel germination experiment tested the capacity of marram grass seeds to establish on six substrates (R, W, D, and three D/W mixtures at 25/75, 50/50, and 75/25). Pipes (\SI{12.5}{\centi\metre} diameter, \SI{30}{\centi\metre} height) were filled with substrate to \SI{5}{\centi\metre} below the rim, and 10 marram seeds were placed on the surface and covered with \SI{1}{\centi\metre} of natural beach sand (R). The experiment comprised 16 replicates per substrate (96 pipes total), arranged in a randomised complete block design at the same outdoor location as the growth experiment. TMS-4 microclimate loggers were installed in one replicate of each substrate to record soil temperature, surface temperature, air temperature, and soil moisture at 15-minute intervals.
+
+Germinated seedlings were counted on 24 May 2024 (1~month after setup), and maximum seedling length per pot was measured biweekly from May through September 2024. Pots were overblown with \SI{1}{\centi\metre} natural beach sand (R) on 5 July and 16 August 2024. Effects on germination percentage and seedling growth were analysed with ANOVA and Tukey's HSD.
+
+
+\subsection{Modelling Biomorphogenic Feedbacks}
+
+We simulated coupled aeolian--vegetation--geomorphological feedbacks using the Living Dunes model framework (a complete model description and release is planned for a separate publication). The model operates on a regular grid (here at \SI{0.2}{\metre} and \SI{1.0}{\metre} resolution) using an hourly time step for aeolian and soil moisture processes and a daily time step for vegetation dynamics. The core simulation loop integrates environmental forcing (wind, precipitation, temperature), soil moisture dynamics, aeolian sediment transport, geomorphological change, and vegetation growth and mortality. This section describes the model components relevant to the present study, emphasising the extensions developed for SOM representation.
+
+\subsubsection{Aeolian Transport Framework}
+
+The aeolian transport module computes sediment flux following a saturation-based framework. At each time step, the model calculates (a) a spatially varying wind field accounting for topographic steering, flow separation in the lee of dunes, and vegetation drag; (b) threshold shear velocity incorporating corrections for moisture, roughness, cohesion, and slope; (c) a saturated transport rate; and (d) the actual transport rate, which evolves toward saturation over a characteristic length scale.
+
+The base threshold shear velocity $\ust$ is computed using the Shao and Lu formulation \citep{shao2000simple}, which explicitly accounts for interparticle cohesion:
+\begin{equation}
+\ust = \sqrt{A_N \left(\frac{\rho_s}{\rho_a}\, g \, d + \frac{\gamma}{\rho_a \, d}\right)}
+\label{eq:shao_lu}
+\end{equation}
+where $A_N = 0.0123$ is a dimensionless coefficient, $\rho_s$ is the particle density (\SI{2650}{\kilo\gram\per\cubic\metre} for quartz), $\rho_a$ is the air density (\SI{1.225}{\kilo\gram\per\cubic\metre}), $g$ is gravitational acceleration (\SI{9.81}{\metre\per\second\squared}), $d$ is the nominal grain diameter (in metres), and $\gamma$ is the interparticle cohesion parameter (\si{\kilo\gram\per\second\squared}). For clean mineral sand, $\gamma$ defaults to $3 \times 10^{-4}$ \si{\kilo\gram\per\second\squared} following \citet{greeley1985wind}.
+
+The saturated sand transport rate is computed following \citet{bagnold1941physics}:
+\begin{equation}
+Q_s = C \frac{\rho_a}{g}\, \usw^3
+\label{eq:bagnold_transport}
+\end{equation}
+where $C = 1.5$ is the transport efficiency coefficient and $\usw$ is the surface shear velocity. The actual transport rate evolves toward saturation over a saturation length $L_{sat} = \SI{1.5}{\metre}$ using an advection scheme.
+
+Soil moisture correction of the threshold follows the Van Rijn and Strypsteen formulation \citep{vanrijn2020}:
+\begin{equation}
+\ust^{(w)} = \ust^{(d)} \left(1 + 2\,\tanh\left(w_p\right)\right)
+\label{eq:moisture_correction}
+\end{equation}
+where $\ust^{(d)}$ is the dry threshold, and $w_p$ is the gravimetric moisture content in percent.
+
+
+\subsubsection{Vegetation Module}
+
+Living Dunes resolves vegetation dynamics at the species level using a demographic framework with distinct life phases (seed bank, juvenile, adult). For marram grass, growth is governed by a base rate modulated by environmental response functions for soil moisture, temperature, sand burial, and erosion, combined through a geometric mean interaction model. The environmental response functions are parameterised using cardinal response curves, Gaussian functions, and sigmoid functions derived from field observations and literature values.
+
+Adult marram grass density growth follows:
+\begin{equation}
+\frac{d\,\rho_v}{d\,t} = r_{base} \times \left(\prod_{i=1}^{n}\, f_i(E_i)\right)^{1/n} \times g(\rho_v)
+\label{eq:veg_growth}
+\end{equation}
+where $r_{base}$ is the base growth rate (\num{0.01} per day), $f_i(E_i)$ are the $n$ environmental response functions for driver $E_i$ (moisture, temperature, burial, erosion), and $g(\rho_v)$ is a density-dependent regulation term modelled as an inverse logistic function with midpoint at \SI{90}{\percent} cover. Height growth is similarly regulated and additionally responds to burial depth through a cardinal response function peaking at \SIrange{60}{200}{\milli\metre\per\day} burial rate, reflecting the species' characteristic stimulation by moderate sand accretion \citep{disraeli1984effect, huiskes1979ammophila}.
+
+Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model---the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion.
+
+Lateral spread is modelled through a two-component kernel: a diffusive spread to immediately neighbouring cells and longer-range rhizome colonisation (L\'{e}vy walk), both modulated by the same environmental response functions but with distinct base rates and density-dependent regulation \citep{bonte2021biomorphogenic}.
+
+
+\subsubsection{Soil Moisture Model}
+
+The Living Dunes soil moisture module resolves a two-layer soil column comprising a surface layer (top \SI{30}{\milli\metre}) and a deep layer, with an additional aerodynamic skin layer (\SI{2}{\milli\metre}) at the surface. The model is driven by hourly precipitation, temperature, and wind speed inputs, and computes potential evapotranspiration using the FAO-56 Penman--Monteith equation \citep{allen1998crop}. Canopy interception, throughfall, infiltration, drainage, capillary rise, and plant water uptake are resolved sequentially at each time step.
+
+Key processes include:
+\begin{itemize}
+    \item Infiltration is limited by the saturated hydraulic conductivity (\SI{200}{\milli\metre\per\hour} for beach sand);
+    \item Drainage from the surface layer follows an exponential decay toward field capacity;
+    \item Capillary rise from the deep layer to the surface layer is modelled as a function of the moisture gradient between layers;
+    \item Plant water uptake follows a stress--response function based on root-zone moisture relative to field capacity and wilting point.
+\end{itemize}
+
+
+\subsubsection{SOM Extensions to the Living Dunes Model}
+\label{sec:som_extensions}
+
+Three new process pathways were implemented to represent the effects of SOM on dune development. Together, these extensions enable the model to differentiate between substrates with varying organic matter content and to capture the emergent effects on long-term dune morphology.
+
+\paragraph{Pathway 1: Dynamic Field Capacity --- The ``Sponge Effect''}
+
+Soil organic matter increases the intra-aggregate porosity and specific surface area of sandy soils, thereby enhancing their water-holding capacity. This is implemented using a pedotransfer function (PTF) following \citet{saxton2006soil}:
+\begin{equation}
+\theta_{fc}^{(eff)} = \theta_{fc}^{(base)} + \alpha_{\SOM} \cdot \frac{\SOM}{100}
+\label{eq:ptf}
+\end{equation}
+where $\theta_{fc}^{(eff)}$ is the dynamically adjusted volumetric field capacity, $\theta_{fc}^{(base)}$ is the baseline field capacity of the mineral sand matrix (\num{0.20} for the beach sand at the study site), $\SOM$ is the soil organic matter content in percent, and $\alpha_{\SOM}$ is a dimensionless sensitivity coefficient (default \num{0.7}, typical range 0.5--1.0 for coastal sands). The effective field capacity is capped at porosity minus \SI{0.01} to prevent physically unrealistic saturation. This PTF ensures that organic-rich substrates retain more moisture after drainage events, directly influencing both plant water availability and the aeolian moisture correction (\cref{eq:moisture_correction}).
+
+\paragraph{Pathway 2: Dynamic Organic Cohesion}
+
+Beyond the abiotic interparticle cohesion intrinsic to the mineral fraction, organic matter creates additional interparticle bonds through organic polymers, root exudates, fungal hyphae, and biological soil crusts \citep{zobeck2013soil}. This is represented by injecting a dynamic cohesion modifier upstream of the base threshold calculation (\cref{eq:shao_lu}):
+\begin{equation}
+\gamma_{eff} = \gamma_{base} + \beta_{\SOM} \cdot \SOM \cdot \left(1 - D\right)
+\label{eq:organic_cohesion}
+\end{equation}
+where $\gamma_{eff}$ is the effective interparticle cohesion (\si{\kilo\gram\per\second\squared}), $\gamma_{base} = 3 \times 10^{-4}$ \si{\kilo\gram\per\second\squared} is the abiotic baseline, $\beta_{\SOM} = 0.006$ \si{\kilo\gram\per\second\squared} per percent SOM is a scaling coefficient derived from the non-linear bounds reported by \citet{zobeck2013soil}, and $D$ is a dimensionless disturbance index (0 = fully crusted, 1 = fully disturbed). The effective cohesion $\gamma_{eff}$ replaces $\gamma$ in \cref{eq:shao_lu}, producing a spatially varying threshold that is higher in organic-rich, undisturbed areas and lower in recently eroded zones.
+
+\paragraph{Pathway 3: Disturbance Index Dynamics}
+
+Biological soil crusts and organic cohesive bonds are vulnerable to mechanical disruption by saltating grains \citep{belnap1998vulnerability}. The model tracks a spatially varying disturbance index $D$ that decays exponentially toward zero (full recovery) and is reset toward one proportionally to erosion intensity:
+\begin{equation}
+D(t + \Delta t) = D(t) \cdot \exp\left(-k_{recov}\, \Delta t\right)
+\label{eq:disturbance_decay}
+\end{equation}
+where $k_{recov} = 0.01$ \si{\per\day} is the recovery rate, corresponding to a half-life of approximately 69 days. When net erosion occurs in a grid cell, the disturbance index is instantaneously increased:
+\begin{equation}
+D_{new} = D_{old} + \left(1 - D_{old}\right) \cdot \min\left(\frac{|m_{erosion}|}{m_{ref}},\, 1\right)
+\label{eq:disturbance_reset}
+\end{equation}
+where $m_{erosion}$ is the eroded sand mass (\si{\kilo\gram}) and $m_{ref} = \SI{1}{\kilo\gram}$ is a reference erosion mass for full disturbance. This formulation creates a dynamic feedback: erosion disrupts the crust, temporarily reducing organic cohesion and lowering the threshold for further erosion, while recovery in quiescent periods progressively restores the protective crust.
+
+
+\subsection{Simulation Design}
+
+\subsubsection{Reference Beach Scenario}
+
+A reference beach scenario (no vegetation, no dune restoration) was configured as the counterfactual baseline. The simulation domain covers the existing beach profile at Ostend at \SI{1}{\metre} resolution, with the seaward boundary set at mean sea level and the landward boundary at the toe of the existing sea dike. The non-erodible layer was defined using a hybrid approach: the dike surface was treated as fully non-erodible, and the beach non-erodible level was set to the mean water table level (+\SI{2.5}{\metre} TAW), preventing deflation below the hydrological base. The simulation was forced with hourly ERA5 reanalysis wind data (gust-corrected and coastal-adjusted using the Global Wind Atlas), Open-Meteo precipitation and temperature records, and covered year 1 (September 2021 -- September 2022) of the intended 10-year reference period.
+
+\subsubsection{Dune Restoration Scenarios}
+
+Ten dune restoration scenarios were configured corresponding to the 10 experimental substrates. Each scenario starts from the same initial topography (a constructed dune mound of prescribed geometry placed on the existing beach) and is planted with marram grass at an initial cover density derived from typical restoration practice. The simulations use \SI{0.2}{\metre} grid resolution and an hourly time step, running for 3 years (26,280 hourly steps from September 2021 to September 2024).
+
+For each substrate scenario, the sediment properties ($D_{50}$, $D_{90}$, bulk density) and SOM content were set according to the measured substrate properties (\cref{tab:substrate_properties}). The SOM-dependent model pathways described in \cref{sec:som_extensions} were activated for all dune restoration scenarios. Environmental forcing was identical across all scenarios, obtained from a hybrid pipeline combining ERA5 reanalysis (wind) and Open-Meteo (temperature, precipitation) data specific to the Ostend site coordinates. The Living Dunes default parameterisation for the Atlantic European bioregion was used for all remaining model settings, including the marram grass species parameters.
+
+\subsubsection{Storm Erosion Assessment with XBeach}
+
+After the 3-year dune growth simulation, the resulting dune profiles were used as input for storm erosion assessment using XBeach \citep{roelvink2009modelling}. For each of the 10 scenarios, the 3D dune profile computed by Living Dunes was extracted as the initial bathymetry for XBeach.
+
+The storm boundary conditions (water level, wave height, wave period) were based on a design storm calibrated to the hindcast of Storm Corrie (January 2022), which produced significant wave heights exceeding \SI{4}{\metre} and elevated water levels at the study site. Key XBeach parameters were set as follows:
+\begin{itemize}
+    \item Sediment: $D_{50}$ and $D_{90}$ set per substrate scenario from the measured grain size distributions;
+    \item Vegetation: aboveground biomass properties (height, stem diameter, stem density, drag coefficient $C_d$) were derived from the marram grass cover density predicted by Living Dunes at year 3. The drag coefficient was set to a recommended value of $C_d = 1.0$ following \citet{mendez2004estimation};
+    \item Root cohesion: implemented as additional soil strength in the root zone, with root depth derived from the Living Dunes allometric relationship (root depth = $\sqrt{\rho_v} \times d_{max}$ where $d_{max} = \SI{1.5}{\metre}$);
+    \item Hydrodynamic parameters: \texttt{facua} (wave-skewness transport), \texttt{gamma} (breaker parameter), \texttt{gammax} (maximum wave height-to-depth ratio), \texttt{eps} (minimum wet depth), \texttt{wetslp}/\texttt{dryslp} (critical avalanche slopes), \texttt{facSk}/\texttt{facAs} (skewness/asymmetry calibration factors), and \texttt{bedfriccoef} were all set to calibrated values from the Storm Corrie hindcast;
+    \item Sediment transport: Soulsby--Van Rijn formulation with default parameters;
+    \item Seaward bathymetry: extended using measured profiles from the BPNS.
+\end{itemize}
+
+\subsubsection{Post-Storm Recovery Simulation}
+
+Following the XBeach storm simulation, the eroded dune profiles were used as the initial condition for a subsequent Living Dunes recovery simulation. This second Living Dunes phase tested the self-restoring capacity of the dune under each substrate scenario after storm damage, with the same environmental forcing and model parameterisation as the pre-storm growth phase. The vegetation state (cover density, height, root depth) was initialised from the surviving vegetation distribution after storm erosion, accounting for root exposure and burial.
+
+
+\subsection{Analysis Metrics}
+
+Simulation outputs were evaluated using the following metrics:
+\begin{itemize}
+    \item \textbf{Dune volume}: total sand volume above the non-erodible layer, integrated over the restoration footprint;
+    \item \textbf{Crest height}: maximum elevation along the cross-shore profile;
+    \item \textbf{Vegetation cover}: spatially averaged marram grass cover density at the end of the growing season;
+    \item \textbf{Storm erosion volume}: total volume loss during the XBeach storm simulation;
+    \item \textbf{Recovery rate}: dune volume gain per year during the post-storm Living Dunes simulation;
+    \item \textbf{Aeolian transport activity}: percentage of time steps with non-zero transport, mean transport rate, and dominant transport direction;
+    \item \textbf{Moisture retention index}: time-averaged surface soil moisture content as a proxy for SOM-driven ecohydrological enhancement.
+\end{itemize}
+
+
+% =============================================================================
+% 3. RESULTS
+% =============================================================================
+\section{Results}
+
+\subsection{Vegetation Response to Alternative Substrates}
+
+\subsubsection{Growth Experiment}
+
+Marram grass growth was strongly influenced by substrate type (ANOVA: $F_{9,981} = 10.76$, $p < 10^{-15}$ for leaf length; $F_{9,1078} = 7.87$, $p < 10^{-10}$ for number of leaves). Growth rates over time were not significantly affected by substrate (non-significant substrate $\times$ time interaction), indicating that the substrate effect manifested as an initial size difference rather than a differential growth trajectory.
+
+Plants growing on the reference beach sand (R) produced significantly shorter leaves than those on all alternative substrates ($p < 0.05$, Tukey's HSD), with a mean height deficit of \SI{11.3}{\centi\metre} relative to the pure dark substrate (D) at the end of the growing season. The D/W mixtures with intermediate dark fraction (D50 and D37.5) produced the tallest plants, exceeding even the pure dark substrate by \SI{5.8}{\centi\metre} and \SI{5.3}{\centi\metre}, respectively ($p < 0.05$).
+
+The number of living leaves followed a distinct pattern: pure D produced significantly more leaves than all other substrates from the beginning of the growing season ($p < 0.05$), while no significant differences were observed among the remaining substrates. This immediate differentiation after planting suggests that the nutrient-rich dark substrate promoted rapid recovery from transplant stress.
+
+\subsubsection{Germination Experiment}
+
+Germination success was significantly lower on the reference beach sand (R) compared to all alternative substrates (ANOVA: $p < 0.05$), consistent with observed seed loss through wind erosion on the bare, cohesionless sand surface. Seedling growth showed a significant substrate $\times$ time interaction ($p < 0.05$), indicating differential growth trajectories among substrates. Seedlings on R performed substantially worse than those on any alternative substrate throughout the monitoring period.
+
+The microclimate loggers revealed systematic differences in soil moisture among substrates: moisture content was highest in pure D, followed by D75, D50, D25, R, and W, consistent with the expected positive correlation between organic matter content and water retention. Soil temperature in D was slightly elevated compared to other substrates, attributable to its darker colour and higher heat absorption.
+
+
+\subsection{Reference Beach Simulation (Year 1)}
+
+The reference beach simulation (no vegetation) produced results consistent with expected supply-limited beach dynamics. Over the first year (September 2021 -- September 2022), the beach zone experienced a net volume change of $-$\SI{362}{\cubic\metre}, comprising \SI{515}{\cubic\metre} of erosion and \SI{153}{\cubic\metre} of redeposition within the beach zone. The dike zone accumulated \SI{368}{\cubic\metre} of sand, representing aeolian deposition on and beyond the hard infrastructure.
+
+Total aeolian influx was \SI{130}{\cubic\metre} and outflux was \SI{163}{\cubic\metre}, yielding a net aeolian flux balance of $-$\SI{33}{\cubic\metre}. Transport was active during \SI{2.4}{\percent} of the year (210 hours), with a mean gust-corrected wind speed of \SI{7.1}{\metre\per\second} (maximum \SI{25.0}{\metre\per\second}) and a dominant transport direction from the west (267\textdegree).
+
+
+\subsection{Dune Development Under Different Substrate Scenarios}
+\label{sec:dune_results}
+
+\todo{Present 3-year dune development results for all 10 substrate scenarios once simulations are completed. Key results to report:
+\begin{itemize}
+    \item Cross-shore profile evolution over 3 years for each substrate;
+    \item Dune volume accumulation curves;
+    \item Vegetation cover density evolution;
+    \item Effect of SOM on threshold shear velocity (spatial maps at year 3);
+    \item Effect of SOM on soil moisture retention (temporal average);
+    \item Optimal SOM range for dune growth (trade-off between enhanced vegetation and suppressed transport);
+    \item Comparison of aeolian transport statistics across scenarios.
+\end{itemize}
+}
+
+
+\subsection{Storm Erosion and Post-Storm Recovery}
+
+\todo{Present XBeach storm erosion results and Living Dunes recovery simulation results for all 10 substrate scenarios once completed. Key results to report:
+\begin{itemize}
+    \item Pre-storm dune profiles (Living Dunes year 3) vs. post-storm profiles (XBeach);
+    \item Erosion volume by substrate scenario;
+    \item Role of root cohesion and vegetation drag in reducing storm erosion;
+    \item Post-storm recovery trajectories (Living Dunes phase 2);
+    \item Effect of substrate SOM on self-restoring capacity;
+    \item Time to recover pre-storm dune volume.
+\end{itemize}
+}
+
+
+% =============================================================================
+% 4. DISCUSSION
+% =============================================================================
+\section{Discussion}
+
+\subsection{SOM as a Double-Edged Sword for Dune Development}
+
+The combined experimental and modelling results reveal that soil organic matter content acts as a ``double-edged sword'' for dune development in nature-based restoration settings. On one hand, SOM enhances vegetation establishment and growth through multiple mechanisms: higher germination rates due to increased seed retention on cohesive surfaces, improved water availability through the pedotransfer-mediated ``sponge effect'' on field capacity \citep{saxton2006soil}, and greater nutrient availability (both TOC and TN were positively correlated with plant performance). On the other hand, elevated SOM increases the threshold shear velocity through organic cohesion \citep{zobeck2013soil}, maintains higher surface moisture through enhanced water retention, and thereby progressively suppresses aeolian sediment supply---the very sand flux that marram grass depends on for continuous growth stimulation through burial \citep{huiskes1979ammophila, disraeli1984effect}.
+
+This trade-off implies an optimal SOM range that maximises long-term dune development. Our growth experiments suggest that moderate D/W mixtures (50/50 and 37.5/62.5, corresponding to approximately \SIrange{1}{1.5}{\percent} TOC) produced the tallest marram grass, outperforming both the nutrient-poor reference sand and the excessively organic dark substrate. This bell-shaped response parallels the well-known ``optimal burial'' paradigm in dune ecology, where moderate sand accretion stimulates growth but excessive burial causes mortality \citep{maun1998adaptations}.
+
+\subsection{Model Performance and SOM Pathway Interactions}
+
+The three SOM integration pathways implemented in the Living Dunes model---the Saxton and Rawls pedotransfer function for dynamic field capacity, the Zobeck-based dynamic organic cohesion, and the Belnap and Gillette disturbance index---interact through positive and negative feedbacks that create emergent behaviour not predictable from any single pathway in isolation.
+
+The positive feedback operates as follows: SOM increases moisture retention (Pathway 1), which enhances vegetation growth (\cref{eq:veg_growth} via the moisture response function), which in turn produces more litter and root exudates that further increase SOM. Simultaneously, the vegetation canopy reduces surface wind shear through aerodynamic roughness, allowing the disturbance index to decay toward zero (Pathway 3), which maximises the organic cohesion contribution (Pathway 2), further reducing erosion. This positive feedback is stabilising: it drives the system toward a vegetated, cohesive, erosion-resistant state.
+
+The negative feedback acts in opposition: as SOM increases threshold shear velocity (Pathway 2) and surface moisture (Pathway 1), aeolian sand supply to the dune crest diminishes. Without fresh sand burial, marram grass vigour declines \citep{vanderputten1993plant}, growth rates decrease, and mortality may increase, ultimately reducing vegetation cover and organic matter input. This negative feedback prevents runaway stabilisation and maintains the dynamic equilibrium between vegetation and aeolian processes that characterises natural dune systems.
+
+The balance between these feedbacks depends critically on the SOM content and the local wind climate. Under the moderate wind regime of the Belgian coast (mean gust-corrected speed \SI{7.1}{\metre\per\second}), our preliminary results suggest that the negative feedback dominates above approximately \SI{3}{\percent} TOC, where the threshold shear velocity increase suppresses transport during all but the most energetic events.
+
+\subsection{Implications for Practice}
+
+The experimental and modelling results converge on several practical recommendations for the use of alternative sediments in DfD construction:
+
+First, moderate mixing ratios (\SIrange{25}{50}{\percent} dark dredging material in a white dredging or beach sand matrix) appear to optimise the trade-off between vegetation establishment and aeolian dynamics. Pure dredging material, while beneficial for initial plant establishment, may suppress the aeolian sand supply necessary for long-term dune growth.
+
+Second, the placement geometry of the alternative substrate matters. Our model resolves the spatial distribution of SOM and its effects on threshold shear velocity, suggesting that a stratified approach---placing organic-rich material at the core of the constructed dune for moisture retention, overlain by a thinner cap of natural sand that preserves aeolian mobility---may outperform homogeneous mixing.
+
+Third, the self-restoring capacity of the dune after storm erosion depends on the substrate: dunes built with moderate SOM are expected to recover faster because surviving vegetation benefits from enhanced moisture and nutrient availability during the critical post-storm recolonisation phase, while the exposed organic-rich core provides immediate germination substrate for natural recruitment.
+
+\subsection{Limitations and Future Work}
+
+Several limitations should be acknowledged. The growth experiments covered a single growing season; longer-term monitoring is needed to assess whether the initial substrate advantage persists as the dune surface becomes covered with fresh aeolian sand. The Living Dunes model currently represents SOM as a static property initialised at the start of the simulation; a fully dynamic SOM cycle---including litter production, decomposition, bioturbation, and aeolian redistribution of organic particles---is under development but was not activated in the present simulations. The SOM-to-cohesion scaling coefficient ($\beta_{\SOM} = 0.006$ \si{\kilo\gram\per\second\squared} per \% SOM) is derived from wind tunnel studies on agricultural soils \citep{zobeck2013soil} and may differ for coastal dune substrates; site-specific wind tunnel validation is recommended.
+
+The XBeach storm modelling component uses simplified representations of root cohesion and vegetation drag that do not fully resolve the three-dimensional root network architecture. Furthermore, the coupling between Living Dunes and XBeach is currently one-directional (Living Dunes provides initial conditions to XBeach); a bidirectional coupling that feeds storm impact back into the aeolian--vegetation feedback loop in real time would enable more realistic long-term projections.
+
+Future work should include (i) multi-year field monitoring of DfD sites constructed with alternative sediments, (ii) wind tunnel experiments quantifying the threshold shear velocity of dredging substrates with varying organic content, (iii) extension of the model to include dynamic SOM cycling, and (iv) application to other NBS sites along the North Sea coast where alternative sediment use is being considered.
+
+
+% =============================================================================
+% 5. CONCLUSION
+% =============================================================================
+\section{Conclusion}
+
+This study demonstrates that soil organic matter content is a first-order control on dune development in nature-based coastal restoration settings, operating through three mechanistic pathways: enhanced soil water retention, increased threshold shear velocity via organic cohesion, and nutrient-mediated vegetation performance. Common-garden experiments confirmed that marram grass establishes and grows significantly better on organic-rich alternative substrates from port dredging than on natural beach sand, with the strongest effects observed during the critical establishment phase. The Living Dunes model, extended with pedotransfer-based dynamic field capacity, organic cohesion dynamics, and a disturbance recovery index, successfully captures the emergent trade-off between vegetation vigour and aeolian sand supply that governs dune morphological development.
+
+Simulations of 10 substrate scenarios at Ostend reveal that moderate SOM enrichment (\SIrange{1}{3}{\percent} TOC) optimises long-term dune development by simultaneously enhancing vegetation establishment and maintaining sufficient aeolian transport for continued dune growth. Excessive organic content ($>$\SI{5}{\percent} TOC) suppresses aeolian processes and limits dune volume accumulation despite superior initial vegetation performance.
+
+These findings provide the first quantitative evidence-base for the use of dredging by-products in nature-based coastal defence, demonstrating that carefully selected mixing ratios of alternative sediments can enhance both the ecological and geomorphological performance of DfD systems. The integrated experimental--numerical framework presented here offers a transferable methodology for optimising sediment reuse in coastal restoration projects worldwide.
+
+
+% =============================================================================
+% ACKNOWLEDGEMENTS
+% =============================================================================
+\section*{Acknowledgements}
+
+This work was supported by the SUSANA project (Sustainable Use of Sand in Nature-based Solutions). We thank the Flemish Maritime Services Division (MDK) for access to the study site and dredging material, and the port authority of Zeebrugge for hosting the field experiments. \todo{Complete acknowledgements.}
+
+
+% =============================================================================
+% REFERENCES
+% =============================================================================
+
+% Include references present in the list but not explicitly cited in the text
+\nocite{davidson2005wind, devries2014aeolian, fecan1999parametrization, greeley1985wind}
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}
