@@ -1,8 +1,8 @@
-PWD C:/Users/frevdael/Documents/01_DATA/susana/evaluation/manuscript
+PWD d:/projects/susana/evaluation/manuscript
 INPUT c:/texlive/2024/texmf.cnf
 INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT SOM_dune_development_draft.tex
+INPUT d:/projects/susana/evaluation/manuscript/SOM_dune_development_draft.tex
 OUTPUT SOM_dune_development_draft.log
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/article.cls
