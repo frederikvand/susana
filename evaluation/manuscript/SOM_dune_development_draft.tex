@@ -10,6 +10,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\graphicspath{{figures/}}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{natbib}
 \usepackage{booktabs}
@@ -76,7 +77,7 @@ $^{4}$University of Antwerp, Belgium \\[0.5em]
 % ABSTRACT
 % =============================================================================
 \begin{abstract}
-Nature-based solutions for coastal protection increasingly rely on dune-in-front-of-dike (DfD) systems constructed with sand from dredging operations. However, the long-term geomorphological development of dunes built with organic-rich alternative sediments remains poorly understood. We present an integrated experimental--numerical framework that couples (i) common-garden and germination experiments quantifying marram grass (\textit{Calamagrostis arenaria}) performance on 10 substrate mixtures varying in soil organic matter (SOM) content (\SIrange{0.06}{2.5}{\percent} total organic carbon), (ii) a process-based aeolian--vegetation feedback model (Living Dunes) extended with dynamic SOM--ecohydrology and SOM--cohesion pathways, and (iii) storm erosion assessment using XBeach. Growth experiments demonstrated that marram grass germination and establishment were significantly enhanced on organic-rich alternative substrates compared to natural beach sand, with leaf counts on the dark dredging substrate exceeding the reference by a factor $>$2. We parameterised the Living Dunes model to simulate three-year dune development at Ostend (Belgium) under 10 sediment scenarios ranging from pure beach sand to pure dredging material. Model extensions included a Saxton and Rawls pedotransfer function linking SOM to field capacity (the ``sponge effect''), a dynamic organic cohesion modifier following Zobeck et al., and a disturbance-recovery index after Belnap and Gillette. Furthermore, we parameterised trait-specific growth functions based on SOM to reflect observed variations in vegetation vigour. Three-year simulations were followed by XBeach storm impact modelling and subsequent Living Dunes recovery simulations to assess the self-restoring capacity of the constructed dunes. Results indicate that moderate SOM enrichment (\SIrange{1}{3}{\percent}) optimises both vegetation vigour and aeolian sediment supply, producing the tallest and most erosion-resistant dune profiles, while excessive organic content ($>$\SI{5}{\percent}) suppresses aeolian transport and limits dune growth. These findings provide evidence-based guidelines for the sustainable use of dredging by-products in nature-based coastal defences.
+Nature-based solutions for coastal protection increasingly rely on dune-in-front-of-dike (DfD) systems constructed with sand from dredging operations. However, the long-term geomorphological development of dunes built with organic-rich alternative sediments remains poorly understood. We present an integrated experimental--numerical framework that couples (i) common-garden and germination experiments quantifying marram grass (\textit{Calamagrostis arenaria}) performance on 10 substrate mixtures varying in soil organic matter (SOM) content (\SIrange{0.06}{2.5}{\percent} total organic carbon), (ii) a process-based aeolian--vegetation feedback model (Living Dunes) extended with dynamic SOM--ecohydrology and SOM--cohesion pathways, and (iii) storm erosion assessment using XBeach. Growth experiments demonstrated that marram grass germination and establishment were significantly enhanced on organic-rich alternative substrates compared to natural beach sand, with leaf counts on the dark dredging substrate exceeding the reference by a factor $>$2. We parameterised the Living Dunes model to simulate three-year dune development at Ostend (Belgium) under 10 sediment scenarios ranging from pure beach sand to pure dredging material. Model extensions included a Saxton and Rawls pedotransfer function linking SOM to field capacity (the ``sponge effect''), a dynamic organic cohesion modifier following Zobeck et al., and a disturbance-recovery index after Belnap and Gillette. Furthermore, we parameterised trait-specific growth functions based on SOM to reflect observed variations in vegetation vigour. Three-year simulations were followed by XBeach storm impact modelling and subsequent Living Dunes recovery simulations to assess the self-restoring capacity of the constructed dunes. Preliminary model results indicate that moderate SOM enrichment (\SIrange{1}{2}{\percent} TOC) optimises both vegetation vigour and aeolian sediment supply, producing the tallest and most erosion-resistant dune profiles, while further increases in organic content progressively suppress aeolian transport through enhanced moisture retention and organic cohesion. These findings provide evidence-based guidelines for the sustainable use of dredging by-products in nature-based coastal defences.
 
 \bigskip
 \noindent\textbf{Keywords:} soil organic matter; nature-based solutions; dune restoration; marram grass; alternative sediments; aeolian transport; coastal resilience; Living Dunes model; XBeach
@@ -144,16 +145,16 @@ D (dark dredge) & 2.16 & 0.19 & 182.9 \\
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/substrate/TOC.PNG}
+        \includegraphics[width=\textwidth]{substrate_toc_d50.pdf}
         \caption{Substrate TOC gradient}
         \label{fig:toc_gradient}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/germination/soil moisture boxplots.png}
+        \includegraphics[width=\textwidth]{soil_moisture_boxplots.pdf}
         \caption{Soil moisture variations}
         \label{fig:soil_moisture_sponge}
     \end{subfigure}
@@ -168,13 +169,13 @@ D (dark dredge) & 2.16 & 0.19 & 182.9 \\
 
 A common-garden experiment was established at the port of Zeebrugge to quantify the effect of substrate type on marram grass (\textit{C. arenaria}) growth under uniform climatic conditions. Plant cuttings comprising 10--15 leaves, sourced from natural dunes at Zeebrugge, were planted in custom-designed boxes (10 $\times$ 10 cm horizontal, 40 cm deep) on 23 October 2023. The 10 substrates were distributed across 120 boxes using a randomised block design, with 12 replicates per substrate; 100 boxes were planted with marram grass and 20 were left as unplanted controls. The boxes were placed outdoors in the harbour, exposed to the maritime climate of the Belgian coast.
 
-Growth was quantified through biweekly measurements of maximum leaf length and total number of living leaves (defined as leaves $>$\SI{5}{\centi\metre} with $>$\SI{20}{\percent} green tissue) from April through September 2024. During the initial measurement, \SI{27}{\percent} of cuttings were observed to have died during winter; these were replanted in April 2024. To simulate natural sand burial---essential for marram grass vigour \citep{disraeli1984effect}---boxes were manually overblown with \SI{1}{\centi\metre} of natural beach sand (R) on three occasions (24 May, 5 July, and 16 August 2024). Weeds were removed to ensure substrate purity. Treatment effects on leaf length and number of leaves were analysed using ANOVA with substrate and time as fixed factors, followed by Tukey's HSD \textit{post hoc} tests in R.
+Growth was quantified through biweekly measurements of maximum leaf length and total number of living leaves (defined as leaves $>$\SI{5}{\centi\metre} with $>$\SI{20}{\percent} green tissue) from April through September 2024. During the initial measurement, \SI{27}{\percent} of cuttings were observed to have died during winter; these were replanted in April 2024. To simulate natural sand burial---essential for marram grass vigour \citep{disraeli1984effect}---boxes were manually overblown with \SI{1}{\centi\metre} of natural beach sand (R) on three occasions (24 May, 5 July, and 16 August 2024). Weeds were removed to ensure substrate purity. Treatment effects on leaf height and number of leaves were analysed using generalised linear mixed models fitted in R. For height, a Gaussian LMM (\texttt{lme4}) was fitted with substrate, orthogonal polynomial time (quadratic), and their interaction as fixed effects and plant identity as a random intercept; a likelihood-ratio test confirmed that the quadratic time trend significantly improved fit over a linear specification ($\chi^2 = 103.18$, $p < 2 \times 10^{-16}$). Leaf count, being discrete count data (mean $= 9.3$, variance $= 37.3$), was modelled with a Poisson GLMM (log link; \texttt{glmmTMB} package) using the same fixed-effects structure and a random intercept for plant identity; the Poisson distribution provided an adequate fit, as the plant-level random intercept accommodated any residual overdispersion. Estimated marginal means (EMMs) were computed on the response scale with the \texttt{emmeans} package and compared using FDR-adjusted pairwise contrasts; compact letter displays (CLD) were derived to summarise group membership. Model-predicted trajectories were plotted using the \texttt{ggeffects} package to ensure visual--statistical concordance.
 
 \subsubsection{Germination Experiment}
 
 A parallel germination experiment tested the capacity of marram grass seeds to establish on six substrates (R, W, D, and three D/W mixtures at 25/75, 50/50, and 75/25). Pipes (\SI{12.5}{\centi\metre} diameter, \SI{30}{\centi\metre} height) were filled with substrate to \SI{5}{\centi\metre} below the rim, and 10 marram seeds were placed on the surface and covered with \SI{1}{\centi\metre} of natural beach sand (R). The experiment comprised 16 replicates per substrate (96 pipes total), arranged in a randomised complete block design at the same outdoor location as the growth experiment. TMS-4 microclimate loggers were installed in one replicate of each substrate to record soil temperature, surface temperature, air temperature, and soil moisture at 15-minute intervals.
 
-Germinated seedlings were counted on 24 May 2024 (1~month after setup), and maximum seedling length per pot was measured biweekly from May through September 2024. Pots were overblown with \SI{1}{\centi\metre} natural beach sand (R) on 5 July and 16 August 2024. Effects on germination percentage and seedling growth were analysed with ANOVA and Tukey's HSD.
+Germinated seedlings were counted on 24 May 2024 (1~month after setup), and maximum seedling length per pot was measured biweekly from May through September 2024. Pots were overblown with \SI{1}{\centi\metre} natural beach sand (R) on 5 July and 16 August 2024. Germination rates (proportion of 10 seeds germinated at $t_1$) were analysed using a binomial GLM; because the residual deviance exceeded the residual degrees of freedom (dispersion ratio $= 2.41$), a quasibinomial correction was applied to obtain valid standard errors and pairwise comparisons. EMMs on the probability scale and CLD groups were derived from the quasibinomial model using the \texttt{emmeans} package. Seedling count trajectories were modelled with a Poisson GLMM (log link; \texttt{glmmTMB}) with substrate, orthogonal polynomial time (quadratic), and their interaction as fixed effects and pot identity as a random intercept. The Poisson distribution provided an adequate fit, as the pot-level random intercept accommodated residual overdispersion.
 
 
 \subsection{Derivation of SOM Response Curves for Model Parameterisation}
@@ -325,54 +326,31 @@ To comprehensively evaluate the performance of alternative sediments, the simula
 \subsection{Vegetation Response to Alternative Substrates}
 
 \subsubsection{Growth Experiment}
+\label{sec:results_growth}
 
-Marram grass growth was strongly influenced by substrate type (ANOVA: $F_{9,981} = 10.76$, $p < 10^{-15}$ for leaf length; $F_{9,1078} = 7.87$, $p < 10^{-10}$ for number of leaves). Growth rates over time were not significantly affected by substrate (non-significant substrate $\times$ time interaction), indicating that the substrate effect manifested as an initial size difference rather than a differential growth trajectory.
+Marram grass growth was significantly influenced by substrate type. A Gaussian LMM with substrate, quadratic time, and their interaction as fixed effects and plant identity as a random intercept was fitted for leaf height; a Poisson GLMM (log link) with the same structure was fitted for leaf count. Estimated marginal means (EMMs) for height ranged from \SI{43.9}{\centi\metre} (R) to \SI{59.4}{\centi\metre} (D50), a difference of \SI{15.5}{\centi\metre}. FDR-adjusted pairwise comparisons revealed that the reference beach sand (R) supported significantly shorter plants than five alternative substrates: D25, D37.5, D50, D75, and D87.5 (all $p_{\mathrm{adj}} < 0.05$; compact letter display groups a vs.\ b; \cref{tab:aboveground_lmm}). Substrates W, D12.5, D62.5, and D shared an intermediate group (ab). The D/W mixtures with intermediate dark fraction (D37.5 and D50, corresponding to \SIrange{0.97}{1.21}{\percent} TOC) produced the tallest plants, consistent with the Gaussian optimum derived for the SOM response curves (\cref{sec:results_som_curves}).
 
-Plants growing on the reference beach sand (R) produced significantly shorter leaves than those on all alternative substrates ($p < 0.05$, Tukey's HSD), with a mean height deficit of \SI{11.3}{\centi\metre} relative to the pure dark substrate (D) at the end of the growing season. The D/W mixtures with intermediate dark fraction (D50 and D37.5) produced the tallest plants, exceeding even the pure dark substrate by \SI{5.8}{\centi\metre} and \SI{5.3}{\centi\metre}, respectively ($p < 0.05$).
-
-The number of living leaves followed a distinct pattern: pure D produced significantly more leaves than all other substrates from the beginning of the growing season ($p < 0.05$), while no significant differences were observed among the remaining substrates. This immediate differentiation after planting suggests that the nutrient-rich dark substrate promoted rapid recovery from transplant stress.
+The number of living leaves showed a significant substrate effect in the Poisson GLMM. EMMs for leaf count ranged from 6.8 (D12.5, group a) to 12.2 (D, group b), with intermediate substrates in a shared group (ab). The pure dark dredging substrate (D, \SI{2.16}{\percent} TOC) supported significantly more leaves than the lower-SOM substrates, indicating that tiller production responds positively to organic enrichment across the full experimental range (0.06--2.16\% TOC) without evidence of a decline at the upper end. This monotonically increasing pattern has implications for the SOM response curve parameterisation discussed in \cref{sec:results_som_curves}.
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/marram_height_loess.png}
-        \caption{Marram height (LOESS)}
-        \label{fig:height_loess}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/leaves_number_loess.png}
-        \caption{Number of leaves (LOESS)}
-        \label{fig:leaves_loess}
-    \end{subfigure}
-    \caption{Aboveground growth trajectories during the common-garden experiment. The smoothed curves highlight the divergence over time, with intermediate mixtures producing optimal height while pure dark sediment (D) supports the most leaves. For full distributions and detailed boxplots, see \cref{sec:appendix_figures}.}
+    \includegraphics[width=\textwidth]{aboveground_growth_main.pdf}
+    \caption{Aboveground growth trajectories during the common-garden experiment: (a) maximum leaf height and (b) number of living leaves over time, shown as model-predicted trajectories (Gaussian LMM and Poisson GLMM, respectively) with 95\% confidence bands. Raw data are plotted as semi-transparent points. Intermediate D/W mixtures produced optimal height; the pure dark sediment (D) supported significantly more leaves (group b) than the lower-SOM substrates. For full distributions and detailed boxplots, see \cref{sec:appendix_figures}.}
     \label{fig:aboveground_growth}
 \end{figure}
 
 \subsubsection{Germination Experiment}
 
-Germination success was significantly lower on the reference beach sand (R) compared to all alternative substrates (ANOVA: $p < 0.05$), consistent with observed seed loss through wind erosion on the bare, cohesionless sand surface. Seedling growth showed a significant substrate $\times$ time interaction ($p < 0.05$), indicating differential growth trajectories among substrates. Seedlings on R performed substantially worse than those on any alternative substrate throughout the monitoring period.
+Germination success differed strongly among substrates (quasibinomial GLM: $F(5, 90) = 13.01$, $p < 0.001$; dispersion ratio $= 2.41$). The reference beach sand (R) had the lowest germination probability (\SI{6.3}{\percent}, group a), followed by the pure dark substrate (D, \SI{23.1}{\percent}, group b), while the four intermediate substrates showed similarly high germination: W (\SI{53.1}{\percent}), D25 (\SI{46.9}{\percent}), D50 (\SI{49.4}{\percent}), and D75 (\SI{54.4}{\percent}; all group c). The low germination on R is consistent with observed seed loss through wind erosion on the bare, cohesionless sand surface, whereas the reduced performance on pure D may reflect surface crusting impeding seedling emergence.
 
-The microclimate loggers revealed systematic differences in soil moisture among substrates: moisture content was highest in pure D, followed by D75, D50, D25, R, and W, consistent with the expected positive correlation between organic matter content and water retention. Soil temperature in D was slightly elevated compared to other substrates, attributable to its darker colour and higher heat absorption.
+Seedling establishment was modelled with a Poisson GLMM (seedling count $\sim$ substrate $\times$ polynomial time, random intercept per pot). Estimated marginal means (EMMs) revealed three compact letter display groups (\cref{tab:germination_stats}): R (group a, EMM $= 0.42$ seedlings), D (group b, EMM $= 2.25$), and W/D25/D50 (group bc, EMM $= 3.4$--$4.0$), with D75 performing best (group c, EMM $= 4.68$), confirming that seedling survival and growth were substrate-dependent beyond the initial germination differences.
+
+The TMS-4 microclimate loggers revealed systematic differences in volumetric soil moisture consistent with the SOM gradient (Kruskal--Wallis: $\chi^2(5) = 634.92$, $p < 2 \times 10^{-16}$): moisture content increased from \SI{9.1}{\percent} (W) and \SI{10.8}{\percent} (R) to \SI{19.2}{\percent} (D), corroborating the pedotransfer-predicted ``sponge effect'' (\cref{tab:microclimate}). Soil temperature did not differ significantly among substrates ($\chi^2(5) = 1.23$, $p = 0.94$; all daily means within \SIrange{18.4}{18.8}{\degreeCelsius}), indicating that thermal conditions were uniform across treatments.
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/germination/percentage of germinated seeds.png}
-        \caption{Germinated seeds percentage}
-        \label{fig:germ_pct}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/germination/length of seedlings.png}
-        \caption{Seedling length}
-        \label{fig:seedling_length}
-    \end{subfigure}
-    \caption{Germination success and initial establishment across the tested substrates. Germination and seedling extension were significantly inhibited on the reference beach sand (R) compared to the alternative substrates.}
+    \includegraphics[width=\textwidth]{germination_main.pdf}
+    \caption{Germination experiment results: (a) germination probability at $t_1$ across the six substrates estimated from the quasibinomial GLM and (b) seedling count over time showing model-predicted trajectories (Poisson GLMM) with 95\% confidence bands. The reference beach sand (R, group a) and pure dark substrate (D, group b) performed significantly worse than the intermediate D/W mixtures (group c). Compact letter display groups from FDR-adjusted pairwise EMM contrasts are shown in panel (a).}
     \label{fig:germination_establishment}
 \end{figure}
 
@@ -382,7 +360,7 @@ The microclimate loggers revealed systematic differences in soil moisture among 
 
 Kruskal--Wallis tests on individual-level data did not detect a statistically significant overall effect of substrate treatment on any growth metric (height: $\chi^2 = 9.18$, $p = 0.42$; density: $\chi^2 = 5.03$, $p = 0.83$; root biomass: $\chi^2 = 5.17$, $p = 0.82$), owing to the large within-treatment variance among individual plants. However, the treatment-mean response patterns revealed biologically interpretable optima when fitted with Gaussian dose--response curves (\cref{fig:som_response_curves}).
 
-Height growth showed a broad optimum centred at $\mu = 1.32$~\% TOC ($\sigma = 1.52$, amplitude $a = 0.81$; weighted $R^2 = 0.66$), indicating that substrates in the range 0.5--2.0~\% TOC marginally enhance vertical growth relative to pure beach sand, but without a sharply differentiated peak. Stem density growth exhibited a narrower optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$, $a = 1.40$; weighted $R^2 = 0.64$), with density at the optimal substrate approximately 2.4 times the reference. Root biomass showed an intermediate pattern with an optimum at $\mu = 1.24$~\% TOC ($\sigma = 0.68$, $a = 0.65$; weighted $R^2 = 0.54$). Full coefficient tables are provided in \cref{sec:appendix_tables}.
+Height growth showed a broad optimum centred at $\mu = 1.32$~\% TOC ($\sigma = 1.52$, amplitude $a = 0.81$; weighted $R^2 = 0.66$), indicating that substrates in the range 0.5--2.0~\% TOC marginally enhance vertical growth relative to pure beach sand, but without a sharply differentiated peak. Stem density growth yielded a Gaussian fit with a narrow optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$, $a = 1.40$; weighted $R^2 = 0.64$); however, the fitted $\sigma$ reached the lower bound of the parameter space ($\sigma_{\min} = 0.10$), indicating that a Gaussian peak is a poor functional approximation for this trait. Indeed, the longitudinal Poisson GLMM in the growth experiment (\cref{sec:results_growth}) showed that leaf count increased monotonically across the full experimental SOM range to $2.16\%$ TOC, without evidence of a decline at higher SOM levels. The narrow Gaussian parameterisation should therefore be interpreted as a constrained fit imposed by the Living Dunes model's response function structure rather than a reflection of a true biological optimum at low SOM. Root biomass showed an intermediate pattern with an optimum at $\mu = 1.24$~\% TOC ($\sigma = 0.68$, $a = 0.65$; weighted $R^2 = 0.54$). Full coefficient tables are provided in \cref{sec:appendix_tables}.
 
 The mortality GLMM revealed no significant SOM effect on survival probability ($\beta_1 = 0.010$, $p = 0.97$, McFadden pseudo-$R^2 \approx 0$), and negligible random-effect variance ($\sigma_u < 10^{-4}$). Across all substrates, approximately 20\% of transplanted marram grass individuals died, but this mortality was unrelated to organic matter content within the experimental range (0.06--2.16~\% TOC).
 
@@ -392,7 +370,7 @@ The derived response parameters are summarised in \cref{tab:som_derived_paramete
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../../output/som_response_R_derivation.png}
+    \includegraphics[width=\textwidth]{som_response_curves.pdf}
     \caption{SOM response curves for \textit{Ammophila arenaria} demographic parameterisation. Grey points show individual plant-level observations; coloured points with error bars show treatment means $\pm$ SE; solid lines show the fitted Gaussian (a--c) and logistic (d) curves. Mortality plots show the binomial GLMM marginal prediction with 95\% confidence band.}
     \label{fig:som_response_curves}
 \end{figure}
@@ -449,7 +427,7 @@ This trade-off implies an optimal SOM range that maximises long-term dune develo
 
 The derived SOM response curves (\cref{sec:results_som_curves}) provide a nuanced picture of how substrate organic matter content influences individual demographic processes. Although the Kruskal--Wallis tests on individual-level data were non-significant---reflecting the large stochastic variation inherent in plant performance under heterogeneous field conditions---the treatment-mean curves revealed biologically interpretable optima consistent with the patterns observed in the raw growth data.
 
-The height and root growth optima ($\mu = 1.32$ and $1.24$~\% TOC, respectively) were broad ($\sigma > 0.6$), indicating that these traits respond gradually to SOM enrichment within the experimental range. In contrast, stem density growth showed a sharp, narrow optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$), suggesting that tiller production is more sensitively tuned to a low but non-zero SOM level. This differential sensitivity among demographic traits has implications for the Living Dunes model: because growth processes are combined through a geometric mean interaction (\cref{eq:veg_growth}), the narrowest response function effectively constrains the overall growth multiplier at extreme SOM values, even when other traits remain at or above baseline.
+The height and root growth optima ($\mu = 1.32$ and $1.24$~\% TOC, respectively) were broad ($\sigma > 0.6$), indicating that these traits respond gradually to SOM enrichment within the experimental range. In contrast, the Gaussian fit for stem density growth converged to a narrow optimum at $\mu = 0.65$~\% TOC ($\sigma = 0.10$), although this narrow width should be interpreted cautiously: the fitted $\sigma$ reached the lower parameter bound, and the longitudinal Poisson GLMM showed a monotonically increasing leaf count trend across all tested SOM levels. The Gaussian form may underestimate the true density response at higher SOM values within the experimental range. This has implications for the Living Dunes model: because growth processes are combined through a geometric mean interaction (\cref{eq:veg_growth}), the narrowest response function effectively constrains the overall growth multiplier at extreme SOM values, even when other traits remain at or above baseline. Future work should evaluate alternative functional forms (e.g., saturating or log-linear curves) for the density response.
 
 The absence of a significant SOM--mortality relationship within the experimental range (0.06--2.16~\% TOC) is a meaningful finding in itself: it indicates that, at least during the establishment phase, the organic matter levels tested do not induce phytotoxicity, anaerobic root conditions, or pathogen pressure sufficient to elevate mortality above the background rate of approximately 20\%. This result justifies omitting SOM from the mortality interaction model in the current simulations, although longer-term monitoring at higher SOM concentrations (where anaerobic conditions may develop) could reveal a mortality signal.
 
@@ -461,7 +439,7 @@ The positive feedback operates as follows: SOM increases moisture retention (Pat
 
 The negative feedback acts in opposition: as SOM increases threshold shear velocity (Pathway 2) and surface moisture (Pathway 1), aeolian sand supply to the dune crest diminishes. Without fresh sand burial, marram grass vigour declines \citep{vanderputten1993plant}, growth rates decrease, and mortality may increase, ultimately reducing vegetation cover and organic matter input. This negative feedback prevents runaway stabilisation and maintains the dynamic equilibrium between vegetation and aeolian processes that characterises natural dune systems.
 
-The balance between these feedbacks depends critically on the SOM content and the local wind climate. Under the moderate wind regime of the Belgian coast (mean gust-corrected speed \SI{7.1}{\metre\per\second}), our preliminary results suggest that the negative feedback dominates above approximately \SI{3}{\percent} TOC, where the threshold shear velocity increase suppresses transport during all but the most energetic events.
+The balance between these feedbacks depends critically on the SOM content and the local wind climate. Under the moderate wind regime of the Belgian coast (mean gust-corrected speed \SI{7.1}{\metre\per\second}), the negative feedback is expected to become dominant at the higher end of the experimental SOM range ($\sim$\SI{2}{\percent} TOC), where the combined effects of enhanced moisture retention and organic cohesion substantially increase the threshold shear velocity, suppressing transport during all but the most energetic events.
 
 \subsection{Implications for Practice}
 
@@ -489,7 +467,7 @@ Future work should include (i) multi-year field monitoring of DfD sites construc
 
 This study demonstrates that soil organic matter content is a first-order control on dune development in nature-based coastal restoration settings, operating through three mechanistic pathways: enhanced soil water retention, increased threshold shear velocity via organic cohesion, and nutrient-mediated vegetation performance. Common-garden experiments confirmed that marram grass establishes and grows significantly better on organic-rich alternative substrates from port dredging than on natural beach sand, with the strongest effects observed during the critical establishment phase. The Living Dunes model, extended with pedotransfer-based dynamic field capacity, organic cohesion dynamics, and a disturbance recovery index, successfully captures the emergent trade-off between vegetation vigour and aeolian sand supply that governs dune morphological development.
 
-Simulations of 10 substrate scenarios at Ostend reveal that moderate SOM enrichment (\SIrange{1}{3}{\percent} TOC) optimises long-term dune development by simultaneously enhancing vegetation establishment and maintaining sufficient aeolian transport for continued dune growth. Excessive organic content ($>$\SI{5}{\percent} TOC) suppresses aeolian processes and limits dune volume accumulation despite superior initial vegetation performance.
+Simulations of 10 substrate scenarios at Ostend indicate that moderate SOM enrichment (\SIrange{1}{2}{\percent} TOC) optimises long-term dune development by simultaneously enhancing vegetation establishment and maintaining sufficient aeolian transport for continued dune growth. At the organic-rich end of the experimental range ($>$\SI{2}{\percent} TOC), the threshold shear velocity increase from enhanced moisture retention and organic cohesion begins to suppress aeolian sand supply, suggesting diminishing geomorphological returns despite continued ecological benefits.
 
 These findings provide the first quantitative evidence-base for the use of dredging by-products in nature-based coastal defence, demonstrating that carefully selected mixing ratios of alternative sediments can enhance both the ecological and geomorphological performance of DfD systems. The integrated experimental--numerical framework presented here offers a transferable methodology for optimising sediment reuse in coastal restoration projects worldwide.
 

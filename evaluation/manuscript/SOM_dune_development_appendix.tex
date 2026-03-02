@@ -1,6 +1,6 @@
 % =============================================================================
 % SOM_dune_development_appendix.tex
-% Appendix: Supplementary Figures
+% Appendix: Supplementary Figures and Tables
 % =============================================================================
 
 \clearpage
@@ -8,112 +8,112 @@
 \section{Supplementary Figures}
 \label{sec:appendix_figures}
 
-% --- Detailed Substrate Variance ---
+% --- Detailed Substrate Characterisation ---
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/substrate/boxplots substrates.PNG}
-        \caption{Substrate properties}
-        \label{fig:app_substrate_props}
+        \includegraphics[width=\textwidth]{substrate_tn.pdf}
+        \caption{Total nitrogen by substrate}
+        \label{fig:app_substrate_tn}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/substrate/boxplots in-out.PNG}
-        \caption{In/Out variance}
+        \includegraphics[width=\textwidth]{substrate_in_out_comparison.pdf}
+        \caption{Inside vs.\ outside sampling comparison}
         \label{fig:app_substrate_inout}
     \end{subfigure}
-    \caption{Detailed variance among the tested substrates, showing the spread around the means reported in Table 1.}
+    \caption{Additional substrate characterisation: (a) Total nitrogen content across the 10 substrates, confirming the nutrient gradient, and (b) comparison of physical and chemical properties between inside- and outside-box sampling positions within the alternative substrates, validating spatial homogeneity ($p > 0.7$ for all Wilcoxon rank-sum tests; \cref{tab:substrate_stats}).}
     \label{fig:app_substrate_variance}
 \end{figure}
 
 % --- Detailed Aboveground Distributions ---
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/marram_height_all.png}
-        \caption{Marram height}
+        \includegraphics[width=\textwidth]{marram_height_all.pdf}
+        \caption{Marram height distributions by time point}
         \label{fig:app_height_all}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/aboveground_biomass/number_of_leaves.png}
-        \caption{Number of leaves}
+        \includegraphics[width=\textwidth]{number_of_leaves.pdf}
+        \caption{Leaf count distributions by time point}
         \label{fig:app_leaves_all}
     \end{subfigure}
-    \caption{Detailed time-series boxplots of aboveground plant performance, confirming the non-parametric distributions underlying the smoothed curves in the main text.}
+    \caption{Detailed time-series boxplots of aboveground plant performance by substrate and measurement date. These non-parametric distributions underpin the model-predicted trajectories (Gaussian LMM for height, Poisson GLMM for leaf count) shown in the main text (\cref{fig:aboveground_growth}).}
     \label{fig:app_aboveground_dist}
 \end{figure}
 
-% --- Plant Correlations ---
+% --- Belowground Biomass ---
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG}
-        \caption{Marram height vs. shoot biomass}
-        \label{fig:app_height_biomass}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG}
-        \caption{Root-shoot ratio}
+        \includegraphics[width=\textwidth]{belowground_main.pdf}
+        \caption{Root biomass and root:shoot ratio}
         \label{fig:app_root_shoot}
     \end{subfigure}
-    \caption{Plant correlations showing relative biomass allocation as a function of substrate treatment.}
-    \label{fig:app_plant_correlations}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{height_vs_shoot_biomass.pdf}
+        \caption{Height vs.\ shoot biomass ($r = 0.45$, $p = 0.001$)}
+        \label{fig:app_height_biomass}
+    \end{subfigure}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{root_depth_profile.pdf}
+        \caption{Root biomass depth profile}
+        \label{fig:app_root_depth}
+    \end{subfigure}
+    \par\vspace{1em}
+    \begin{subfigure}[b]{0.85\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{root_vs_shoot_scatter.pdf}
+        \caption{Root vs.\ shoot biomass by substrate}
+        \label{fig:app_root_vs_shoot}
+    \end{subfigure}
+    \caption{Belowground biomass allocation. No significant substrate effects were detected by either Gamma GLMs or Kruskal--Wallis tests for total root biomass ($F = 0.68$, $p = 0.72$; $\chi^2 = 6.87$, $p = 0.65$), root:shoot ratio ($F = 1.41$, $p = 0.22$; $\chi^2 = 9.67$, $p = 0.38$), or shoot biomass ($F = 0.43$, $p = 0.91$; $\chi^2 = 5.76$, $p = 0.76$). Height was significantly positively correlated with shoot biomass (b), confirming the allometric relationship used in the Living Dunes vegetation model.}
+    \label{fig:app_belowground}
 \end{figure}
 
 % --- Detailed Microclimate Data ---
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{../../output/germination/climate variables.png}
-    \caption{Overview of microclimate variables recorded during the germination experiment.}
+    \includegraphics[width=0.85\textwidth]{microclimate_boxplots.pdf}
+    \caption{Overview of microclimate variables recorded by TMS-4 loggers during the germination experiment ($\sim$225 days). Soil temperature did not differ significantly among substrates ($\chi^2(5) = 1.23$, $p = 0.94$; Kruskal--Wallis), while volumetric soil moisture showed a clear SOM gradient ($\chi^2(5) = 634.92$, $p < 2 \times 10^{-16}$; Kruskal--Wallis).}
     \label{fig:app_clim_vars}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/germination/air temperature.png}
-        \caption{Air temperature}
-        \label{fig:app_air_temp}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/germination/soil temperature.png}
-        \caption{Soil temperature}
+        \includegraphics[width=\textwidth]{soil_temperature_timeseries.pdf}
+        \caption{Soil temperature time series}
         \label{fig:app_soil_temp}
     \end{subfigure}
     \par\vspace{1em}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../../output/germination/surface temperature.png}
-        \caption{Surface temperature}
-        \label{fig:app_surf_temp}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../output/germination/temperature 4am vs 4 pm substrate.png}
+        \includegraphics[width=\textwidth]{diurnal_temperature.pdf}
         \caption{Diurnal temperature range by substrate}
         \label{fig:app_temp_range}
     \end{subfigure}
-    \caption{High-resolution temperature measurements validating the uniformity of experimental conditions and highlighting substrate-specific thermal behaviour.}
+    \caption{Temperature dynamics during the germination experiment: (a) daily mean soil temperature showing seasonal warming from April to August, with no significant substrate differences, and (b) diurnal temperature amplitude highlighting minor substrate-specific thermal buffering.}
     \label{fig:app_temperature_logs}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{../../output/germination/moisture ifo temperature.png}
-    \caption{Relationship between soil moisture and temperature.}
-    \label{fig:app_moisture_temperature}
+    \includegraphics[width=0.65\textwidth]{soil_moisture_timeseries.pdf}
+    \caption{Volumetric soil moisture time series by substrate, demonstrating the persistent moisture gradient attributable to the SOM ``sponge effect''. The dark substrate (D) maintained consistently higher moisture ($\overline{m} = 19.2\%$) than the reference beach sand (R, $\overline{m} = 10.8\%$).}
+    \label{fig:app_moisture_timeseries}
 \end{figure}
 
 
@@ -122,6 +122,26 @@
 \section{Supplementary Tables}
 \label{sec:appendix_tables}
 
+% --- Substrate characterisation tables ---
+\input{tables/substrate_statistics}
+
+\input{tables/substrate_summary}
+
+% --- Aboveground growth tables ---
+\input{tables/aboveground_lmm_results}
+
+% --- Belowground biomass tables ---
+\input{tables/belowground_statistics}
+
+\input{tables/belowground_biomass_summary}
+
+% --- Germination tables ---
+\input{tables/germination_statistics}
+
+% --- Microclimate tables ---
+\input{tables/microclimate_summary}
+
+% --- SOM response model tables ---
 \input{tables/growth_model_coefficients}
 
 \input{tables/mortality_model_coefficients}

@@ -235,51 +235,36 @@ INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecrm0800.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm
-INPUT ../../output/substrate/TOC.PNG
-INPUT ../../output/substrate/TOC.PNG
-INPUT ../../output/substrate/TOC.PNG
-INPUT ../../output/substrate/TOC.PNG
-INPUT ../../output/substrate/TOC.PNG
-INPUT ../../output/germination/soil moisture boxplots.png
-INPUT ../../output/germination/soil moisture boxplots.png
-INPUT ../../output/germination/soil moisture boxplots.png
-INPUT ../../output/germination/soil moisture boxplots.png
-INPUT ../../output/germination/soil moisture boxplots.png
+INPUT ./figures/substrate_toc_d50.pdf
+INPUT ./figures/substrate_toc_d50.pdf
+INPUT ./figures/substrate_toc_d50.pdf
+INPUT ./figures/substrate_toc_d50.pdf
+INPUT ./figures/soil_moisture_boxplots.pdf
+INPUT ./figures/soil_moisture_boxplots.pdf
+INPUT ./figures/soil_moisture_boxplots.pdf
+INPUT ./figures/soil_moisture_boxplots.pdf
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT c:/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT c:/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/ectt1200.tfm
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/leaves_number_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/leaves_number_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/leaves_number_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/leaves_number_loess.png
-INPUT ../../output/common_garden/aboveground_biomass/leaves_number_loess.png
-INPUT ../../output/germination/percentage of germinated seeds.png
-INPUT ../../output/germination/percentage of germinated seeds.png
-INPUT ../../output/germination/percentage of germinated seeds.png
-INPUT ../../output/germination/percentage of germinated seeds.png
-INPUT ../../output/germination/percentage of germinated seeds.png
-INPUT ../../output/germination/length of seedlings.png
-INPUT ../../output/germination/length of seedlings.png
-INPUT ../../output/germination/length of seedlings.png
-INPUT ../../output/germination/length of seedlings.png
-INPUT ../../output/germination/length of seedlings.png
+INPUT ./figures/aboveground_growth_main.pdf
+INPUT ./figures/aboveground_growth_main.pdf
+INPUT ./figures/aboveground_growth_main.pdf
+INPUT ./figures/aboveground_growth_main.pdf
+INPUT ./figures/germination_main.pdf
+INPUT ./figures/germination_main.pdf
+INPUT ./figures/germination_main.pdf
+INPUT ./figures/germination_main.pdf
 INPUT ./tables/som_derived_parameters.tex
 INPUT ./tables/som_derived_parameters.tex
 INPUT ./tables/som_derived_parameters.tex
 INPUT ./tables/som_derived_parameters.tex
 INPUT tables/som_derived_parameters.tex
-INPUT ../../output/som_response_R_derivation.png
-INPUT ../../output/som_response_R_derivation.png
-INPUT ../../output/som_response_R_derivation.png
-INPUT ../../output/som_response_R_derivation.png
-INPUT ../../output/som_response_R_derivation.png
+INPUT ./figures/som_response_curves.pdf
+INPUT ./figures/som_response_curves.pdf
+INPUT ./figures/som_response_curves.pdf
+INPUT ./figures/som_response_curves.pdf
 INPUT ./SOM_dune_development_draft.bbl
 INPUT ./SOM_dune_development_draft.bbl
 INPUT SOM_dune_development_draft.bbl
@@ -288,66 +273,89 @@ INPUT ./SOM_dune_development_appendix.tex
 INPUT ./SOM_dune_development_appendix.tex
 INPUT ./SOM_dune_development_appendix.tex
 INPUT SOM_dune_development_appendix.tex
-INPUT ../../output/substrate/boxplots substrates.PNG
-INPUT ../../output/substrate/boxplots substrates.PNG
-INPUT ../../output/substrate/boxplots substrates.PNG
-INPUT ../../output/substrate/boxplots substrates.PNG
-INPUT ../../output/substrate/boxplots substrates.PNG
-INPUT ../../output/substrate/boxplots in-out.PNG
-INPUT ../../output/substrate/boxplots in-out.PNG
-INPUT ../../output/substrate/boxplots in-out.PNG
-INPUT ../../output/substrate/boxplots in-out.PNG
-INPUT ../../output/substrate/boxplots in-out.PNG
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_all.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_all.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_all.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_all.png
-INPUT ../../output/common_garden/aboveground_biomass/marram_height_all.png
-INPUT ../../output/common_garden/aboveground_biomass/number_of_leaves.png
-INPUT ../../output/common_garden/aboveground_biomass/number_of_leaves.png
-INPUT ../../output/common_garden/aboveground_biomass/number_of_leaves.png
-INPUT ../../output/common_garden/aboveground_biomass/number_of_leaves.png
-INPUT ../../output/common_garden/aboveground_biomass/number_of_leaves.png
-INPUT ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG
-INPUT ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG
-INPUT ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG
-INPUT ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG
-INPUT ../../output/common_garden/belowground_biomass/marram height vs shoot biomass.PNG
-INPUT ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG
-INPUT ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG
-INPUT ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG
-INPUT ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG
-INPUT ../../output/common_garden/root_shoot_ratio/root-shoot ratio.PNG
-INPUT ../../output/germination/climate variables.png
-INPUT ../../output/germination/climate variables.png
-INPUT ../../output/germination/climate variables.png
-INPUT ../../output/germination/climate variables.png
-INPUT ../../output/germination/climate variables.png
-INPUT ../../output/germination/air temperature.png
-INPUT ../../output/germination/air temperature.png
-INPUT ../../output/germination/air temperature.png
-INPUT ../../output/germination/air temperature.png
-INPUT ../../output/germination/air temperature.png
-INPUT ../../output/germination/soil temperature.png
-INPUT ../../output/germination/soil temperature.png
-INPUT ../../output/germination/soil temperature.png
-INPUT ../../output/germination/soil temperature.png
-INPUT ../../output/germination/soil temperature.png
-INPUT ../../output/germination/surface temperature.png
-INPUT ../../output/germination/surface temperature.png
-INPUT ../../output/germination/surface temperature.png
-INPUT ../../output/germination/surface temperature.png
-INPUT ../../output/germination/surface temperature.png
-INPUT ../../output/germination/temperature 4am vs 4 pm substrate.png
-INPUT ../../output/germination/temperature 4am vs 4 pm substrate.png
-INPUT ../../output/germination/temperature 4am vs 4 pm substrate.png
-INPUT ../../output/germination/temperature 4am vs 4 pm substrate.png
-INPUT ../../output/germination/temperature 4am vs 4 pm substrate.png
-INPUT ../../output/germination/moisture ifo temperature.png
-INPUT ../../output/germination/moisture ifo temperature.png
-INPUT ../../output/germination/moisture ifo temperature.png
-INPUT ../../output/germination/moisture ifo temperature.png
-INPUT ../../output/germination/moisture ifo temperature.png
+INPUT ./figures/substrate_tn.pdf
+INPUT ./figures/substrate_tn.pdf
+INPUT ./figures/substrate_tn.pdf
+INPUT ./figures/substrate_tn.pdf
+INPUT ./figures/substrate_in_out_comparison.pdf
+INPUT ./figures/substrate_in_out_comparison.pdf
+INPUT ./figures/substrate_in_out_comparison.pdf
+INPUT ./figures/substrate_in_out_comparison.pdf
+INPUT ./figures/marram_height_all.pdf
+INPUT ./figures/marram_height_all.pdf
+INPUT ./figures/marram_height_all.pdf
+INPUT ./figures/marram_height_all.pdf
+INPUT ./figures/number_of_leaves.pdf
+INPUT ./figures/number_of_leaves.pdf
+INPUT ./figures/number_of_leaves.pdf
+INPUT ./figures/number_of_leaves.pdf
+INPUT ./figures/belowground_main.pdf
+INPUT ./figures/belowground_main.pdf
+INPUT ./figures/belowground_main.pdf
+INPUT ./figures/belowground_main.pdf
+INPUT ./figures/height_vs_shoot_biomass.pdf
+INPUT ./figures/height_vs_shoot_biomass.pdf
+INPUT ./figures/height_vs_shoot_biomass.pdf
+INPUT ./figures/height_vs_shoot_biomass.pdf
+INPUT ./figures/root_depth_profile.pdf
+INPUT ./figures/root_depth_profile.pdf
+INPUT ./figures/root_depth_profile.pdf
+INPUT ./figures/root_depth_profile.pdf
+INPUT ./figures/root_vs_shoot_scatter.pdf
+INPUT ./figures/root_vs_shoot_scatter.pdf
+INPUT ./figures/root_vs_shoot_scatter.pdf
+INPUT ./figures/root_vs_shoot_scatter.pdf
+INPUT ./figures/microclimate_boxplots.pdf
+INPUT ./figures/microclimate_boxplots.pdf
+INPUT ./figures/microclimate_boxplots.pdf
+INPUT ./figures/microclimate_boxplots.pdf
+INPUT ./figures/soil_temperature_timeseries.pdf
+INPUT ./figures/soil_temperature_timeseries.pdf
+INPUT ./figures/soil_temperature_timeseries.pdf
+INPUT ./figures/soil_temperature_timeseries.pdf
+INPUT ./figures/diurnal_temperature.pdf
+INPUT ./figures/diurnal_temperature.pdf
+INPUT ./figures/diurnal_temperature.pdf
+INPUT ./figures/diurnal_temperature.pdf
+INPUT ./figures/soil_moisture_timeseries.pdf
+INPUT ./figures/soil_moisture_timeseries.pdf
+INPUT ./figures/soil_moisture_timeseries.pdf
+INPUT ./figures/soil_moisture_timeseries.pdf
+INPUT ./tables/substrate_statistics.tex
+INPUT ./tables/substrate_statistics.tex
+INPUT ./tables/substrate_statistics.tex
+INPUT ./tables/substrate_statistics.tex
+INPUT tables/substrate_statistics.tex
+INPUT ./tables/substrate_summary.tex
+INPUT ./tables/substrate_summary.tex
+INPUT ./tables/substrate_summary.tex
+INPUT ./tables/substrate_summary.tex
+INPUT tables/substrate_summary.tex
+INPUT ./tables/aboveground_lmm_results.tex
+INPUT ./tables/aboveground_lmm_results.tex
+INPUT ./tables/aboveground_lmm_results.tex
+INPUT ./tables/aboveground_lmm_results.tex
+INPUT tables/aboveground_lmm_results.tex
+INPUT ./tables/belowground_statistics.tex
+INPUT ./tables/belowground_statistics.tex
+INPUT ./tables/belowground_statistics.tex
+INPUT ./tables/belowground_statistics.tex
+INPUT tables/belowground_statistics.tex
+INPUT ./tables/belowground_biomass_summary.tex
+INPUT ./tables/belowground_biomass_summary.tex
+INPUT ./tables/belowground_biomass_summary.tex
+INPUT ./tables/belowground_biomass_summary.tex
+INPUT tables/belowground_biomass_summary.tex
+INPUT ./tables/germination_statistics.tex
+INPUT ./tables/germination_statistics.tex
+INPUT ./tables/germination_statistics.tex
+INPUT ./tables/germination_statistics.tex
+INPUT tables/germination_statistics.tex
+INPUT ./tables/microclimate_summary.tex
+INPUT ./tables/microclimate_summary.tex
+INPUT ./tables/microclimate_summary.tex
+INPUT ./tables/microclimate_summary.tex
+INPUT tables/microclimate_summary.tex
 INPUT ./tables/growth_model_coefficients.tex
 INPUT ./tables/growth_model_coefficients.tex
 INPUT ./tables/growth_model_coefficients.tex

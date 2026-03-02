@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Germination and seedling establishment across substrates. Germination at $t_1$ (10 seeds per pot, $n=16$) modelled with a binomial GLM (quasibinomial due to overdispersion); seedling count over time modelled with a Negative Binomial GLMM (\texttt{glmmTMB}, quadratic time, random intercept per pot). Groups sharing the same letter are not significantly different (FDR-adjusted pairwise contrasts, $p < 0.05$).}
+\label{tab:germination_stats}
+\small
+\begin{tabular}{l r rr rr cc}
+\toprule
+Substrate & $n$ & Germ. \% & SD & EMM count & SE & Germ. group & Count group \\
+\midrule
+R      & 16 & 6.2 & 13.6 & 0.4 & 0.1 & a & a \\
+W      & 16 & 53.1 & 21.8 & 3.4 & 0.7 & c & bc \\
+D25    & 16 & 46.9 & 18.2 & 4.0 & 0.7 & c & bc \\
+D50    & 16 & 49.4 & 22.6 & 3.7 & 0.7 & c & bc \\
+D75    & 16 & 54.4 & 25.3 & 4.7 & 0.8 & c & c \\
+D      & 16 & 23.1 & 22.4 & 2.2 & 0.5 & b & b \\
+\bottomrule
+\end{tabular}
+\end{table}
