@@ -115,6 +115,23 @@ ag_df <- ag_raw %>%
 ag_controls <- ag_df %>% filter(plant_status == "controle")
 ag_planted  <- ag_df %>% filter(plant_status %in% c("plant", "replant"))
 
+# --- Outlier removal: plant 6b_5 ---
+# Plant 6b_5 (substrate D25, column 6, row b_5) recorded 97 living leaves at
+# its peak — 4.6x the next-highest individual in the entire dataset (n = 120).
+# Continuous growth from 8 to 97 leaves over the monitoring period suggests a
+# probable measurement error (tiller clump miscounted as individual tillers).
+# This plant is flagged as a Tukey extreme outlier (3x IQR) in the SOM
+# dose-response analysis (05a_derive_som_glm.R) and its removal changes the
+# density growth Gaussian from significant (p < 0.05, driven by one point)
+# to non-significant (p = 0.09). Removing it here ensures consistent clean
+# data across all downstream scripts (02, 03, 05a).
+outlier_id <- "6b_5"    # original Excel ID column
+n_before <- nrow(ag_planted)
+ag_planted <- ag_planted %>% filter(ID != outlier_id)
+n_removed <- n_before - nrow(ag_planted)
+cat("  Outlier removed: plant_id =", outlier_id,
+    " (", n_removed, " observations removed)\n")
+
 cat("  Total observations:", nrow(ag_df), "\n")
 cat("  Planted plants:", nrow(ag_planted),
     "  Controls:", nrow(ag_controls), "\n")

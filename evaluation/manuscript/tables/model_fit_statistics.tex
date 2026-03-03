@@ -7,10 +7,12 @@
 Model & Log-Lik & AIC & $\sigma_\varepsilon$ & $R^2$ & $n$ \\
 \midrule
 Height NLS & 14.6 & -19.3 & 0.4022 & 0.659 & 120 \\
-Density NLS & 10.5 & -10.9 & 0.5916 & 0.639 & 120 \\
+Density NLS$^\dagger$ & 10.5 & -10.9 & 0.5916 & 0.639 & 120 \\
+Density NLS (clean)$^\ddagger$ & 11.3 & -12.7 & 0.6298 & 0.532 & 119 \\
 Root NLS & 4.0 & 2.0 & 0.5492 & 0.544 & 228 \\
-Mortality GLMM & -61.4 & 128.8 & --- & 0.000$^\dagger$ & 120 \\
+Mortality GLMM & -61.4 & 128.8 & --- & 0.000$^*$ & 120 \\
 \bottomrule
-\multicolumn{6}{l}{\footnotesize $\dagger$ McFadden pseudo-$R^2$ for the binomial GLMM.} \\
+\multicolumn{6}{l}{\footnotesize $^*$ McFadden pseudo-$R^2$ for the binomial GLMM.} \\
+\multicolumn{6}{l}{\footnotesize $\dagger$ Including outlier plant 6b\_5. $\ddagger$ Outlier removed.} \\
 \end{tabular}
 \end{table}

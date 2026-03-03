@@ -92,6 +92,31 @@ ref_n    <- mean(ag_max$max_nr[ag_max$som == ref_som], na.rm = TRUE)
 ag_max$l_norm <- ag_max$max_length / ref_l
 ag_max$n_norm <- ag_max$max_nr / ref_n
 
+# --- Outlier detection: Tukey fences on normalised density ---
+# Plant 6b_5 (97 leaves, n_norm = 9.31) is a clear extreme outlier:
+# 4.6x the next-highest individual and the only plant with max_nr > 30
+# in the entire dataset (n = 120). Suspected measurement error (tiller
+# clump miscounted as individual tillers).
+Q1_n <- quantile(ag_max$n_norm, 0.25)
+Q3_n <- quantile(ag_max$n_norm, 0.75)
+IQR_n <- Q3_n - Q1_n
+tukey_upper <- Q3_n + 3 * IQR_n  # extreme outlier fence (3x IQR)
+
+ag_max$density_outlier <- ag_max$n_norm > tukey_upper
+
+n_outliers <- sum(ag_max$density_outlier)
+cat("\n--- Density outlier detection (Tukey 3×IQR) ---\n")
+cat("  Q1:", round(Q1_n, 3), " Q3:", round(Q3_n, 3), " IQR:", round(IQR_n, 3), "\n")
+cat("  Upper fence:", round(tukey_upper, 3), "\n")
+cat("  Outliers detected:", n_outliers, "\n")
+if (n_outliers > 0) {
+    cat("  Flagged plants:\n")
+    print(ag_max[ag_max$density_outlier, c("ID", "som", "max_nr", "n_norm")])
+}
+
+# Create clean dataset for density analysis (outlier removed)
+ag_max_clean <- ag_max[!ag_max$density_outlier, ]
+
 ref_root <- mean(df_bg$root_biomass[df_bg$som == min(df_bg$som)], na.rm = TRUE)
 df_bg$r_norm <- df_bg$root_biomass / ref_root
 
@@ -116,6 +141,16 @@ means_height <- ag_max %>%
     )
 
 means_density <- ag_max %>%
+    group_by(som) %>%
+    summarize(
+        mean_n = mean(n_norm),
+        se_n   = sd(n_norm) / sqrt(n()),
+        n      = n(),
+        .groups = "drop"
+    )
+
+# Treatment means without outlier (for sensitivity analysis)
+means_density_clean <- ag_max_clean %>%
     group_by(som) %>%
     summarize(
         mean_n = mean(n_norm),
@@ -153,6 +188,13 @@ kw_root    <- kruskal.test(r_norm ~ som_factor, data = df_bg)
 cat("  Height:  chi² =", round(kw_height$statistic, 2), " p =", round(kw_height$p.value, 4), "\n")
 cat("  Density: chi² =", round(kw_density$statistic, 2), " p =", round(kw_density$p.value, 4), "\n")
 cat("  Root:    chi² =", round(kw_root$statistic, 2), " p =", round(kw_root$p.value, 4), "\n")
+
+# Kruskal-Wallis without density outlier
+ag_max_clean$som_factor <- as.factor(round(ag_max_clean$som, 3))
+kw_density_clean <- kruskal.test(n_norm ~ som_factor, data = ag_max_clean)
+cat("\n--- Kruskal-Wallis density WITHOUT outlier ---\n")
+cat("  Density (clean): chi² =", round(kw_density_clean$statistic, 2),
+    " p =", round(kw_density_clean$p.value, 4), "\n")
 
 # =============================================================================
 # 3. MODEL FITTING (treatment-mean weighted NLS)
@@ -197,6 +239,7 @@ cat("\n======================================================\n")
 cat("  MODEL 2: DENSITY GROWTH (Gaussian NLS on treatment means)\n")
 cat("======================================================\n")
 
+cat("\n--- 2a: With all data (including outlier) ---\n")
 fit_density <- nlsLM(
     mean_n ~ b0 + amp * exp(-((som - mu)^2) / (2 * sigma^2)),
     data    = means_density,
@@ -208,7 +251,7 @@ fit_density <- nlsLM(
 )
 print(summary(fit_density))
 d_cf <- coef(fit_density)
-cat("\nJSON parameters — Density Growth:\n")
+cat("\nJSON parameters — Density Growth (with outlier):\n")
 cat("  mean (mu):", d_cf["mu"], "\n")
 cat("  std (sigma):", abs(d_cf["sigma"]), "\n")
 cat("  amplitude:", d_cf["amp"], "\n")
@@ -219,6 +262,42 @@ R2_density <- 1 - sum(wt_d * (means_density$mean_n - pred_d)^2) / sum(wt_d * (me
 R2_adj_density <- 1 - (1 - R2_density) * (n_h - 1) / (n_h - p_h - 1)
 cat("  R² (weighted):", round(R2_density, 4), "\n")
 cat("  R² adj (weighted):", round(R2_adj_density, 4), "\n")
+
+cat("\n--- 2b: Without outlier (sensitivity analysis) ---\n")
+cat("  NOTE: Plant 6b_5 (97 leaves, n_norm = 9.31) removed.\n")
+cat("  This was the only plant with max_nr > 30 in the dataset (n = 120).\n")
+density_clean_amp_p <- NA  # will hold amplitude p-value for table footnote
+
+fit_density_clean <- tryCatch({
+    nlsLM(
+        mean_n ~ b0 + amp * exp(-((som - mu)^2) / (2 * sigma^2)),
+        data    = means_density_clean,
+        start   = list(b0 = 1.0, amp = 0.35, mu = 0.7, sigma = 0.5),
+        lower   = c(b0 = 0.5, amp = 0, mu = 0, sigma = 0.1),
+        upper   = c(b0 = 1.5, amp = 2, mu = 3, sigma = 3.0),
+        weights = 1 / means_density_clean$se_n^2,
+        control = lm_control
+    )
+}, error = function(e) {
+    cat("  NLS failed to converge:", conditionMessage(e), "\n")
+    NULL
+})
+
+if (!is.null(fit_density_clean)) {
+    print(summary(fit_density_clean))
+    d_cf_clean <- coef(fit_density_clean)
+    d_pvals_clean <- summary(fit_density_clean)$coefficients[, "Pr(>|t|)"]
+    density_clean_amp_p <- d_pvals_clean["amp"]
+    cat("\nJSON parameters — Density Growth (without outlier):\n")
+    cat("  mean (mu):", d_cf_clean["mu"], "\n")
+    cat("  std (sigma):", abs(d_cf_clean["sigma"]), " (at lower bound =", d_cf_clean["sigma"] <= 0.11, ")\n")
+    cat("  amplitude:", d_cf_clean["amp"], " (p =", round(d_pvals_clean["amp"], 4), ")\n")
+    cat("\n  CONCLUSION: Amplitude is non-significant after outlier removal.\n")
+    cat("  Density growth SOM factor is NOT included in Living Dunes parameterisation.\n")
+} else {
+    cat("\n  CONCLUSION: NLS failed without outlier — no significant SOM effect on density.\n")
+    cat("  Density growth SOM factor is NOT included in Living Dunes parameterisation.\n")
+}
 
 
 cat("\n======================================================\n")
@@ -301,14 +380,19 @@ p_height <- ggplot() +
     theme_som
 
 # --- (b) Density Growth ---
+# One extreme measurement removed (plant 6b_5, 97 leaves; see Methods).
+# NLS curve shown dashed to indicate non-significance after outlier removal.
 p_density <- ggplot() +
-    geom_jitter(data = ag_max, aes(x = som, y = n_norm),
+    geom_jitter(data = ag_max_clean, aes(x = som, y = n_norm),
                 width = 0.02, alpha = 0.2, size = 1.2, color = "grey60") +
-    geom_pointrange(data = means_density, aes(x = som, y = mean_n,
+    geom_pointrange(data = means_density_clean, aes(x = som, y = mean_n,
                     ymin = mean_n - se_n, ymax = mean_n + se_n),
                     color = "#1f77b4", size = 0.6) +
-    geom_line(data = predict_gaussian(d_cf, ag_max$som), aes(x = som, y = predicted),
-              color = "#1f77b4", linewidth = 1.2) +
+    {if (!is.null(fit_density_clean))
+        geom_line(data = predict_gaussian(coef(fit_density_clean), ag_max_clean$som),
+                  aes(x = som, y = predicted),
+                  color = "#1f77b4", linewidth = 1.2, linetype = "dashed", alpha = 0.6)
+    } +
     labs(title = "(b) Density growth multiplier", x = "TOC (%)", y = "Normalised leaf count") +
     theme_som
 
@@ -336,9 +420,9 @@ p_mort <- ggplot() +
                     ymin = pmax(mort_rate - se, 0), ymax = pmin(mort_rate + se, 1)),
                     color = "#d62728", size = 0.6) +
     geom_line(data = pred_mort_gg, aes(x = x, y = 1 - predicted),
-              color = "#d62728", linewidth = 1.2) +
+              color = "#d62728", linewidth = 1.2, linetype = "dashed", alpha = 0.6) +
     geom_ribbon(data = pred_mort_gg, aes(x = x, ymin = 1 - conf.high, ymax = 1 - conf.low),
-                fill = "#d62728", alpha = 0.15) +
+                fill = "#d62728", alpha = 0.10) +
     labs(title = "(d) Mortality probability", x = "TOC (%)", y = "Mortality probability") +
     theme_som
 
@@ -390,15 +474,32 @@ nls_table_row <- function(model, model_name, R2, R2_adj, n_total) {
 
 growth_table <- rbind(
     nls_table_row(fit_height,  "Height",  R2_height,  R2_adj_height,  nrow(ag_max)),
-    nls_table_row(fit_density, "Density", R2_density, R2_adj_density, nrow(ag_max)),
+    nls_table_row(fit_density, "Density$^\\dagger$", R2_density, R2_adj_density, nrow(ag_max)),
     nls_table_row(fit_root,    "Root",    R2_root,    R2_adj_root,    nrow(df_bg))
 )
+# Add clean density fit if it converged
+if (!is.null(fit_density_clean)) {
+    pred_dc <- predict(fit_density_clean)
+    wt_dc <- 1 / means_density_clean$se_n^2
+    R2_dc <- 1 - sum(wt_dc * (means_density_clean$mean_n - pred_dc)^2) / sum(wt_dc * (means_density_clean$mean_n - weighted.mean(means_density_clean$mean_n, wt_dc))^2)
+    R2_adj_dc <- 1 - (1 - R2_dc) * (nrow(means_density_clean) - 1) / (nrow(means_density_clean) - length(coef(fit_density_clean)) - 1)
+    density_clean_table <- nls_table_row(fit_density_clean, "Density (clean)$^\\ddagger$", R2_dc, R2_adj_dc, nrow(ag_max_clean))
+    # Insert clean density rows after original density rows
+    ht_rows <- nrow(nls_table_row(fit_height, "H", 0, 0, 0))
+    dt_rows <- nrow(nls_table_row(fit_density, "D", 0, 0, 0))
+    insert_after <- ht_rows + dt_rows
+    growth_table <- rbind(
+        growth_table[1:insert_after, ],
+        density_clean_table,
+        growth_table[(insert_after + 1):nrow(growth_table), ]
+    )
+}
 
 # --- Table 1: Growth model coefficients ---
 sink(file.path(output_dir, "growth_model_coefficients.tex"))
 cat("\\begin{table}[htbp]\n")
 cat("\\centering\n")
-cat("\\caption{Non-linear regression coefficients for the Gaussian growth response models (Levenberg--Marquardt algorithm). The response function is $y = b_0 + a \\cdot \\exp\\left(-\\frac{(\\mathrm{SOM} - \\mu)^2}{2\\sigma^2}\\right)$, where $b_0$ is the baseline multiplier, $a$ is the amplitude, $\\mu$ is the optimal SOM (\\% TOC), and $\\sigma$ is the standard deviation of the response. Response variables are normalised to the reference beach sand (R).}\n")
+cat("\\caption{Non-linear regression coefficients for the Gaussian growth response models (Levenberg--Marquardt algorithm). The response function is $y = b_0 + a \\cdot \\exp\\left(-\\frac{(\\mathrm{SOM} - \\mu)^2}{2\\sigma^2}\\right)$, where $b_0$ is the baseline multiplier, $a$ is the amplitude, $\\mu$ is the optimal SOM (\\% TOC), and $\\sigma$ is the standard deviation of the response. Response variables are normalised to the reference beach sand (R). $\\dagger$~Including outlier plant 6b\\_5 (97 leaves). $\\ddagger$~Outlier removed; amplitude non-significant.}\n")
 cat("\\label{tab:growth_coefficients}\n")
 cat("\\small\n")
 cat("\\begin{tabular}{ll rrrr rr r}\n")
@@ -463,7 +564,7 @@ cat("Table written: mortality_model_coefficients.tex\n")
 sink(file.path(output_dir, "som_derived_parameters.tex"))
 cat("\\begin{table}[htbp]\n")
 cat("\\centering\n")
-cat("\\caption{Derived SOM response parameters for the Living Dunes vegetation model. Growth responses use a Gaussian function as a multiplier on the base demographic rate. Mortality uses a sigmoid (inverse logistic) function.}\n")
+cat("\\caption{Derived SOM response parameters for the Living Dunes vegetation model. Growth responses use a Gaussian function as a multiplier on the base demographic rate. Mortality uses a sigmoid (inverse logistic) function. Density growth is excluded from the model parameterisation due to a single outlier driving the apparent response.}\n")
 cat("\\label{tab:som_derived_parameters}\n")
 cat("\\begin{tabular}{l l l r}\n")
 cat("\\toprule\n")
@@ -473,9 +574,7 @@ cat(sprintf("Height growth & Gaussian & $\\mu$ (\\%% TOC) & %.3f \\\\\n", h_cf["
 cat(sprintf("              &          & $\\sigma$ (\\%% TOC) & %.3f \\\\\n", abs(h_cf["sigma"])))
 cat(sprintf("              &          & Amplitude $a$ & %.3f \\\\\n", h_cf["amp"]))
 cat("\\midrule\n")
-cat(sprintf("Density growth & Gaussian & $\\mu$ (\\%% TOC) & %.3f \\\\\n", d_cf["mu"]))
-cat(sprintf("               &          & $\\sigma$ (\\%% TOC) & %.3f \\\\\n", abs(d_cf["sigma"])))
-cat(sprintf("               &          & Amplitude $a$ & %.3f \\\\\n", d_cf["amp"]))
+cat("Density growth & --- & --- & Excluded$^\\dagger$ \\\\\n")
 cat("\\midrule\n")
 cat(sprintf("Root growth & Gaussian & $\\mu$ (\\%% TOC) & %.3f \\\\\n", r_cf["mu"]))
 cat(sprintf("            &          & $\\sigma$ (\\%% TOC) & %.3f \\\\\n", abs(r_cf["sigma"])))
@@ -484,6 +583,12 @@ cat("\\midrule\n")
 cat(sprintf("Mortality & Sigmoid & Steepness & %.4f \\\\\n", mort_steepness))
 cat(sprintf("          &         & Threshold (\\%% TOC) & %.2f \\\\\n", mort_threshold))
 cat("\\bottomrule\n")
+if (!is.na(density_clean_amp_p)) {
+    cat(sprintf("\\multicolumn{4}{l}{\\footnotesize $\\dagger$ One extreme measurement removed (plant 6b\\_5, 97 leaves);} \\\\\n"))
+    cat(sprintf("\\multicolumn{4}{l}{\\footnotesize amplitude non-significant after removal ($p = %.2f$). See Table~\\ref{tab:growth_coefficients}.} \\\\\n", density_clean_amp_p))
+} else {
+    cat("\\multicolumn{4}{l}{\\footnotesize $\\dagger$ One extreme measurement removed; NLS failed after removal.} \\\\\n")
+}
 cat("\\end{tabular}\n")
 cat("\\end{table}\n")
 sink()
@@ -506,14 +611,20 @@ cat("Model & Log-Lik & AIC & $\\sigma_\\varepsilon$ & $R^2$ & $n$ \\\\\n")
 cat("\\midrule\n")
 cat(sprintf("Height NLS & %.1f & %.1f & %.4f & %.3f & %d \\\\\n",
     logLik(fit_height), AIC(fit_height), sigma_h, R2_height, nrow(ag_max)))
-cat(sprintf("Density NLS & %.1f & %.1f & %.4f & %.3f & %d \\\\\n",
+cat(sprintf("Density NLS$^\\dagger$ & %.1f & %.1f & %.4f & %.3f & %d \\\\\n",
     logLik(fit_density), AIC(fit_density), sigma_d, R2_density, nrow(ag_max)))
+if (!is.null(fit_density_clean)) {
+    sigma_dc <- summary(fit_density_clean)$sigma
+    cat(sprintf("Density NLS (clean)$^\\ddagger$ & %.1f & %.1f & %.4f & %.3f & %d \\\\\n",
+        logLik(fit_density_clean), AIC(fit_density_clean), sigma_dc, R2_dc, nrow(ag_max_clean)))
+}
 cat(sprintf("Root NLS & %.1f & %.1f & %.4f & %.3f & %d \\\\\n",
     logLik(fit_root), AIC(fit_root), sigma_r, R2_root, nrow(df_bg)))
-cat(sprintf("Mortality GLMM & %.1f & %.1f & --- & %.3f$^\\dagger$ & %d \\\\\n",
+cat(sprintf("Mortality GLMM & %.1f & %.1f & --- & %.3f$^*$ & %d \\\\\n",
     as.numeric(logLik(fit_mort)), AIC(fit_mort), R2_mcfadden, nrow(mortality_df)))
 cat("\\bottomrule\n")
-cat("\\multicolumn{6}{l}{\\footnotesize $\\dagger$ McFadden pseudo-$R^2$ for the binomial GLMM.} \\\\\n")
+cat("\\multicolumn{6}{l}{\\footnotesize $^*$ McFadden pseudo-$R^2$ for the binomial GLMM.} \\\\\n")
+cat("\\multicolumn{6}{l}{\\footnotesize $\\dagger$ Including outlier plant 6b\\_5. $\\ddagger$ Outlier removed.} \\\\\n")
 cat("\\end{tabular}\n")
 cat("\\end{table}\n")
 sink()

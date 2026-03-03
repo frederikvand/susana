@@ -1,6 +1,6 @@
 \begin{table}[htbp]
 \centering
-\caption{Derived SOM response parameters for the Living Dunes vegetation model. Growth responses use a Gaussian function as a multiplier on the base demographic rate. Mortality uses a sigmoid (inverse logistic) function.}
+\caption{Derived SOM response parameters for the Living Dunes vegetation model. Growth responses use a Gaussian function as a multiplier on the base demographic rate. Mortality uses a sigmoid (inverse logistic) function. Density growth is excluded from the model parameterisation due to a single outlier driving the apparent response.}
 \label{tab:som_derived_parameters}
 \begin{tabular}{l l l r}
 \toprule
@@ -10,9 +10,7 @@ Height growth & Gaussian & $\mu$ (\% TOC) & 1.323 \\
               &          & $\sigma$ (\% TOC) & 1.518 \\
               &          & Amplitude $a$ & 0.807 \\
 \midrule
-Density growth & Gaussian & $\mu$ (\% TOC) & 0.648 \\
-               &          & $\sigma$ (\% TOC) & 0.100 \\
-               &          & Amplitude $a$ & 1.402 \\
+Density growth & --- & --- & Excluded$^\dagger$ \\
 \midrule
 Root growth & Gaussian & $\mu$ (\% TOC) & 1.242 \\
             &          & $\sigma$ (\% TOC) & 0.677 \\
@@ -21,5 +19,7 @@ Root growth & Gaussian & $\mu$ (\% TOC) & 1.242 \\
 Mortality & Sigmoid & Steepness & -0.0105 \\
           &         & Threshold (\% TOC) & -126.21 \\
 \bottomrule
+\multicolumn{4}{l}{\footnotesize $\dagger$ One extreme measurement removed (plant 6b\_5, 97 leaves);} \\
+\multicolumn{4}{l}{\footnotesize amplitude non-significant after removal ($p = 0.14$). See Table~\ref{tab:growth_coefficients}.} \\
 \end{tabular}
 \end{table}

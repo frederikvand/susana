@@ -55,8 +55,12 @@ figure_map <- list(
   list(src  = here("output", "germination", "diurnal_temperature.pdf"),
        dest = "diurnal_temperature.pdf"),
 
-  # SOM response curves
+  # SOM response curves — R-derived experimental figure
   list(src  = here("output", "som_response", "som_response_R_derivation.pdf"),
+       dest = "som_response_R_derivation.pdf"),
+
+  # SOM response curves — Python-generated modelled response (Living Dunes)
+  list(src  = here("output", "som_response", "som_response_curves.pdf"),
        dest = "som_response_curves.pdf")
 )
 
@@ -168,12 +172,20 @@ update_tex_paths <- function(tex_file) {
     c("../../output/germination/moisture ifo temperature.png",
       "figures/soil_moisture_timeseries.pdf"),
 
-    # SOM response
+    # SOM response — R-derived experimental figure
     c("../../output/som_response_R_derivation.png",
-      "figures/som_response_curves.pdf"),
+      "figures/som_response_R_derivation.pdf"),
     c("../../output/som_response/som_response_R_derivation.png",
-      "figures/som_response_curves.pdf"),
+      "figures/som_response_R_derivation.pdf"),
     c("../../output/som_response/som_response_R_derivation.pdf",
+      "figures/som_response_R_derivation.pdf"),
+
+    # SOM response — Python modelled response figure
+    c("../../output/som_response_curves.png",
+      "figures/som_response_curves.pdf"),
+    c("../../output/som_response/som_response_curves.png",
+      "figures/som_response_curves.pdf"),
+    c("../../output/som_response/som_response_curves.pdf",
       "figures/som_response_curves.pdf")
   )
 

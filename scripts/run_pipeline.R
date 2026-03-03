@@ -19,19 +19,30 @@ scripts <- c(
   "scripts/02_aboveground_analysis.R",
   "scripts/03_belowground_analysis.R",
   "scripts/04_germination_analysis.R",
-  "scripts/05_derive_som_glm.R",
+  "scripts/05a_derive_som_glm.R",
+  "scripts/05b_som_modelled_response.py",
   "scripts/06_copy_figures_to_manuscript.R"
 )
 
 for (s in scripts) {
-  cat("\n>>> Sourcing:", s, "\n")
-  tryCatch(
-    source(s, local = new.env(parent = globalenv())),
-    error = function(e) {
-      cat("\n!!! ERROR in", s, ":\n", conditionMessage(e), "\n")
+  ext <- tools::file_ext(s)
+  if (ext == "py") {
+    cat("\n>>> Running:", s, "\n")
+    py_exit <- system2("python", s, stdout = "", stderr = "")
+    if (py_exit != 0) {
+      cat("\n!!! ERROR in", s, "(exit code:", py_exit, ")\n")
       stop(paste("Pipeline halted at", s), call. = FALSE)
     }
-  )
+  } else {
+    cat("\n>>> Sourcing:", s, "\n")
+    tryCatch(
+      source(s, local = new.env(parent = globalenv())),
+      error = function(e) {
+        cat("\n!!! ERROR in", s, ":\n", conditionMessage(e), "\n")
+        stop(paste("Pipeline halted at", s), call. = FALSE)
+      }
+    )
+  }
 }
 
 elapsed <- round(difftime(Sys.time(), t0, units = "mins"), 1)
