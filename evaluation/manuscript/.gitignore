@@ -1,0 +1,12 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc
+
+# Do NOT ignore: *.tex, *.pdf, *.cls, *.bst, *.bib, *.md, template/

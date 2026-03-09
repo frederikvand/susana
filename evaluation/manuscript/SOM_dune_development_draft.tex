@@ -2,21 +2,17 @@
 % SOM_dune_development_draft.tex
 % Draft manuscript: Effects of Soil Organic Matter on Dune Development
 % Following Nature-Based Restoration with Alternative Sediments
+% Target journal: Ecological Engineering (Elsevier) -- see journal_options.md
 % =============================================================================
-\documentclass[12pt, a4paper]{article}
 
-% --- Packages ---
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath, amssymb}
-\usepackage{graphicx}
-\graphicspath{{figures/}}
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{natbib}
+%% Review mode: double-spaced, line numbers, preprint layout
+\documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Packages already loaded by elsarticle: graphicx, amsmath, natbib
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{lineno}
-\usepackage{setspace}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{cleveref}
@@ -31,14 +27,8 @@
     urlcolor=blue
 }
 
-% APA-style hanging indent for reference list
-\newenvironment{hangparas}[2]
-  {\setlength{\parindent}{#1}%
-   \everypar={\hangindent=\parindent}}
-  {}
-
-\doublespacing
-\linenumbers
+\graphicspath{{figures/}}
+\journal{Ecological Engineering}
 
 % --- Convenience commands ---
 \newcommand{\SOM}{\mathrm{SOM}}
@@ -49,29 +39,37 @@
 % =============================================================================
 \begin{document}
 
-% --- Title ---
+\begin{frontmatter}
+
 \title{Optimizing Alternative Sediments for Dune Construction: An Eco-Geomorphological Approach}
 
-\author{
-Frederik Van~Daele$^{1,*}$\thanks{Corresponding author: frederik.vandaele@ugent.be} \and
-Charlotte Taelman$^{2}$ \and
-Maaike Dhondt$^{2}$ \and
-Jianghua Guo$^{3}$ \and
-Jiayue Yan$^{2}$ \and
-Katrien Vanderbiest$^{4}$ \and
-Pieter Rauwoens$^{3}$ \and
-Dries Bonte$^{2}$
-}
+\author[ugent-eng,biomorpho]{Frederik Van~Daele\corref{cor1}}
+\ead{frederik.vandaele@ugent.be}
+\author[ugent-bio]{Charlotte Taelman}
+\author[ugent-bio]{Maaike Dhondt}
+\author[kuleuven]{Jianghua Guo}
+\author[ugent-bio]{Jiayue Yan}
+\author[uantwerp]{Katrien Vanderbiest}
+\author[kuleuven]{Pieter Rauwoens}
+\author[ugent-bio]{Dries Bonte}
 
-\date{
-$^{1}$Department of Civil Engineering, Ghent University, Belgium \\
-$^{2}$Department of Biology, Ghent University, Belgium \\
-$^{3}$Department of Civil Engineering, KU Leuven, Technology Campus Bruges, Belgium \\
-$^{4}$University of Antwerp, Belgium \\[0.5em]
-\today~--- \textbf{Draft manuscript for internal review}
-}
+\cortext[cor1]{Corresponding author}
 
-\maketitle
+\affiliation[ugent-eng]{organization={Department of Civil Engineering},
+    city={Ghent}, country={Belgium},
+    note={Ghent University}}
+\affiliation[biomorpho]{organization={Terrestrial Ecology Unit, Department of Biology},
+    city={Ghent}, country={Belgium},
+    note={Ghent University}}
+\affiliation[ugent-bio]{organization={Terrestrial Ecology Unit, Department of Biology},
+    city={Ghent}, country={Belgium},
+    note={Ghent University}}
+\affiliation[kuleuven]{organization={Department of Civil Engineering, Technology Campus Bruges},
+    city={Bruges}, country={Belgium},
+    note={KU Leuven}}
+\affiliation[uantwerp]{organization={Department of Biology},
+    city={Antwerp}, country={Belgium},
+    note={University of Antwerp}}
 
 % =============================================================================
 % ABSTRACT
@@ -79,9 +77,29 @@ $^{4}$University of Antwerp, Belgium \\[0.5em]
 \begin{abstract}
 Nature-based solutions for coastal protection increasingly rely on dune-in-front-of-dike (DfD) systems constructed with sand from dredging operations. However, the long-term geomorphological development of dunes built with organic-rich alternative sediments remains poorly understood. We present an integrated experimental--numerical framework that couples (i) common-garden and germination experiments quantifying marram grass (\textit{Calamagrostis arenaria}) performance on 10 substrate mixtures varying in soil organic matter (SOM) content (\SIrange{0.06}{2.5}{\percent} total organic carbon), (ii) a process-based aeolian--vegetation feedback model (Living Dunes) extended with dynamic SOM--ecohydrology and SOM--cohesion pathways, and (iii) storm erosion assessment using XBeach. Growth experiments demonstrated that marram grass germination and establishment were significantly enhanced on organic-rich alternative substrates compared to natural beach sand, with leaf counts on the dark dredging substrate exceeding the reference by a factor $>$2. We parameterised the Living Dunes model to simulate three-year dune development at Ostend (Belgium) under 10 sediment scenarios ranging from pure beach sand to pure dredging material. Model extensions included a Saxton and Rawls pedotransfer function linking SOM to field capacity (the ``sponge effect''), a dynamic organic cohesion modifier following Zobeck et al., and a disturbance-recovery index after Belnap and Gillette. Furthermore, we parameterised trait-specific growth functions based on SOM to reflect observed variations in vegetation vigour. Three-year simulations were followed by XBeach storm impact modelling and subsequent Living Dunes recovery simulations to assess the self-restoring capacity of the constructed dunes. Preliminary model results indicate that moderate SOM enrichment (\SIrange{1}{2}{\percent} TOC) optimises both vegetation vigour and aeolian sediment supply, producing the tallest and most erosion-resistant dune profiles, while further increases in organic content progressively suppress aeolian transport through enhanced moisture retention and organic cohesion. These findings provide evidence-based guidelines for the sustainable use of dredging by-products in nature-based coastal defences.
 
-\bigskip
-\noindent\textbf{Keywords:} soil organic matter; nature-based solutions; dune restoration; marram grass; alternative sediments; aeolian transport; coastal resilience; Living Dunes model; XBeach
 \end{abstract}
+
+\begin{graphicalabstract}
+%% TODO: Insert graphical abstract figure when available
+%\includegraphics{figures/graphical_abstract}
+\end{graphicalabstract}
+
+\begin{highlights}
+\item SOM content of alternative dredging sediments significantly affects marram grass establishment and vigour.
+\item Moderate SOM enrichment (1--2\% TOC) optimises both vegetation growth and aeolian sand supply.
+\item Living Dunes model extended with dynamic SOM--ecohydrology and SOM--cohesion pathways.
+\item XBeach storm erosion modelling shows organic-enriched dunes have competitive storm resilience.
+\item Evidence-based guidelines for sustainable reuse of dredging by-products in dune-in-front-of-dike systems.
+\end{highlights}
+
+\begin{keyword}
+soil organic matter \sep nature-based solutions \sep dune restoration \sep marram grass \sep
+alternative sediments \sep aeolian transport \sep coastal resilience \sep Living Dunes model \sep XBeach
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
 
 \newpage
 
@@ -92,15 +110,15 @@ Nature-based solutions for coastal protection increasingly rely on dune-in-front
 
 Sandy coastlines provide critical ecosystem services including flood defence, habitat provision, and recreational value \citep{martinez2008coastal}. In low-lying countries such as Belgium, dune-in-front-of-dike (DfD) systems have been proposed as nature-based solutions that combine coastal safety with ecological restoration \citep{temmerman2013ecosystem}. Unlike traditional hard engineering structures, these systems rely on biophysical feedbacks between vegetation, sediment, and wind to build and maintain their protective volume over time \citep{bonte2021biomorphogenic}.
 
-A fundamental requirement for DfD construction is the availability of suitable sediment in sufficient quantities. Sand is, however, a finite and increasingly contested resource. In the Belgian part of the North Sea (BPNS), extraction volumes surged from \SI{0.3e6}{\cubic\metre} in 1976 to \SI{3.5e6}{\cubic\metre} in 2019, and mid-term projections indicate growing scarcity of high-quality aggregates. Only \SI{16}{\percent} of sand used for coastal safety in Flanders originates from beneficial reuse of dredging material, with the remainder sourced from dedicated extraction zones defined in the Marine Spatial Plan \citep{speybroeck2006beach}. This situation has motivated research into whether alternative sediments---particularly by-products from maintenance dredging in ports and navigation channels---can be repurposed for dune construction.
+A fundamental requirement for DfD construction is the availability of suitable sediment in sufficient quantities. Sand is, however, a finite and increasingly contested resource. In the Belgian part of the North Sea (BPNS), extraction volumes surged from \SI{0.3e6}{\cubic\metre} in 1976 to \SI{3.5e6}{\cubic\metre} in 2019, and mid-term projections indicate growing scarcity of high-quality aggregates. Only \SI{16}{\percent} of sand used for coastal safety in Flanders originates from beneficial reuse of dredging material, with the remainder sourced from dedicated extraction zones defined in the Marine Spatial Plan \citep{speybroeck2006beach}. This situation has motivated research into whether alternative sediments, particularly by-products from maintenance dredging in ports and navigation channels, can be repurposed for dune construction.
 
 Alternative sediments from dredging typically differ from native beach sand in three principal ways: they have a finer grain size distribution, a higher soil organic matter (SOM) content, and a more heterogeneous texture \citep{vandeneede2014assessing}. Each of these properties influences the aeolian and ecological processes that govern dune development. Finer grains reduce the threshold shear velocity for transport initiation but also increase interparticle cohesion \citep{shao2000simple}. Elevated SOM content enhances soil water retention through increased microporosity \citep{saxton2006soil}, strengthens interparticle bonding via organic polymers and biocrust formation \citep{zobeck2013soil}, and alters nutrient availability for vegetation establishment \citep{vanderputten1993plant}. Understanding these interacting effects is essential for predicting whether DfD systems constructed with alternative sediments will develop into functional, self-sustaining dunes.
 
-Marram grass (\textit{Calamagrostis arenaria}, formerly \textit{Ammophila arenaria}) is the dominant ecosystem engineer in northwest European foredunes. It traps wind-blown sand through aerodynamic roughness and drag, and responds positively to moderate sand burial through stimulated vertical and lateral growth \citep{huiskes1979ammophila, disraeli1984effect, keijsers2016adaptation, reijers2021review}. This positive feedback between vegetation growth and sand accretion makes marram grass the keystone species for dune building. However, how marram grass responds to substrates with elevated organic matter---specifically whether the improved moisture retention and nutrient supply compensate for potentially reduced aeolian sand supply---remains an open question.
+Marram grass (\textit{Calamagrostis arenaria}, formerly \textit{Ammophila arenaria}) is the dominant ecosystem engineer in northwest European foredunes. It traps wind-blown sand through aerodynamic roughness and drag, and responds positively to moderate sand burial through stimulated vertical and lateral growth \citep{huiskes1979ammophila, disraeli1984effect, keijsers2016adaptation, reijers2021review}. This positive feedback between vegetation growth and sand accretion makes marram grass the keystone species for dune building. However, how marram grass responds to substrates with elevated organic matter, specifically whether the improved moisture retention and nutrient supply compensate for potentially reduced aeolian sand supply, remains an open question.
 
 Previous studies on beach nourishment ecology have focused primarily on intertidal macrofauna response to sediment grain size \citep{speybroeck2006beach, vandeneede2014assessing}. Research on dune vegetation establishment on alternative substrates has been limited to qualitative field observations, and no study has quantitatively linked substrate organic matter content to dune geomorphological development through both experimental and numerical approaches.
 
-The SUSANA project (Sustainable Use of Sand in Nature-based Solutions) addresses this gap through a multi-partner research programme that combines field experiments, laboratory analyses, and numerical modelling. The present study integrates three complementary research lines. First, we report the results of common-garden and germination experiments testing marram grass performance on 10 substrate mixtures spanning the range from pure natural beach sand to pure dredging material, conducted at the port of Zeebrugge over one growing season. Second, we describe extensions to the Living Dunes model---a spatially explicit, process-based aeolian--vegetation feedback model---that represent the effects of SOM on soil moisture retention, threshold shear velocity, and surface disturbance dynamics. Third, we apply this model to simulate three-year dune development at a DfD site near Ostend under each of the 10 substrate scenarios, followed by XBeach storm erosion modelling and post-storm recovery simulations to assess the self-restoring capacity of the resulting dune profiles.
+The SUSANA project (Sustainable Use of Sand in Nature-based Solutions) addresses this gap through a multi-partner research programme that combines field experiments, laboratory analyses, and numerical modelling. The present study integrates three complementary research lines. First, we report the results of common-garden and germination experiments testing marram grass performance on 10 substrate mixtures spanning the range from pure natural beach sand to pure dredging material, conducted at the port of Zeebrugge over one growing season. Second, we describe extensions to the Living Dunes model, a spatially explicit, process-based aeolian--vegetation feedback model, that represent the effects of SOM on soil moisture retention, threshold shear velocity, and surface disturbance dynamics. Third, we apply this model to simulate three-year dune development at a DfD site near Ostend under each of the 10 substrate scenarios, followed by XBeach storm erosion modelling and post-storm recovery simulations to assess the self-restoring capacity of the resulting dune profiles.
 
 The primary objectives of this study are to (1) quantify the effect of substrate SOM content on marram grass establishment and growth, (2) develop and validate a modelling framework that captures the coupled effects of SOM on ecohydrology and aeolian transport, and (3) identify the SOM range that optimises long-term dune development and storm resilience. We hypothesise that SOM acts as a ``double-edged sword'' for dune development, where enhanced moisture retention promotes vegetation growth but simultaneously suppresses the aeolian sediment supply necessary for continued dune building. Together, these results provide evidence-based recommendations for the use of alternative sediments in nature-based coastal defence.
 
@@ -169,7 +187,7 @@ D (dark dredge) & 2.16 & 0.19 & 182.9 \\
 
 A common-garden experiment was established at the port of Zeebrugge to quantify the effect of substrate type on marram grass (\textit{C. arenaria}) growth under uniform climatic conditions. Plant cuttings comprising 10--15 leaves, sourced from natural dunes at Zeebrugge, were planted in custom-designed boxes (10 $\times$ 10 cm horizontal, 40 cm deep) on 23 October 2023. The 10 substrates were distributed across 120 boxes using a randomised block design, with 12 replicates per substrate; 100 boxes were planted with marram grass and 20 were left as unplanted controls. The boxes were placed outdoors in the harbour, exposed to the maritime climate of the Belgian coast.
 
-Growth was quantified through biweekly measurements of maximum leaf length and total number of living leaves (defined as leaves $>$\SI{5}{\centi\metre} with $>$\SI{20}{\percent} green tissue) from April through September 2024. During the initial measurement, \SI{27}{\percent} of cuttings were observed to have died during winter; these were replanted in April 2024. To simulate natural sand burial---essential for marram grass vigour \citep{disraeli1984effect}---boxes were manually overblown with \SI{1}{\centi\metre} of natural beach sand (R) on three occasions (24 May, 5 July, and 16 August 2024). Weeds were removed to ensure substrate purity. Treatment effects on leaf height and number of leaves were analysed using generalised linear mixed models fitted in R. For height, a Gaussian LMM (\texttt{lme4}) was fitted with substrate, orthogonal polynomial time (quadratic), and their interaction as fixed effects and plant identity as a random intercept; a likelihood-ratio test confirmed that the quadratic time trend significantly improved fit over a linear specification ($\chi^2 = 103.18$, $p < 2 \times 10^{-16}$). Leaf count, being discrete count data (mean $= 9.0$, variance $= 20.3$), was modelled with a Poisson GLMM (log link; \texttt{glmmTMB} package) using the same fixed-effects structure and a random intercept for plant identity; the Poisson distribution provided an adequate fit, as the plant-level random intercept accommodated any residual overdispersion. Estimated marginal means (EMMs) were computed on the response scale with the \texttt{emmeans} package and compared using FDR-adjusted pairwise contrasts; compact letter displays (CLD) were derived to summarise group membership. Model-predicted trajectories were plotted using the \texttt{ggeffects} package to ensure visual--statistical concordance.
+Growth was quantified through biweekly measurements of maximum leaf length and total number of living leaves (defined as leaves $>$\SI{5}{\centi\metre} with $>$\SI{20}{\percent} green tissue) from April through September 2024. During the initial measurement, \SI{27}{\percent} of cuttings were observed to have died during winter; these were replanted in April 2024. To simulate natural sand burial, essential for marram grass vigour \citep{disraeli1984effect}, boxes were manually overblown with \SI{1}{\centi\metre} of natural beach sand (R) on three occasions (24 May, 5 July, and 16 August 2024). Weeds were removed to ensure substrate purity. Treatment effects on leaf height and number of leaves were analysed using generalised linear mixed models fitted in R. For height, a Gaussian LMM (\texttt{lme4}) was fitted with substrate, orthogonal polynomial time (quadratic), and their interaction as fixed effects and plant identity as a random intercept; a likelihood-ratio test confirmed that the quadratic time trend significantly improved fit over a linear specification ($\chi^2 = 103.18$, $p < 2 \times 10^{-16}$). Leaf count, being discrete count data (mean $= 9.0$, variance $= 20.3$), was modelled with a Poisson GLMM (log link; \texttt{glmmTMB} package) using the same fixed-effects structure and a random intercept for plant identity; the Poisson distribution provided an adequate fit, as the plant-level random intercept accommodated any residual overdispersion. Estimated marginal means (EMMs) were computed on the response scale with the \texttt{emmeans} package and compared using FDR-adjusted pairwise contrasts; compact letter displays (CLD) were derived to summarise group membership. Model-predicted trajectories were plotted using the \texttt{ggeffects} package to ensure visual--statistical concordance.
 
 \subsubsection{Germination Experiment}
 
@@ -181,7 +199,7 @@ Germinated seedlings were counted on 24 May 2024 (1~month after setup), and maxi
 \subsection{Derivation of SOM Response Curves for Model Parameterisation}
 \label{sec:som_response_derivation}
 
-To translate the experimental growth and mortality observations into continuous functions suitable for the Living Dunes demographic module, we derived dose--response curves relating normalised plant performance to substrate TOC content. For each response variable---maximum leaf height, maximum leaf count (stem density), root biomass, and mortality---individual measurements were normalised to the treatment mean of the reference beach sand (R), yielding substrate-specific multipliers. Prior to curve fitting, individual-level data were screened for extreme outliers using Tukey's 3$\times$IQR fence criterion on each normalised response variable.
+To translate the experimental growth and mortality observations into continuous functions suitable for the Living Dunes demographic module, we derived dose--response curves relating normalised plant performance to substrate TOC content. For each response variable, namely maximum leaf height, maximum leaf count (stem density), root biomass, and mortality, individual measurements were normalised to the treatment mean of the reference beach sand (R), yielding substrate-specific multipliers. Prior to curve fitting, individual-level data were screened for extreme outliers using Tukey's 3$\times$IQR fence criterion on each normalised response variable.
 
 The overall effect of substrate treatment on each response variable was first tested using a Kruskal--Wallis rank-sum test on the individual-level data ($n = 120$ for aboveground variables, $n = 228$ for root biomass). Due to the high within-treatment variance characteristic of individual-plant measurements in heterogeneous field conditions, the Gaussian response curves were fitted to treatment-level means (10 substrates) using weighted non-linear least squares with the Levenberg--Marquardt algorithm (\texttt{nlsLM} from the \texttt{minpack.lm} R package). Inverse-variance weights ($1/\text{SE}^2_j$) were assigned to each treatment mean, giving higher precision to treatments with less dispersion. This approach is standard for dose--response parameterisation when within-treatment variation exceeds the between-treatment signal \citep{ritz2015dose}. Sensitivity analyses were conducted by refitting curves with and without flagged outliers to assess the robustness of the estimated optima.
 
@@ -236,7 +254,7 @@ The Living Dunes soil moisture module resolves a two-layer soil column comprisin
 
 \subsubsection{Vegetation Module}
 
-Living Dunes resolves vegetation dynamics at the species level using a demographic framework with distinct life phases (seed bank, juvenile, adult). For marram grass, growth is governed by a base rate modulated by environmental response functions for soil moisture, temperature, sand burial, erosion, and---as parameterised in this study---substrate SOM content, combined through a geometric mean interaction model. The environmental response functions are parameterised using cardinal response curves, Gaussian functions, and sigmoid functions derived from field observations and literature values.
+Living Dunes resolves vegetation dynamics at the species level using a demographic framework with distinct life phases (seed bank, juvenile, adult). For marram grass, growth is governed by a base rate modulated by environmental response functions for soil moisture, temperature, sand burial, erosion, and, as parameterised in this study, substrate SOM content, combined through a geometric mean interaction model. The environmental response functions are parameterised using cardinal response curves, Gaussian functions, and sigmoid functions derived from field observations and literature values.
 
 Adult marram grass density growth follows:
 \begin{equation}
@@ -247,7 +265,7 @@ where $r_{base}$ is the base growth rate (\num{0.01} per day), $f_i(E_i)$ are th
 
 The SOM response functions enter the geometric mean as additional environmental factors $f_{\SOM}(\cdot)$ for density growth and height growth (\cref{eq:gaussian_som}), parameterised from the treatment-mean fits described in \cref{sec:som_response_derivation}. The derived parameters for the Living Dunes vegetation model are listed in \cref{tab:som_derived_parameters}, and the modelled response curves are shown in \cref{fig:som_response_modelled}.
 
-Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model---the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion. As the mortality response to SOM was not significant in the experimental data (\cref{sec:results_som_curves}), no SOM-specific mortality modifier was implemented in the present simulations.
+Marram grass mortality is evaluated using a multi-driver framework where environmental stressors are combined through a maximum interaction model; the single most stressful condition determines the stress level at each time step. Mortality drivers include drought stress (moisture below a critical threshold), temperature extremes, excessive burial ($>$\SI{65}{\milli\metre\per\day}), and root exposure from erosion. As the mortality response to SOM was not significant in the experimental data (\cref{sec:results_som_curves}), no SOM-specific mortality modifier was implemented in the present simulations.
 
 Lateral spread is modelled through a two-component kernel: a diffusive spread to immediately neighbouring cells and longer-range rhizome colonisation (L\'{e}vy walk), both modulated by the same environmental response functions but with distinct base rates and density-dependent regulation \citep{bonte2021biomorphogenic}.
 
@@ -257,7 +275,7 @@ Lateral spread is modelled through a two-component kernel: a diffusive spread to
 
 Three new process pathways were implemented to represent the effects of SOM on dune development. Together, these extensions enable the model to differentiate between substrates with varying organic matter content and to capture the emergent effects on long-term dune morphology.
 
-\paragraph{Pathway 1: Dynamic Field Capacity --- The ``Sponge Effect''}
+\paragraph{Pathway 1: Dynamic Field Capacity, the ``Sponge Effect''}
 
 Soil organic matter increases the intra-aggregate porosity and specific surface area of sandy soils, thereby enhancing their water-holding capacity. This is implemented using a pedotransfer function (PTF) following \citet{saxton2006soil}:
 \begin{equation}
@@ -484,7 +502,7 @@ These findings provide the first quantitative evidence-base for the use of dredg
 % =============================================================================
 \section*{Acknowledgements}
 
-This work was supported by the SUSANA project (Sustainable Use of Sand in Nature-based Solutions). We thank the Flemish Maritime Services Division (MDK) for access to the study site and dredging material, and the port authority of Zeebrugge for hosting the field experiments. \todo{Complete acknowledgements.}
+This work was supported by the SUSANA project (Sustainable Use of Sand in Nature-based Solutions; VLAIO grant HBC.2022.0548). We thank the Flemish Maritime Services Division (MDK) for access to the study site and dredging material, and the port authority of Zeebrugge for hosting the field experiments. \todo{Complete acknowledgements.}
 
 
 % =============================================================================
@@ -494,7 +512,7 @@ This work was supported by the SUSANA project (Sustainable Use of Sand in Nature
 % Include references present in the list but not explicitly cited in the text
 \nocite{davidson2005wind, devries2014aeolian, fecan1999parametrization, greeley1985wind}
 
-\bibliographystyle{apalike}
+\bibliographystyle{elsarticle-harv}
 \bibliography{references}
 
 % Include the appendix
